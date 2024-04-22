@@ -13,6 +13,13 @@ sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.
 rm -rf feeds/packages/net/{xray-*,trojan*,v2ray-*,sing*}
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone https://github.com/sbwml/luci-app-alist package/alist
+git clone https://github.com/sbwml/openwrt-qBittorrent package/qBittorrent
+git clone https://github.com/huanghitoy/wwan.git package/wwan
+git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
+
+
 #rm -rf feeds/packages/net/mosdns
 #rm -rf feeds/packages/net/msd_lite
 #rm -rf feeds/packages/net/smartdns
@@ -50,7 +57,7 @@ function git_sparse_clone() {
 #git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
 
 # Themes
-git clone https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
+
 #git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
 #git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 #git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
@@ -75,10 +82,10 @@ git clone https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/lu
 #git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 
 # MosDNS
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+
 
 # Alist
-git clone https://github.com/sbwml/luci-app-alist package/alist
+
 
 # DDNS.to
 #git_sparse_clone main https://github.com/linkease/nas-packages-luci luci/luci-app-ddnsto
