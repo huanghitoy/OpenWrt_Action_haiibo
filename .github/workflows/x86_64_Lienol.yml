@@ -88,10 +88,10 @@ jobs:
 
     - name: Generate Variables
       run: |
-        cp $CONFIG_FILE $OPENWRT_PATH/.config
-        cat $OPENWRT_PATH/.config
-        cd $OPENWRT_PATH
-        make defconfig > /dev/null 2>&1
+        #cp $CONFIG_FILE $OPENWRT_PATH/.config
+        #cat $OPENWRT_PATH/.config
+        #cd $OPENWRT_PATH
+        #make defconfig > /dev/null 2>&1
         SOURCE_REPO="$(echo $REPO_URL | awk -F '/' '{print $(NF)}')"
         echo "SOURCE_REPO=$SOURCE_REPO" >> $GITHUB_ENV
         DEVICE_TARGET=$(cat .config | grep CONFIG_TARGET_BOARD | awk -F '"' '{print $2}')
@@ -111,13 +111,13 @@ jobs:
       run: |
         cd $OPENWRT_PATH
         ./scripts/feeds update -a
-       # ./scripts/feeds install -a
+        ./scripts/feeds install -a
 
     - name: Load Custom Configuration
       run: |
-        #[ -e files ] && mv files $OPENWRT_PATH/files
-        #[ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
-        #chmod +x $GITHUB_WORKSPACE/scripts/*.sh
+        [ -e files ] && mv files $OPENWRT_PATH/files
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config        
+        chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         chmod +x $DIY_SCRIPT
         cd $OPENWRT_PATH
         $GITHUB_WORKSPACE/$DIY_SCRIPT
@@ -129,6 +129,8 @@ jobs:
       run: |
         cd $OPENWRT_PATH
         make defconfig
+        ./scripts/diffconfig.sh > diff.config
+        cat diff.config        
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
@@ -137,8 +139,8 @@ jobs:
       id: compile
       run: |
         cd $OPENWRT_PATH
-        mkdir -p files/etc/uci-defaults
-        cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
+        #mkdir -p files/etc/uci-defaults
+        #cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
