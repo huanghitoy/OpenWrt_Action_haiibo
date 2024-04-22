@@ -11,6 +11,7 @@ sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.
 
 # 移除要替换的包
 rm -rf feeds/packages/net/{xray-*,trojan*,v2ray-*,sing*}
+rm -rf feeds/other/lean/{luci-app-qbittorrent,qBittorrent*,qtbase,qttools,rblibtorrent}
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
