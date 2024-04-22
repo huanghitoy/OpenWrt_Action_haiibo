@@ -1,14 +1,14 @@
-name: X86_64 OpenWrt
+name: X86_64 Lienol OpenWrt 22.03
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: 0 19 * * *
+  #schedule:
+  #  - cron: 0 19 * * *
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
-  CONFIG_FILE: configs/x86_64.config
+  REPO_URL: https://github.com/Lienol/openwrt
+  REPO_BRANCH: 22.03
+  CONFIG_FILE: configs/x86_64_Lienol.config
   DIY_SCRIPT: diy-script.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
