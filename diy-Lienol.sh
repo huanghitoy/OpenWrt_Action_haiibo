@@ -15,8 +15,8 @@ rm -rf feeds/other/lean/{luci-app-qbittorrent,qBittorrent*,qtbase,qttools,rblibt
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/packages/lang/golang
 rm -rf feeds/lienol/*verysync*
-cp -r ../lede_packages/net/verysync package/
-cp -r ../lede_luci/applications/luci-app-verysync package/
+cp -rf ../lede_packages/net/verysync package/
+cp -rf ../lede_luci/applications/luci-app-verysync package/
 git clone https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/luci-app-alist package/alist
