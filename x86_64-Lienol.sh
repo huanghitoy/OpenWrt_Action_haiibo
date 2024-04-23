@@ -24,8 +24,8 @@ rm -rf feeds/luci/applications/luci-app-squid
 cp -rf ../lede_packages/net/squid feeds/packages/net/
 cp -rf ../lede_luci/applications/luci-app-squid feeds/luci/applications/
 
-rm -rf feeds/lienol/luci-app-ssr-mudb-server
-cp -rf ../openwrt-package/luci-app-ssr-mudb-server feeds/luci/applications/
+#rm -rf feeds/lienol/luci-app-ssr-mudb-server
+#cp -rf ../openwrt-package/luci-app-ssr-mudb-server feeds/luci/applications/
 
 git clone https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
