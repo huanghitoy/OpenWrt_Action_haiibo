@@ -14,9 +14,16 @@ rm -rf feeds/packages/net/{xray-*,trojan*,v2ray-*,sing*}
 rm -rf feeds/other/lean/{luci-app-qbittorrent,qBittorrent*,qtbase,qttools,rblibtorrent}
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/packages/lang/golang
+
 rm -rf feeds/lienol/*verysync*
-cp -rf ../lede_packages/net/verysync package/
-cp -rf ../lede_luci/applications/luci-app-verysync package/
+cp -rf ../lede_packages/net/verysync feeds/packages/net/
+cp -rf ../lede_luci/applications/luci-app-verysync feeds/luci/applications/
+
+rm -rf feeds/packages/net/squid
+rm -rf feeds/luci/applications/luci-app-squid
+cp -rf ../lede_packages/net/squid feeds/packages/net/
+cp -rf ../lede_luci/applications/luci-app-squid feeds/luci/applications/
+
 git clone https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/luci-app-alist package/alist
