@@ -30,7 +30,7 @@ cp -rf ../openwrt-package/luci-app-ssr-mudb-server feeds/luci/applications/
 git clone https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/luci-app-alist package/alist
-git clone https://github.com/sbwml/openwrt-qBittorrent package/qBittorrent
+git clone https://github.com/sbwml/openwrt-qBittorrent -b 4.4.5 package/qBittorrent
 git clone https://github.com/huanghitoy/wwan.git package/wwan
 git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 
