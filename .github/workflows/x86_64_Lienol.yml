@@ -9,7 +9,7 @@ env:
   REPO_URL: https://github.com/Lienol/openwrt
   REPO_BRANCH: 22.03
   CONFIG_FILE: configs/x86_64_Lienol.config
-  DIY_SCRIPT: diy-Lienol.sh
+  DIY_SCRIPT: x86_64-Lienol.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
