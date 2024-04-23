@@ -10,11 +10,11 @@ env:
   REPO_BRANCH: 22.03
   CONFIG_FILE: configs/r7800_Lienol.config
   DIY_SCRIPT: diy-Lienol.sh
-  CLASH_KERNEL: arm64
+  CLASH_KERNEL: ARMv7
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: ROOTFS_PLU
+  FIRMWARE_TAG: ipq806x
   TZ: Asia/Shanghai
 
 jobs:
