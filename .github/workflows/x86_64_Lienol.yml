@@ -65,6 +65,7 @@ jobs:
       run: |
         df -hT $GITHUB_WORKSPACE
         git clone  -b $REPO_BRANCH --single-branch $REPO_URL openwrt
+        git clone https://github.com/coolsnowwolf/packages 
         cd openwrt
         rm -f ./feeds.conf.default        
         echo 'src-git packages https://github.com/Lienol/openwrt-packages.git;22.03' >> ./feeds.conf.default
