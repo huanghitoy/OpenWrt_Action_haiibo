@@ -11,7 +11,7 @@ sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.
 
 # 移除要替换的包
 rm -rf feeds/packages/net/{xray-*,trojan*,v2ray-*,sing*}
-rm -rf feeds/other/lean/{luci-app-qbittorrent,qBittorrent*,qtbase,qttools,rblibtorrent}
+#rm -rf feeds/other/lean/{luci-app-qbittorrent,qBittorrent*,qtbase,qttools,rblibtorrent}
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/packages/lang/golang
 
@@ -24,13 +24,13 @@ rm -rf feeds/luci/applications/luci-app-squid
 cp -rf ../lede_packages/net/squid feeds/packages/net/
 cp -rf ../lede_luci/applications/luci-app-squid feeds/luci/applications/
 
-rm -rf feeds/lienol/luci-app-ssr-mudb-server
-cp -rf ../openwrt-package/luci-app-ssr-mudb-server feeds/luci/applications/
+#rm -rf feeds/lienol/luci-app-ssr-mudb-server
+#cp -rf ../openwrt-package/luci-app-ssr-mudb-server feeds/luci/applications/
 
 git clone https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/luci-app-alist package/alist
-git clone https://github.com/sbwml/openwrt-qBittorrent -b 4.4.5 package/qBittorrent
+#git clone https://github.com/sbwml/openwrt-qBittorrent -b 4.4.5 package/qBittorrent
 git clone https://github.com/huanghitoy/wwan.git package/wwan
 git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 
