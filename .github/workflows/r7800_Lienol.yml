@@ -9,7 +9,7 @@ env:
   REPO_URL: https://github.com/Lienol/openwrt
   REPO_BRANCH: 22.03
   CONFIG_FILE: configs/r7800_Lienol.config
-  DIY_SCRIPT: diy-Lienol.sh
+  DIY_SCRIPT: r7800_Lienol.sh
   CLASH_KERNEL: ARMv7
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
