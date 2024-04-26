@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
 # 修改默认IP
 sed -i 's/192.168.1.1/192.168.12.199/g' package/base-files/files/bin/config_generate
 
