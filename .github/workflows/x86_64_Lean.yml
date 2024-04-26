@@ -1,4 +1,4 @@
-name: X86_64 Lienol OpenWrt 22.03
+name: X86_64 Lean Lede
 
 on:
   workflow_dispatch:
