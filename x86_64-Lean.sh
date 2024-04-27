@@ -38,7 +38,7 @@ git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-ssr-mudb-server
 
 rm -rf feeds/kenzo/luci-app-fileassistant
-rm -rf feeds/small/{luci-app-mosdns,mosdns}
+
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant
 #git_sparse_clone openwrt-18.06 https://github.com/immortalwrt/luci applications/luci-app-eqos
 #git_sparse_clone master https://github.com/syb999/openwrt-19.07.1 package/network/services/msd_lite
@@ -80,6 +80,11 @@ git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-a
 git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 
 # MosDNS
+rm -rf feeds/packages/net/mosdns
+rm -rf feeds/luci/luci-app-mosdns
+rm -rf feeds/packages/utils/v2dat
+rm -rf feeds/small/{luci-app-mosdns,mosdns,v2dat}
+rm -rf package/luci-app-mosdns
 git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
 
 # Alist
