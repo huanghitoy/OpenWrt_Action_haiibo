@@ -28,7 +28,7 @@ function git_sparse_clone() {
 
 # 添加额外插件
 rm -rf package/{luci-app-serverchan,luci-app-poweroff,OpenAppFilter,luci-app-netdata,luci-app-ssr-mudb-server}
-git clone --depth=1 -b openwrt-18.06 https://github.com/tty228/luci-app-wechatpush package/luci-app-serverchan
+git clone --depth=1 -b openwrt-18.06 https://github.com/tty228/luci-app-wechatpush package/luci-app-wechatpush
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
