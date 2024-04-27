@@ -1,4 +1,4 @@
-name: X86_64 Lean Lede
+name: X86_64 Lean_mini Lede
 
 on:
   workflow_dispatch:
