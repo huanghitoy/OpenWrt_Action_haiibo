@@ -30,7 +30,7 @@ function git_sparse_clone() {
 }
 
 # 添加额外插件 原来包和kenzo包没有的 5个
-rm -rf package/{luci-app-poweroff,OpenAppFilter,luci-app-netdata,luci-app-ssr-mudb-server,luci-app-ssr-plus}
+rm -rf package/{luci-app-poweroff,OpenAppFilter,luci-app-netdata,luci-app-ssr-mudb-server,luci-app-wolplus}
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
