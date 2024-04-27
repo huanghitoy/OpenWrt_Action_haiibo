@@ -10,6 +10,7 @@ sed -i 's/192.168.1.1/192.168.12.199/g' package/base-files/files/bin/config_gene
 sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
 
 # 移除要替换的包
+
 rm -rf feeds/packages/net/{mosdns,adguardhome,pdnsd-alt,smartdns,v2ray-geodata,msd_lite}
 rm -rf feeds/luci/applications/{luci-app-serverchan,luci-app-aliyundrive-webdav,luci-app-argon-config,luci-app-design-config,luci-app-dockerman,luci-app-easymesh,luci-app-eqos,luci-app-smartdns,luci-app-mosdns,luci-app-netdata}
 rm -rf feeds/luci/themes/{luci-theme-argon,luci-theme-design}
@@ -32,6 +33,8 @@ git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/
 git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-ssr-mudb-server
+rm -rf feeds/kenzo/luci-app-fileassistant
+git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant
 #git_sparse_clone openwrt-18.06 https://github.com/immortalwrt/luci applications/luci-app-eqos
 #git_sparse_clone master https://github.com/syb999/openwrt-19.07.1 package/network/services/msd_lite
 #git clone --depth=1 https://github.com/ilxp/luci-app-ikoolproxy package/luci-app-ikoolproxy
