@@ -11,7 +11,7 @@ sed -i 's/192.168.1.1/192.168.12.199/g' package/base-files/files/bin/config_gene
 # TTYD 免登录
 sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
 
-# 移除要替换的包
+# 移除要替换的包 与kenzo 相同的包 
 
 rm -rf feeds/packages/net/{mosdns,adguardhome,pdnsd-alt,smartdns,v2ray-geodata,msd_lite}
 rm -rf feeds/luci/applications/{luci-app-serverchan,luci-app-aliyundrive-webdav,luci-app-argon-config,luci-app-design-config,luci-app-dockerman,luci-app-easymesh,luci-app-eqos,luci-app-smartdns,luci-app-mosdns,luci-app-netdata}
@@ -29,16 +29,17 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 
-# 添加额外插件
-rm -rf package/{luci-app-serverchan,luci-app-poweroff,OpenAppFilter,luci-app-netdata,luci-app-ssr-mudb-server,luci-app-ssr-plus,luci-app-mosdns}
+# 添加额外插件 原来包和kenzo包没有的 5个
+rm -rf package/{luci-app-poweroff,OpenAppFilter,luci-app-netdata,luci-app-ssr-mudb-server,luci-app-ssr-plus}
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
 git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-app-wolplus
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-ssr-mudb-server
 
+# 移除kenzo中包，添加其他包 1个
 rm -rf feeds/kenzo/luci-app-fileassistant
-
+rm -rf package/luci-app-fileassistant
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant
 #git_sparse_clone openwrt-18.06 https://github.com/immortalwrt/luci applications/luci-app-eqos
 #git_sparse_clone master https://github.com/syb999/openwrt-19.07.1 package/network/services/msd_lite
@@ -46,6 +47,27 @@ git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileass
 #git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
 #git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-filebrowser luci-app-ssr-mudb-server
 #git clone --depth=1 -b openwrt-18.06 https://github.com/tty228/luci-app-wechatpush package/luci-app-serverchan
+
+# msd_lite
+rm -rf feeds/packages/net/msd_lite
+rm -rf package/{luci-app-msd_lite,msd_lite}
+git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-app-msd_lite
+git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
+
+# MosDNS
+rm -rf feeds/packages/net/mosdns
+rm -rf feeds/luci/luci-app-mosdns
+rm -rf feeds/packages/utils/v2dat
+rm -rf feeds/small/{luci-app-mosdns,mosdns,v2dat}
+rm -rf package/luci-app-mosdns
+git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
+
+# 在线用户
+rm -rf package/luci-app-onliner
+git_sparse_clone main https://github.com/haiibo/packages luci-app-onliner
+sed -i '$i uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/lean/default-settings/files/zzz-default-settings
+sed -i '$i uci commit nlbwmon' package/lean/default-settings/files/zzz-default-settings
+chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
 
 # 科学上网插件
 #git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
@@ -73,22 +95,9 @@ git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileass
 # SmartDNS
 #git clone --depth=1 -b lede https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
 #git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/smartdns
-
-# msd_lite
-rm -rf package/{luci-app-msd_lite,msd_lite}
-git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-app-msd_lite
-git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
-
-# MosDNS
-rm -rf feeds/packages/net/mosdns
-rm -rf feeds/luci/luci-app-mosdns
-rm -rf feeds/packages/utils/v2dat
-rm -rf feeds/small/{luci-app-mosdns,mosdns,v2dat}
-rm -rf package/luci-app-mosdns
-git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
-
 # Alist
 #git clone --depth=1 https://github.com/sbwml/luci-app-alist package/luci-app-alist
+
 
 # DDNS.to
 #git_sparse_clone main https://github.com/linkease/nas-packages-luci luci/luci-app-ddnsto
@@ -98,12 +107,7 @@ git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mo
 #git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
 #git_sparse_clone main https://github.com/linkease/istore luci
 
-# 在线用户
-rm -rf package/luci-app-onliner
-git_sparse_clone main https://github.com/haiibo/packages luci-app-onliner
-sed -i '$i uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/lean/default-settings/files/zzz-default-settings
-sed -i '$i uci commit nlbwmon' package/lean/default-settings/files/zzz-default-settings
-chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
+
 
 # x86 型号只显示 CPU 型号
 sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/files/x86/autocore
