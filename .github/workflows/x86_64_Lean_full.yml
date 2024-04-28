@@ -166,6 +166,14 @@ jobs:
         cat sha256sums
         cp $OPENWRT_PATH/.config build.config
         mv -f $OPENWRT_PATH/bin/packages/*/*/*.ipk packages
+        cd packages
+        rm -f Packages*
+        export PATH="$PATH:$OPENWRT_PATH/staging_dir/host/bin"
+        sed -i 's/\$MKHASH/mkhash/g' $OPENWRT_PATH/scripts/ipkg-make-index.sh
+        $OPENWRT_PATH/scripts/ipkg-make-index.sh . > Packages.manifest
+        grep -vE '^(Maintainer|LicenseFiles|Source|Require)' Packages.manifest > Packages
+        gzip -9nc Packages > Packages.gz
+        cd ..
         tar -zcf Packages.tar.gz packages
         rm -rf packages feeds.buildinfo version.buildinfo
         echo "KERNEL=$(cat *.manifest | grep ^kernel | cut -d- -f2 | tr -d ' ')" >> $GITHUB_ENV
