@@ -11,7 +11,7 @@ env:
   CONFIG_FILE: configs/r7800_Lean.config
   DIY_SCRIPT: x86_64-Lean.sh
   CLASH_KERNEL: arm
-  CACHE_TOOLCHAIN: false
+  CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
   FIRMWARE_TAG: ipq806x
