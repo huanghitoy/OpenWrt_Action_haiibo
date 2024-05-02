@@ -2,6 +2,7 @@
 sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
 # 修改ttdy 显示
 sed -i 's/ luci-app-ttyd//g' target/linux/x86/Makefile
+sed -i 's/ luci-app-wireguard//g' target/linux/x86/Makefile
 # 修改默认IP
 sed -i 's/192.168.1.1/192.168.12.199/g' package/base-files/files/bin/config_generate
 
