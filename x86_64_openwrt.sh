@@ -55,13 +55,17 @@ rm -rf package/{luci-app-msd_lite,msd_lite}
 git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-app-msd_lite
 git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 
+# 3ginfo_lite
+rm -rf package/luci-app-3ginfo-lite
+git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-app-3ginfo-lite
+
 # MosDNS
 #rm -rf feeds/packages/net/mosdns
 #rm -rf feeds/luci/luci-app-mosdns
 #rm -rf feeds/packages/utils/v2dat
 #rm -rf feeds/small/{luci-app-mosdns,mosdns,v2dat}
-#rm -rf package/luci-app-mosdns
-#git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
+rm -rf package/luci-app-mosdns
+git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
 
 # 在线用户
 #rm -rf package/luci-app-onliner
