@@ -35,17 +35,17 @@ git_sparse_clone master https://github.com/coolsnowwolf/lede package/wwan packag
 
 
 # 添加额外插件 原来包和kenzo包没有的 4个
-rm -rf package/{luci-app-poweroff,OpenAppFilter,luci-app-netdata,luci-app-wolplus}
-git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
-git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
-git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
-git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-app-wolplus
+#rm -rf package/{luci-app-poweroff,OpenAppFilter,luci-app-netdata,luci-app-wolplus}
+#git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
+#git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
+#git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
+#git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-app-wolplus
 
 
 # 移除kenzo中包1个，添加其他包 2个
-rm -rf feeds/kenzo/luci-app-fileassistant
-rm -rf package/{luci-app-fileassistant，luci-app-ssr-mudb-server}
-git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server
+#rm -rf feeds/kenzo/luci-app-fileassistant
+#rm -rf package/{luci-app-fileassistant，luci-app-ssr-mudb-server}
+#git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server
 
 
 # msd_lite
@@ -55,19 +55,19 @@ git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-a
 git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 
 # MosDNS
-rm -rf feeds/packages/net/mosdns
-rm -rf feeds/luci/luci-app-mosdns
-rm -rf feeds/packages/utils/v2dat
-rm -rf feeds/small/{luci-app-mosdns,mosdns,v2dat}
-rm -rf package/luci-app-mosdns
-git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
+#rm -rf feeds/packages/net/mosdns
+#rm -rf feeds/luci/luci-app-mosdns
+#rm -rf feeds/packages/utils/v2dat
+#rm -rf feeds/small/{luci-app-mosdns,mosdns,v2dat}
+#rm -rf package/luci-app-mosdns
+#git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
 
 # 在线用户
-rm -rf package/luci-app-onliner
-git_sparse_clone main https://github.com/haiibo/packages luci-app-onliner
-sed -i '$i uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/lean/default-settings/files/zzz-default-settings
-sed -i '$i uci commit nlbwmon' package/lean/default-settings/files/zzz-default-settings
-chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
+#rm -rf package/luci-app-onliner
+#git_sparse_clone main https://github.com/haiibo/packages luci-app-onliner
+#sed -i '$i uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/lean/default-settings/files/zzz-default-settings
+#sed -i '$i uci commit nlbwmon' package/lean/default-settings/files/zzz-default-settings
+#chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
 
 # 科学上网插件
 #git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
