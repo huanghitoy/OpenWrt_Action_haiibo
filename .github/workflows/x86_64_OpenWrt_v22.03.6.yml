@@ -74,6 +74,13 @@ jobs:
         cd ../openwrt
         git checkout $REPO_BRANCH
         mkdir package/lean
+        cp -arf ../lede/package/wwan ./package/lean/
+        cp -arf ../lede/package/qca ./package/lean/
+        cp -arf ../lede/package/qat ./package/lean/
+        cp -arf ../lede/feeds/luci/applications/luci-app-adbyby-plus/ ./package/lean/
+        cp -arf ../lede/feeds/luci/applications/luci-app-vlmcsd/ ./package/lean/
+        cp -arf ../lede/package/lean/adbyby/ ./package/lean/
+        cp -arf ../lede/feeds/packages/net/vlmcsd/ ./package/lean/
         
         rm -f ./feeds.conf.default
         echo 'src-git packages https://github.com/openwrt/packages;openwrt-22.03' >> ./feeds.conf.default
