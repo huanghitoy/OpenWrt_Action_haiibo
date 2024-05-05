@@ -6,8 +6,8 @@ on:
   #  - cron: 0 19 * * *
 
 env:
-  REPO_URL: https://github.com/huanghitoy/lede
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/openwrt/openwrt
+  REPO_BRANCH: v22.03.6
   CONFIG_FILE: configs/x86_64_Lean.config
   DIY_SCRIPT: x86_64-Lean.sh
   CLASH_KERNEL: amd64
