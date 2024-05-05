@@ -73,6 +73,8 @@ jobs:
         ./scripts/feeds update -a
         cd ../openwrt
         git checkout $REPO_BRANCH
+        mkdir package/lean
+        
         rm -f ./feeds.conf.default
         echo 'src-git packages https://github.com/openwrt/packages;openwrt-22.03' >> ./feeds.conf.default
         echo 'src-git luci https://github.com/openwrt/luci;openwrt-22.03' >> ./feeds.conf.default
