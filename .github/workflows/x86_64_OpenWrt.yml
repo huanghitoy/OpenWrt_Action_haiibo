@@ -71,7 +71,7 @@ jobs:
         #git clone https://github.com/coolsnowwolf/lede lede
         #cd lede
         #./scripts/feeds update -a
-        cd ../openwrt
+        cd openwrt
                
         rm -f ./feeds.conf.default
         echo 'src-git packages https://github.com/openwrt/packages;$REPO_BRANCH' >> ./feeds.conf.default
