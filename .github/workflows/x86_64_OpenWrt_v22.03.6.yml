@@ -81,6 +81,8 @@ jobs:
         cp -arf ../lede/feeds/luci/applications/luci-app-vlmcsd/ ./package/lean/
         cp -arf ../lede/package/lean/adbyby/ ./package/lean/
         cp -arf ../lede/feeds/packages/net/vlmcsd/ ./package/lean/
+        sed -i 's/include ..\/..\/luci.mk/include $(TOPDIR)\/feeds\/luci\/luci.mk/g' ./package/lean/luci-app-adbyby-plus/Makefile 
+        sed -i 's/include ..\/..\/luci.mk/include $(TOPDIR)\/feeds\/luci\/luci.mk/g' ./package/lean/luci-app-vlmcsd/Makefile
         
         rm -f ./feeds.conf.default
         echo 'src-git packages https://github.com/openwrt/packages;openwrt-22.03' >> ./feeds.conf.default
