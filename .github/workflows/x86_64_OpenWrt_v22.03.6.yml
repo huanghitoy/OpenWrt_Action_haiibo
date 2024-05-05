@@ -7,8 +7,8 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: openwrt-22.03
-  CONFIG_FILE: configs/x86_64_openwrt_22.03.6.config
+  REPO_BRANCH: openwrt-23.05
+  CONFIG_FILE: configs/x86_64_openwrt.config
   DIY_SCRIPT: x86_64_openwrt.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
@@ -72,22 +72,11 @@ jobs:
         #cd lede
         #./scripts/feeds update -a
         cd ../openwrt
-        git checkout $REPO_BRANCH
-        #mkdir package/lean
-        #cp -arf ../lede/package/wwan ./package/lean/
-        #cp -arf ../lede/package/qca ./package/lean/
-        #cp -arf ../lede/package/qat ./package/lean/
-        #cp -arf ../lede/feeds/luci/applications/luci-app-adbyby-plus/ ./package/lean/
-        #cp -arf ../lede/feeds/luci/applications/luci-app-vlmcsd/ ./package/lean/
-        #cp -arf ../lede/package/lean/adbyby/ ./package/lean/
-        #cp -arf ../lede/feeds/packages/net/vlmcsd/ ./package/lean/
-        #sed -i 's/include ..\/..\/luci.mk/include $(TOPDIR)\/feeds\/luci\/luci.mk/g' ./package/lean/luci-app-adbyby-plus/Makefile 
-        #sed -i 's/include ..\/..\/luci.mk/include $(TOPDIR)\/feeds\/luci\/luci.mk/g' ./package/lean/luci-app-vlmcsd/Makefile
-        
+               
         rm -f ./feeds.conf.default
-        echo 'src-git packages https://github.com/openwrt/packages;openwrt-22.03' >> ./feeds.conf.default
-        echo 'src-git luci https://github.com/openwrt/luci;openwrt-22.03' >> ./feeds.conf.default
-        echo 'src-git routing https://github.com/openwrt/routing;openwrt-22.03' >> ./feeds.conf.default
+        echo 'src-git packages https://github.com/openwrt/packages;$REPO_BRANCH' >> ./feeds.conf.default
+        echo 'src-git luci https://github.com/openwrt/luci;$REPO_BRANCH' >> ./feeds.conf.default
+        echo 'src-git routing https://github.com/openwrt/routing;$REPO_BRANCH' >> ./feeds.conf.default
         echo 'src-git telephony https://github.com/huanghitoy/telephony.git;master' >> ./feeds.conf.default
         #echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages' >> ./feeds.conf.default
         #echo 'src-git small https://github.com/kenzok8/small' >> ./feeds.conf.default
