@@ -66,10 +66,12 @@ jobs:
         df -hT $GITHUB_WORKSPACE
         git clone  -b $REPO_BRANCH --depth=1 $REPO_URL openwrt
         #git clone https://github.com/281677160/openwrt-package -b Lede openwrt-package
-        git clone https://github.com/coolsnowwolf/packages lede_packages
-        git clone https://github.com/coolsnowwolf/luci lede_luci
+        #git clone https://github.com/coolsnowwolf/packages lede_packages
+        #git clone https://github.com/coolsnowwolf/luci lede_luci
         git clone https://github.com/coolsnowwolf/lede lede
-        cd openwrt
+        cd lede
+        ./scripts/feeds update -a
+        cd ../openwrt
         git checkout $REPO_BRANCH
         rm -f ./feeds.conf.default
         echo 'src-git packages https://github.com/openwrt/packages;openwrt-22.03' >> ./feeds.conf.default
