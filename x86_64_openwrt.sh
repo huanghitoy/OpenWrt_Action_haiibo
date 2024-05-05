@@ -44,8 +44,8 @@ git_sparse_clone master https://github.com/coolsnowwolf/lede package/wwan packag
 
 # 移除kenzo中包1个，添加其他包 2个
 #rm -rf feeds/kenzo/luci-app-fileassistant
-#rm -rf package/{luci-app-fileassistant，luci-app-ssr-mudb-server}
-#git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server
+rm -rf package/{luci-app-fileassistant，luci-app-ssr-mudb-server}
+git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server
 
 
 # msd_lite
@@ -78,8 +78,9 @@ git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 
 # Themes
 #git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
-#git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
-#git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
+rm -rf package/luci-theme-argon,luci-app-argon-config}
+git clone --depth=1 -b master https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+git clone --depth=1 -b master https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 #git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
 #git_sparse_clone main https://github.com/haiibo/packages luci-theme-atmaterial luci-theme-opentomcat luci-theme-netgear
 
