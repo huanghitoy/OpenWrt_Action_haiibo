@@ -1,8 +1,8 @@
 #!/bin/bash
-sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
+#sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
 # 修改ttdy 显示
-sed -i 's/ luci-app-ttyd//g' target/linux/x86/Makefile
-sed -i 's/ luci-app-wireguard//g' target/linux/x86/Makefile
+#sed -i 's/ luci-app-ttyd//g' target/linux/x86/Makefile
+#sed -i 's/ luci-app-wireguard//g' target/linux/x86/Makefile
 # 修改默认IP
 sed -i 's/192.168.1.1/192.168.12.199/g' package/base-files/files/bin/config_generate
 
@@ -14,21 +14,25 @@ sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.
 
 # 移除要替换的包 与kenzo 相同的包 
 
-rm -rf feeds/packages/net/{mosdns,adguardhome,pdnsd-alt,smartdns,v2ray-geodata,msd_lite}
-rm -rf feeds/luci/applications/{luci-app-serverchan,luci-app-aliyundrive-webdav,luci-app-argon-config,luci-app-design-config,luci-app-dockerman,luci-app-easymesh,luci-app-eqos,luci-app-smartdns,luci-app-mosdns,luci-app-netdata}
-rm -rf feeds/luci/themes/{luci-theme-argon,luci-theme-design}
+#rm -rf feeds/packages/net/{mosdns,adguardhome,pdnsd-alt,smartdns,v2ray-geodata,msd_lite}
+#rm -rf feeds/luci/applications/{luci-app-serverchan,luci-app-aliyundrive-webdav,luci-app-argon-config,luci-app-design-config,luci-app-dockerman,luci-app-easymesh,luci-app-eqos,luci-app-smartdns,luci-app-mosdns,luci-app-netdata}
+#rm -rf feeds/luci/themes/{luci-theme-argon,luci-theme-design}
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
 # Git稀疏克隆，只克隆指定目录到本地
+mkdir package/lean
 function git_sparse_clone() {
   branch="$1" repourl="$2" && shift 2
   git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
   repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
   cd $repodir && git sparse-checkout set $@
-  mv -f $@ ../package
+  mv -f $@ ../package/lean
   cd .. && rm -rf $repodir
 }
+# 移植lean 的包到官方
+git_sparse_clone master https://github.com/coolsnowwolf/lede package/wwan package/qca package/qat
+
 
 # 添加额外插件 原来包和kenzo包没有的 4个
 rm -rf package/{luci-app-poweroff,OpenAppFilter,luci-app-netdata,luci-app-wolplus}
@@ -42,11 +46,7 @@ git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-
 rm -rf feeds/kenzo/luci-app-fileassistant
 rm -rf package/{luci-app-fileassistant，luci-app-ssr-mudb-server}
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server
-#git_sparse_clone openwrt-18.06 https://github.com/immortalwrt/luci applications/luci-app-eqos
-#git_sparse_clone master https://github.com/syb999/openwrt-19.07.1 package/network/services/msd_lite
-#git clone --depth=1 https://github.com/ilxp/luci-app-ikoolproxy package/luci-app-ikoolproxy
-#git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
-#git clone --depth=1 -b openwrt-18.06 https://github.com/tty228/luci-app-wechatpush package/luci-app-serverchan
+
 
 # msd_lite
 rm -rf feeds/packages/net/msd_lite
@@ -107,24 +107,28 @@ chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
 #git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
 #git_sparse_clone main https://github.com/linkease/istore luci
 
-
+#git_sparse_clone openwrt-18.06 https://github.com/immortalwrt/luci applications/luci-app-eqos
+#git_sparse_clone master https://github.com/syb999/openwrt-19.07.1 package/network/services/msd_lite
+#git clone --depth=1 https://github.com/ilxp/luci-app-ikoolproxy package/luci-app-ikoolproxy
+#git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
+#git clone --depth=1 -b openwrt-18.06 https://github.com/tty228/luci-app-wechatpush package/luci-app-serverchan
 
 # x86 型号只显示 CPU 型号
-sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/files/x86/autocore
+#sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/files/x86/autocore
 
 # 修改本地时间格式
-sed -i 's/os.date()/os.date("%a %Y-%m-%d %H:%M:%S")/g' package/lean/autocore/files/*/index.htm
+#sed -i 's/os.date()/os.date("%a %Y-%m-%d %H:%M:%S")/g' package/lean/autocore/files/*/index.htm
 
 # 修改版本为编译日期
-date_version=$(date +"%y.%m.%d")
-orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
-sed -i "s/${orig_version}/R${date_version} by Huanghitoy/g" package/lean/default-settings/files/zzz-default-settings
+#date_version=$(date +"%y.%m.%d")
+#orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
+#sed -i "s/${orig_version}/R${date_version} by Huanghitoy/g" package/lean/default-settings/files/zzz-default-settings
 
 # 修复 hostapd 报错
-cp -f $GITHUB_WORKSPACE/scripts/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
+#cp -f $GITHUB_WORKSPACE/scripts/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
 # 修复 armv8 设备 xfsprogs 报错
-sed -i 's/TARGET_CFLAGS.*/TARGET_CFLAGS += -DHAVE_MAP_SYNC -D_LARGEFILE64_SOURCE/g' feeds/packages/utils/xfsprogs/Makefile
+#sed -i 's/TARGET_CFLAGS.*/TARGET_CFLAGS += -DHAVE_MAP_SYNC -D_LARGEFILE64_SOURCE/g' feeds/packages/utils/xfsprogs/Makefile
 
 # 修改 Makefile
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
