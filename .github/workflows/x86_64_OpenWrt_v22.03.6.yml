@@ -8,8 +8,8 @@ on:
 env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: v22.03.6
-  CONFIG_FILE: configs/x86_64_Lean.config
-  DIY_SCRIPT: x86_64-Lean.sh
+  CONFIG_FILE: configs/x86_64_openwrt_22.03.6.config
+  DIY_SCRIPT: x86_64_openwrt.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
