@@ -1,4 +1,4 @@
-name: X86_64 Office_22.03.6 Lean
+name: X86_64 openwrt_22.03.6
 
 on:
   workflow_dispatch:
