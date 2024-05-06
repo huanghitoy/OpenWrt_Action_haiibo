@@ -49,9 +49,9 @@ rm -rf package/{luci-app-fileassistant，luci-app-ssr-mudb-server}
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server
 
 # adguardhome
-rm -rf feeds/packages/net/adguardhome
+#rm -rf feeds/packages/net/adguardhome
 rm -rf package/luci-app-adguardhome
-git clone --depth=1 https://github.com/xiaoxiao29/luci-app-adguardhome package/luci-app-adguardhome
+git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
 
 # msd_lite
 rm -rf feeds/packages/net/msd_lite
