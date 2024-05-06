@@ -36,9 +36,10 @@ git_sparse_clone master https://github.com/coolsnowwolf/lede package/wwan packag
 git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync
 git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
 
-# 移植kenzo 的包到官方
+# 移植kenzo 的包到官方 adguardhome openclash dockerman
 rm -rf feeds/packages/net/adguardhome
-git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash
+rm -rf feeds/luci/applications/luci-app-dockerman
+git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash luci-app-dockerman
 
 # 添加额外插件 原来包和kenzo包没有的 4个
 #rm -rf package/{luci-app-poweroff,OpenAppFilter,luci-app-netdata,luci-app-wolplus}
