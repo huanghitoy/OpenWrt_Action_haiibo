@@ -57,7 +57,7 @@ git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileass
 # dockerman
 rm -rf feeds/luci/applications/luci-app-dockerman
 rm -rf package/luci-app-dockerman
-git clone --depth=1 https://github.com/lisaac/luci-app-dockerman package/luci-app-dockerman
+git clone https://github.com/lisaac/luci-app-dockerman package/luci-app-dockerman
 
 # adguardhome
 #rm -rf feeds/packages/net/adguardhome
