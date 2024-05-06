@@ -1,5 +1,9 @@
 #!/bin/bash
 #sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
+#修复dockerman 连接不上docker  原因是cgroupfs-mount不能挂载，注释7，8，9行
+sed -i '7{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
+sed -i '8{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
+sed -i '9{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
 # 修改ttdy 显示
 #sed -i 's/ luci-app-ttyd//g' target/linux/x86/Makefile
 #sed -i 's/ luci-app-wireguard//g' target/linux/x86/Makefile
