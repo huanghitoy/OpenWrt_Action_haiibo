@@ -33,7 +33,8 @@ function git_sparse_clone() {
 }
 # 移植lean 的包到官方
 git_sparse_clone master https://github.com/coolsnowwolf/lede package/wwan package/qca package/qat
-
+git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync
+git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
 
 # 添加额外插件 原来包和kenzo包没有的 4个
 #rm -rf package/{luci-app-poweroff,OpenAppFilter,luci-app-netdata,luci-app-wolplus}
