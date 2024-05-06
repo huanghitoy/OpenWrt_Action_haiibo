@@ -36,6 +36,10 @@ git_sparse_clone master https://github.com/coolsnowwolf/lede package/wwan packag
 git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync
 git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
 
+# 移植kenzo 的包到官方
+rm -rf feeds/packages/net/adguardhome
+git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash
+
 # 添加额外插件 原来包和kenzo包没有的 4个
 #rm -rf package/{luci-app-poweroff,OpenAppFilter,luci-app-netdata,luci-app-wolplus}
 #git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
@@ -51,8 +55,8 @@ git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileass
 
 # adguardhome
 #rm -rf feeds/packages/net/adguardhome
-rm -rf package/luci-app-adguardhome
-git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
+#rm -rf package/luci-app-adguardhome
+#git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
 
 # msd_lite
 rm -rf feeds/packages/net/msd_lite
