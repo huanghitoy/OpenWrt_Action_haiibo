@@ -36,10 +36,10 @@ git_sparse_clone master https://github.com/coolsnowwolf/lede package/wwan packag
 git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync
 git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
 
-# 移植kenzo 的包到官方 adguardhome openclash dockerman
+# 移植kenzo 的包到官方 adguardhome openclash 
 rm -rf feeds/packages/net/adguardhome
-rm -rf feeds/luci/applications/luci-app-dockerman
-git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash luci-app-dockerman
+
+git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash
 
 # 添加额外插件 原来包和kenzo包没有的 4个
 #rm -rf package/{luci-app-poweroff,OpenAppFilter,luci-app-netdata,luci-app-wolplus}
@@ -53,6 +53,11 @@ git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adg
 #rm -rf feeds/kenzo/luci-app-fileassistant
 rm -rf package/{luci-app-fileassistant，luci-app-ssr-mudb-server}
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server
+
+# dockerman
+rm -rf feeds/luci/applications/luci-app-dockerman
+rm -rf package/luci-app-dockerman
+git clone --depth=1 https://github.com/lisaac/luci-app-dockerman package/luci-app-dockerman
 
 # adguardhome
 #rm -rf feeds/packages/net/adguardhome
