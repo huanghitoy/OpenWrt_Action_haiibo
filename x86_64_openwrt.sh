@@ -72,10 +72,10 @@ git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileass
 #git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
 
 # msd_lite
-#rm -rf feeds/packages/net/msd_lite
+rm -rf feeds/packages/net/msd_lite
 rm -rf package/{luci-app-msd_lite,msd_lite}
-#git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-app-msd_lite
-#git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
+git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-app-msd_lite
+git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 
 # 3ginfo_lite
 rm -rf package/luci-app-3ginfo-lite
