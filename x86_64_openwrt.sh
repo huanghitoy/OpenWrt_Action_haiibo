@@ -53,7 +53,8 @@ git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adg
 #git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 #git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 #git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
-#git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-app-wolplus
+rm -rf package/luci-app-wolplus
+git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-app-wolplus
 
 
 # 移植Lienol 的包到官方 luci-app-fileassistant luci-app-ssr-mudb-server
