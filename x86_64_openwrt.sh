@@ -45,7 +45,7 @@ git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/
 
 # 移植kenzo 的包到官方 adguardhome openclash
 rm -rf feeds/packages/net/adguardhome
-rm -rf feeds/luci/applications/luci-app-dockerman
+#rm -rf feeds/luci/applications/luci-app-dockerman
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash
 
 # 移植Lienol 的包到官方 luci-app-fileassistant luci-app-ssr-mudb-server
@@ -62,9 +62,9 @@ rm -rf package/luci-app-wolplus
 git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-app-wolplus
 
 # dockerman
-#rm -rf feeds/luci/applications/luci-app-dockerman
+rm -rf feeds/luci/applications/luci-app-dockerman
 rm -rf package/luci-app-dockerman
-git clone --depth=1 https://github.com/lisaac/luci-app-dockerman package/luci-app-dockerman
+git_sparse_clone master https://github.com/lisaac/luci-app-dockerman applications/luci-app-dockerman
 
 # adguardhome
 #rm -rf feeds/packages/net/adguardhome
