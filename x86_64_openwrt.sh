@@ -55,8 +55,8 @@ git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adg
 
 # 移除kenzo中包1个，添加其他包 2个
 #rm -rf feeds/kenzo/luci-app-fileassistant
-rm -rf package/{luci-app-fileassistant，luci-app-ssr-mudb-server}
-git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server
+rm -rf package/luci-app-fileassistant
+git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant
 
 # dockerman
 #rm -rf feeds/luci/applications/luci-app-dockerman
@@ -69,10 +69,10 @@ rm -rf package/luci-app-dockerman
 #git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
 
 # msd_lite
-rm -rf feeds/packages/net/msd_lite
+#rm -rf feeds/packages/net/msd_lite
 rm -rf package/{luci-app-msd_lite,msd_lite}
-git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-app-msd_lite
-git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
+#git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-app-msd_lite
+#git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 
 # 3ginfo_lite
 rm -rf package/luci-app-3ginfo-lite
@@ -84,7 +84,7 @@ git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-a
 #rm -rf feeds/packages/utils/v2dat
 #rm -rf feeds/small/{luci-app-mosdns,mosdns,v2dat}
 rm -rf package/luci-app-mosdns
-git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
+#git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
 
 # 在线用户
 #rm -rf package/luci-app-onliner
