@@ -48,6 +48,11 @@ rm -rf feeds/packages/net/adguardhome
 rm -rf feeds/luci/applications/luci-app-dockerman
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash luci-app-dockerman
 
+# 移植Lienol 的包到官方 luci-app-fileassistant luci-app-ssr-mudb-server
+#rm -rf feeds/kenzo/luci-app-fileassistant
+#rm -rf package/luci-app-fileassistant
+git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server
+
 # 添加额外插件 原来包和kenzo包没有的 4个
 #rm -rf package/{luci-app-poweroff,OpenAppFilter,luci-app-netdata,luci-app-wolplus}
 #git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
@@ -55,12 +60,6 @@ git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adg
 #git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
 rm -rf package/luci-app-wolplus
 git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-app-wolplus
-
-
-# 移植Lienol 的包到官方 luci-app-fileassistant luci-app-ssr-mudb-server
-#rm -rf feeds/kenzo/luci-app-fileassistant
-#rm -rf package/luci-app-fileassistant
-git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server
 
 # dockerman
 #rm -rf feeds/luci/applications/luci-app-dockerman
@@ -81,6 +80,14 @@ git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 # 3ginfo_lite
 rm -rf package/luci-app-3ginfo-lite
 git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-app-3ginfo-lite
+
+# Themes
+#git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
+rm -rf package/{luci-theme-argon,luci-app-argon-config}
+git clone --depth=1 -b master https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+git clone --depth=1 -b master https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
+#git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
+#git_sparse_clone main https://github.com/haiibo/packages luci-theme-atmaterial luci-theme-opentomcat luci-theme-netgear
 
 # MosDNS
 #rm -rf feeds/packages/net/mosdns
@@ -104,14 +111,6 @@ git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-a
 #git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 #git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
 
-# Themes
-#git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
-rm -rf package/{luci-theme-argon,luci-app-argon-config}
-git clone --depth=1 -b master https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
-git clone --depth=1 -b master https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
-#git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
-#git_sparse_clone main https://github.com/haiibo/packages luci-theme-atmaterial luci-theme-opentomcat luci-theme-netgear
-
 # 更改 Argon 主题背景
 #cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
@@ -124,9 +123,9 @@ git clone --depth=1 -b master https://github.com/jerrykuku/luci-app-argon-config
 # SmartDNS
 #git clone --depth=1 -b lede https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
 #git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/smartdns
+
 # Alist
 #git clone --depth=1 https://github.com/sbwml/luci-app-alist package/luci-app-alist
-
 
 # DDNS.to
 #git_sparse_clone main https://github.com/linkease/nas-packages-luci luci/luci-app-ddnsto
