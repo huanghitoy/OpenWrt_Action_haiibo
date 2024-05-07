@@ -1,12 +1,16 @@
 #!/bin/bash
+
 #sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
+
 #修复dockerman 连接不上docker  原因是cgroupfs-mount不能挂载，注释7，8，9行
 sed -i '7{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
 sed -i '8{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
 sed -i '9{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
+
 # 修改ttdy 显示
 #sed -i 's/ luci-app-ttyd//g' target/linux/x86/Makefile
 #sed -i 's/ luci-app-wireguard//g' target/linux/x86/Makefile
+
 # 修改默认IP
 sed -i 's/192.168.1.1/192.168.12.199/g' package/base-files/files/bin/config_generate
 
@@ -17,7 +21,6 @@ sed -i 's/192.168.1.1/192.168.12.199/g' package/base-files/files/bin/config_gene
 sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
 
 # 移除要替换的包 与kenzo 相同的包 
-
 #rm -rf feeds/packages/net/{mosdns,adguardhome,pdnsd-alt,smartdns,v2ray-geodata,msd_lite}
 #rm -rf feeds/luci/applications/{luci-app-serverchan,luci-app-aliyundrive-webdav,luci-app-argon-config,luci-app-design-config,luci-app-dockerman,luci-app-easymesh,luci-app-eqos,luci-app-smartdns,luci-app-mosdns,luci-app-netdata}
 #rm -rf feeds/luci/themes/{luci-theme-argon,luci-theme-design}
@@ -53,14 +56,14 @@ git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adg
 #git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-app-wolplus
 
 
-# 移除kenzo中包1个，添加其他包 2个
+# 移植Lienol 的包到官方 luci-app-fileassistant luci-app-ssr-mudb-server
 #rm -rf feeds/kenzo/luci-app-fileassistant
-rm -rf package/luci-app-fileassistant
-git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant
+#rm -rf package/luci-app-fileassistant
+git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server
 
 # dockerman
 #rm -rf feeds/luci/applications/luci-app-dockerman
-rm -rf package/luci-app-dockerman
+#rm -rf package/luci-app-dockerman
 #git clone https://github.com/lisaac/luci-app-dockerman package/luci-app-dockerman
 
 # adguardhome
@@ -83,7 +86,7 @@ git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-a
 #rm -rf feeds/luci/luci-app-mosdns
 #rm -rf feeds/packages/utils/v2dat
 #rm -rf feeds/small/{luci-app-mosdns,mosdns,v2dat}
-rm -rf package/luci-app-mosdns
+#rm -rf package/luci-app-mosdns
 #git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
 
 # 在线用户
