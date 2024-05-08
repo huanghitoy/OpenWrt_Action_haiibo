@@ -94,8 +94,8 @@ git clone --depth=1 -b master https://github.com/jerrykuku/luci-app-argon-config
 #rm -rf feeds/luci/luci-app-mosdns
 #rm -rf feeds/packages/utils/v2dat
 #rm -rf feeds/small/{luci-app-mosdns,mosdns,v2dat}
-#rm -rf package/luci-app-mosdns
-#git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
+rm -rf package/luci-app-mosdns
+git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
 
 # 在线用户
 #rm -rf package/luci-app-onliner
