@@ -64,7 +64,7 @@ jobs:
     - name: Clone Source Code
       run: |
         df -hT $GITHUB_WORKSPACE
-        git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
+        git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
         #git clone https://github.com/281677160/openwrt-package -b Lede openwrt-package
         #git clone https://github.com/coolsnowwolf/packages lede_packages
         #git clone https://github.com/coolsnowwolf/luci lede_luci
