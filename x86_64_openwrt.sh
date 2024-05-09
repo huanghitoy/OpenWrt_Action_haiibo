@@ -53,6 +53,10 @@ git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adg
 #rm -rf package/luci-app-fileassistant
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server
 
+#qbittorrent
+rm -rf package/luci-app-qbittorrent
+git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent package/luci-app-qbittorrent
+
 # 添加额外插件 原来包和kenzo包没有的 4个
 #rm -rf package/{luci-app-poweroff,OpenAppFilter,luci-app-netdata,luci-app-wolplus}
 #git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
