@@ -171,7 +171,7 @@ jobs:
         cat sha256sums
         cp $OPENWRT_PATH/.config build.config
         #mv -f $OPENWRT_PATH/bin/packages/*/*/*.ipk packages
-        mkdir packages
+        #mkdir packages
         mkdir packages/core
         mv -f $OPENWRT_PATH/bin/packages/* packages        
         mv -f $OPENWRT_PATH/bin/targets/*/*/packages/* packages/core
