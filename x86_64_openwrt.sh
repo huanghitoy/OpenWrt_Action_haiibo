@@ -85,6 +85,10 @@ git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 rm -rf package/luci-app-3ginfo-lite
 git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-app-3ginfo-lite
 
+# Mproxy
+rm -rf package/luci-app-mproxy
+git clone --depth=1 https://github.com/huanghitoy/luci-app-mproxy package/luci-app-mproxy
+
 # Themes
 #git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
 rm -rf package/{luci-theme-argon,luci-app-argon-config}
