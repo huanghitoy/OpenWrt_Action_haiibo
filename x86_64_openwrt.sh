@@ -48,10 +48,10 @@ rm -rf feeds/packages/net/adguardhome
 #rm -rf feeds/luci/applications/luci-app-dockerman
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash
 
-# 移植Lienol 的包到官方 luci-app-fileassistant luci-app-ssr-mudb-server
+# 移植Lienol 的包到官方 luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
 #rm -rf feeds/kenzo/luci-app-fileassistant
 #rm -rf package/luci-app-fileassistant
-git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server
+git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
 
 #qbittorrent
 rm -rf package/luci-app-qbittorrent
@@ -84,10 +84,6 @@ git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 # 3ginfo_lite
 rm -rf package/luci-app-3ginfo-lite
 git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-app-3ginfo-lite
-
-# luci-app-openvpn-server
-rm -rf package/luci-app-openvpn-server
-git clone --depth=1 https://github.com/huanghitoy/openwrt-luci-app-openvpn-server package/luci-app-openvpn-server
 
 # Mproxy
 rm -rf package/luci-app-mproxy
