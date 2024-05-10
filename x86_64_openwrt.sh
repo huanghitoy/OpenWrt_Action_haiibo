@@ -40,7 +40,7 @@ function git_sparse_clone() {
 }
 # 移植lean 的包到官方
 git_sparse_clone master https://github.com/coolsnowwolf/lede package/wwan package/qca package/qat
-git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync
+git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync applications/luci-app-openvpn-server
 git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
 
 # 移植kenzo 的包到官方 adguardhome openclash
@@ -48,10 +48,10 @@ rm -rf feeds/packages/net/adguardhome
 #rm -rf feeds/luci/applications/luci-app-dockerman
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash
 
-# 移植Lienol 的包到官方 luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
+# 移植Lienol 的包到官方 luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol 
 #rm -rf feeds/kenzo/luci-app-fileassistant
 #rm -rf package/luci-app-fileassistant
-git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
+git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol
 
 #qbittorrent
 rm -rf package/luci-app-qbittorrent
