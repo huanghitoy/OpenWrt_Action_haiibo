@@ -85,6 +85,10 @@ git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 rm -rf package/luci-app-3ginfo-lite
 git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-app-3ginfo-lite
 
+# luci-app-openvpn-server
+rm -rf package/luci-app-openvpn-server
+git clone --depth=1 https://github.com/huanghitoy/openwrt-luci-app-openvpn-server package/luci-app-openvpn-server
+
 # Mproxy
 rm -rf package/luci-app-mproxy
 git clone --depth=1 https://github.com/huanghitoy/luci-app-mproxy package/luci-app-mproxy
