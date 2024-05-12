@@ -43,13 +43,16 @@ git_sparse_clone master https://github.com/coolsnowwolf/lede package/wwan packag
 git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync
 git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
 
-# 移植kenzo 的包到官方 adguardhome openclash
-rm -rf feeds/packages/net/adguardhome
-#rm -rf feeds/luci/applications/luci-app-dockerman
-git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash
+# 移植kenzo 的包到官方 
+rm -rf feeds/packages/net/{adguardhome,xray-core,v2raya,smartdns}
+rm -rf feeds/luci/applications/{luci-app-dockerman,luci-app-smartdns}
+git clone --depth=1 https://github.com/kenzok8/openwrt-packages package/huang/openwrt-packages
+git clone --depth=1 https://github.com/kenzok8/small package/huang/small
+
+#git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash
 
 # 移植Lienol 的包到官方 luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
-#rm -rf feeds/kenzo/luci-app-fileassistant
+rm -rf package/huang/openwrt-packages/luci-app-fileassistant
 #rm -rf package/luci-app-fileassistant
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
 
@@ -65,10 +68,10 @@ git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent package/luci-a
 rm -rf package/luci-app-wolplus
 git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-app-wolplus
 
-# dockerman
-rm -rf feeds/luci/applications/luci-app-dockerman
-rm -rf package/luci-app-dockerman
-git_sparse_clone master https://github.com/lisaac/luci-app-dockerman applications/luci-app-dockerman
+# dockerman  有kenzo包时要注释掉
+#rm -rf feeds/luci/applications/luci-app-dockerman
+#rm -rf package/luci-app-dockerman
+#git_sparse_clone master https://github.com/lisaac/luci-app-dockerman applications/luci-app-dockerman
 
 # adguardhome
 #rm -rf feeds/packages/net/adguardhome
@@ -91,9 +94,9 @@ git clone --depth=1 https://github.com/huanghitoy/luci-app-mproxy package/luci-a
 
 # Themes
 #git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
-rm -rf package/{luci-theme-argon,luci-app-argon-config}
-git clone --depth=1 -b master https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
-git clone --depth=1 -b master https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
+#rm -rf package/{luci-theme-argon,luci-app-argon-config}
+#git clone --depth=1 -b master https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+#git clone --depth=1 -b master https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 #git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
 #git_sparse_clone main https://github.com/haiibo/packages luci-theme-atmaterial luci-theme-opentomcat luci-theme-netgear
 
@@ -103,7 +106,7 @@ git clone --depth=1 -b master https://github.com/jerrykuku/luci-app-argon-config
 #rm -rf feeds/packages/utils/v2dat
 #rm -rf feeds/small/{luci-app-mosdns,mosdns,v2dat}
 rm -rf package/luci-app-mosdns
-git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
+#git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
 
 # 在线用户
 #rm -rf package/luci-app-onliner
@@ -115,8 +118,8 @@ git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mo
 # 科学上网插件
 rm -rf package/{luci-app-ssr-plus,openwrt-passwall,luci-app-passwall}
 #git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+#git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
+#git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
 #git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 #git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
 
