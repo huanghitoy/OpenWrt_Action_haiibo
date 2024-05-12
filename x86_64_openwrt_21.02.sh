@@ -2,7 +2,7 @@
 
 #sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
 
-#修复dockerman 连接不上docker 23.05 原因是cgroupfs-mount不能挂载，注释7，8，9行
+#修复dockerman 连接不上docker  原因是cgroupfs-mount不能挂载，注释7，8，9行 23.05 必须注释掉，21.02 先不注释
 #sed -i '7{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
 #sed -i '8{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
 #sed -i '9{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
@@ -28,14 +28,14 @@ rm -rf feeds/packages/lang/golang
 git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
 # Git稀疏克隆，只克隆指定目录到本地
-rm -rf package/lean
-mkdir package/lean
+rm -rf package/huang
+mkdir package/huang
 function git_sparse_clone() {
   branch="$1" repourl="$2" && shift 2
   git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
   repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
   cd $repodir && git sparse-checkout set $@
-  mv -f $@ ../package/lean
+  mv -f $@ ../package/huang
   cd .. && rm -rf $repodir
 }
 # 移植lean 的包到官方
