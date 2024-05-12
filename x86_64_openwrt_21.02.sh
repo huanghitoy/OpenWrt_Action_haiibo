@@ -105,7 +105,7 @@ git clone --depth=1 https://github.com/huanghitoy/luci-app-mproxy package/luci-a
 #rm -rf feeds/luci/luci-app-mosdns
 #rm -rf feeds/packages/utils/v2dat
 #rm -rf feeds/small/{luci-app-mosdns,mosdns,v2dat}
-rm -rf package/luci-app-mosdns
+#rm -rf package/luci-app-mosdns
 #git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
 
 # 在线用户
@@ -116,7 +116,7 @@ rm -rf package/luci-app-mosdns
 #chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
 
 # 科学上网插件
-rm -rf package/{luci-app-ssr-plus,openwrt-passwall,luci-app-passwall}
+#rm -rf package/{luci-app-ssr-plus,openwrt-passwall,luci-app-passwall}
 #git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
 #git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 #git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
