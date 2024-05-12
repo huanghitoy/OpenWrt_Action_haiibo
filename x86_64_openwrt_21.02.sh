@@ -52,7 +52,7 @@ git clone --depth=1 https://github.com/kenzok8/small package/huang/small
 #git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash
 
 # 移植Lienol 的包到官方 luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
-rm -rf package/huang/openwrt-packages/luci-app-fileassistant
+rm -rf package/huang/openwrt-packages/{luci-app-fileassistant,homeproxy}
 #rm -rf package/luci-app-fileassistant
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
 
