@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
+
 
 #修复dockerman 连接不上docker  原因是cgroupfs-mount不能挂载，注释7，8，9行 23.05 必须注释掉，21.02 先不注释
 #sed -i '7{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
@@ -48,6 +48,7 @@ rm -rf feeds/packages/net/{adguardhome,xray-core,v2raya,smartdns}
 rm -rf feeds/luci/applications/{luci-app-dockerman,luci-app-smartdns}
 git clone --depth=1 https://github.com/kenzok8/openwrt-packages package/huang/openwrt-packages
 git clone --depth=1 https://github.com/kenzok8/small package/huang/small
+sed -i 's/ +libopenssl-legacy//g' package/huang/small/shadowsocksr-libev/Makefile
 
 #git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash
 
