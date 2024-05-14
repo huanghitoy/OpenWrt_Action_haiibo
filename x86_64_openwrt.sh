@@ -35,7 +35,7 @@ function git_sparse_clone() {
   git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
   repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
   cd $repodir && git sparse-checkout set $@
-  mv -f $@ ../package/lean
+  mv -f $@ ../package/huang
   cd .. && rm -rf $repodir
 }
 # 移植lean 的包到官方
