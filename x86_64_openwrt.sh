@@ -113,11 +113,11 @@ rm -rf package/luci-app-mosdns
 git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
 
 # SmartDNS
-rm -rf openwrt/feeds/luci/applications/luci-app-smartdns
-rm -rf openwrt/feeds/packages/net/smartdns
-rm -rf package/{luci-app-smartdns,smartdns}
-git clone --depth=1 -b master https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
-git clone --depth=1 https://github.com/pymumu/smartdns package/smartdns
+#rm -rf openwrt/feeds/luci/applications/luci-app-smartdns
+#rm -rf openwrt/feeds/packages/net/smartdns
+#rm -rf package/{luci-app-smartdns,smartdns}
+#git clone --depth=1 -b master https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
+#git clone --depth=1 https://github.com/pymumu/smartdns package/smartdns
 
 # 在线用户
 #rm -rf package/luci-app-onliner
