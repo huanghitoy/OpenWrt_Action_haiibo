@@ -93,6 +93,7 @@ git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-a
 # Mproxy
 rm -rf package/luci-app-mproxy
 git clone --depth=1 https://github.com/huanghitoy/luci-app-mproxy package/luci-app-mproxy
+chmod 755 package/luci-app-mproxy/luci-app-mproxy/root/etc/init.d/mproxy
 
 # Themes
 #git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
