@@ -111,6 +111,13 @@ git clone --depth=1 -b master https://github.com/jerrykuku/luci-app-argon-config
 rm -rf package/luci-app-mosdns
 git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
 
+# SmartDNS
+rm -rf openwrt/feeds/luci/applications/luci-app-smartdns
+rm -rf openwrt/feeds/packages/net/smartdns
+rm -rf package/{luci-app-smartdns,smartdns}
+git clone --depth=1 -b master https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
+git clone --depth=1 https://github.com/pymumu/smartdns package/smartdns
+
 # 在线用户
 #rm -rf package/luci-app-onliner
 #git_sparse_clone main https://github.com/haiibo/packages luci-app-onliner
@@ -135,12 +142,7 @@ git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-a
 # sed -i "s|kernel_path.*|kernel_path 'https://github.com/ophub/kernel'|g" package/luci-app-amlogic/root/etc/config/amlogic
 #sed -i "s|ARMv8|ARMv8_PLUS|g" package/luci-app-amlogic/root/etc/config/amlogic
 
-# SmartDNS
-rm -rf openwrt/feeds/luci/applications/luci-app-smartdns
-rm -rf openwrt/feeds/packages/net/smartdns
-rm -rf package/{luci-app-smartdns,smartdns}
-git clone --depth=1 -b lede https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
-git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/smartdns
+
 
 # Alist
 #git clone --depth=1 https://github.com/sbwml/luci-app-alist package/luci-app-alist
