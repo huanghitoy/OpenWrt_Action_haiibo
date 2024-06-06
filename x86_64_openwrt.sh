@@ -56,7 +56,7 @@ git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/packages net/softe
 # 移植Lienol 的包到官方 luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
 #rm -rf feeds/kenzo/luci-app-fileassistant
 #rm -rf package/luci-app-fileassistant
-git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
+git_sparse_clone main https://github.com/huanghitoy/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
 git_sparse_clone other https://github.com/Lienol/openwrt-package luci-app-tcpdump
 
 #qbittorrent
