@@ -40,7 +40,7 @@ function git_sparse_clone() {
 }
 # 移植lean 的包到官方
 git_sparse_clone master https://github.com/coolsnowwolf/lede package/wwan package/qca package/qat
-git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync
+git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync applications/luci-app-rclone
 git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
 
 # 移植kenzo 的包到官方 adguardhome openclash 
@@ -49,7 +49,7 @@ rm -rf feeds/packages/net/adguardhome
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash
 
 # 移植immortalwrt 的包到官方 
-git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/luci applications/luci-app-homeproxy applications/luci-app-accesscontrol applications/luci-app-softethervpn applications/luci-app-diskman applications/luci-app-rclone
+git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/luci applications/luci-app-homeproxy applications/luci-app-accesscontrol applications/luci-app-softethervpn applications/luci-app-diskman
 git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/packages net/softethervpn5
 
 
