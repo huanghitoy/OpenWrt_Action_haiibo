@@ -14,7 +14,7 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: X86_64_openwrt_23.05_Date_240610_nas_64_900M
+  FIRMWARE_TAG: X86_64_openwrt_23.05_Date_240715_nas_64_900M
   TZ: Asia/Shanghai
 
 jobs:
