@@ -43,6 +43,7 @@ git_sparse_clone master https://github.com/coolsnowwolf/lede package/wwan packag
 git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync applications/luci-app-rclone
 git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
 
+
 # 移植kenzo 的包到官方 adguardhome openclash 
 rm -rf feeds/packages/net/adguardhome
 #rm -rf feeds/luci/applications/luci-app-dockerman
@@ -51,7 +52,7 @@ git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adg
 # 移植immortalwrt 的包到官方 
 git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/luci applications/luci-app-homeproxy applications/luci-app-accesscontrol applications/luci-app-softethervpn applications/luci-app-diskman
 git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/packages net/softethervpn5
-
+git_sparse_clone master https://github.com/immortalwrt-collections/openwrt-cdnspeedtest cdnspeedtest
 
 # 移植Lienol 的包到官方 luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
 #rm -rf feeds/kenzo/luci-app-fileassistant
