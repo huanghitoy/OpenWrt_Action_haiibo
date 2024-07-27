@@ -1,0 +1,36 @@
+ati
+Quectel
+RM500U-CN
+Revision: RM500UCNAAR01A13M2G
+
+OK
+AT+GMR
+RM500UCNAAR01A13M2G_01.001.01.001
+
+OK
+AT+QCFG=?
++QCFG: "usbnet",(1,3,5)
++QCFG: "nat",(0-2)
++QCFG: "usbcfg",(1-65535),(1-65535),(0,1),(0,1),(0,1),(0,1),(0,1),(0,1)
++QCFG: "ims",(0,1)
++QCFG: "pcie/mode",(0,1)
++QCFG: "ethernet",(0,1)
++QCFG: "uartat",(0,1)
++QCFG: "usbid",(1-65535),(1-65535)
++QCFG: "multiusbnet",(1-4),(0-4)
++QCFG: "usbmac",(sipa_usb0,usb0,usb1,usb2,usb3)
++QCFG: "staticarp",(0,usb0,usb1,usb2,usb3),<mac>
++QCFG: "lanip",<gateway>,<netmask>,<lease_time>
++QCFG: "loopback",(0-15)
++QCFG: "usage/apmem"
++QCFG: "usage/apfs"
++QCFG: "proxyarp",(0,1)
++QCFG: "5glan",(1-8),(0,1)
++QCFG: "autoapn",(0,1)
++QCFG: "usbmode",(host,device)
++QCFG: "usbspeed",(11,20,30)
++QCFG: "rp_filter",(0-2)
++QCFG: "ipa",(0-2)
++QCFG: "netmask",(0,1)
+
+OK
