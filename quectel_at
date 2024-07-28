@@ -1,15 +1,15 @@
 ati
 Quectel
 RM500U-CN
-Revision: RM500UCNAAR01A18M2G
+Revision: RM500UCNAAR03A05M2G
 
 OK
 AT+GMR
-RM500UCNAAR01A18M2G_01.001.01.001
+RM500UCNAAR03A05M2G_01.001.01.001
 
 OK
 AT+QCFG=?
-+QCFG: "usbnet",(1,3,5)
++QCFG: "usbnet",(1,3,5,11,13,15)
 +QCFG: "nat",(0-2)
 +QCFG: "usbcfg",(1-65535),(1-65535),(0,1),(0,1),(0,1),(0,1),(0,1),(0,1),(0,1)
 +QCFG: "ims",(0,1)
@@ -19,20 +19,34 @@ AT+QCFG=?
 +QCFG: "usbid",(1-65535),(1-65535)
 +QCFG: "multiusbnet",(1-4),(0-4)
 +QCFG: "usbmac",(sipa_usb0,usb0,usb1,usb2,usb3)
++QCFG: "hostmac",(usb0,usb1,usb2,usb3),<mac>
 +QCFG: "staticarp",(0,usb0,usb1,usb2,usb3),<mac>
 +QCFG: "lanip",<gateway>,<netmask>,<lease_time>
-+QCFG: "lanip_ex",<gateway>,<netmask>,<start_ip>,<end_ip>,<lease_time>
++QCFG: "lanip_ex",<lease_time>
 +QCFG: "loopback",(0-15)
 +QCFG: "usage/apmem"
 +QCFG: "usage/apfs"
 +QCFG: "proxyarp",(0,1)
 +QCFG: "5glan",(1-8),(0,1)
++QCFG: "vlan",(0,1)
 +QCFG: "autoapn",(0,1)
-+QCFG: "usbmode",(host,device)
-+QCFG: "usbspeed",(11,20,30)
++QCFG: "usbmode",(host,device,auto)
++QCFG: "usbreset"
++QCFG: "usbspeed",(11,20,30,auto)
 +QCFG: "rp_filter",(0-2)
 +QCFG: "ipa",(0-2)
 +QCFG: "netmask",(0,1)
 +QCFG: "thermal/modem",(1,2),(0~110000)
++QCFG: "tts",(0,1)
++QCFG: "pm/powersave",(0,1,2,3)
++QCFG: "vonr",(0,1)
++QCFG: "pcie/direct",(0,1)
++QCFG: "pack",(0,1)
++QCFG: "mtu",(1-4),<mtu>
++QCFG: "eth_at",(0,1)
++QCFG: "iq_vser",(0,1)
++QCFG: "clat",(0,1)
++QCFG: "quecdumptime",(0~5000000)
++QCFG: "ip6/cfg","neigh"
 
 OK
