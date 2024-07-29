@@ -39,10 +39,12 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 # 移植lean 的包到官方
-git_sparse_clone master https://github.com/coolsnowwolf/lede package/wwan package/qca package/qat
+git_sparse_clone master https://github.com/coolsnowwolf/lede  package/qca package/qat
 git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync applications/luci-app-rclone
 git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
-
+#移植5G-Modem-Support
+rm -rf package/5G-Modem-Support
+git clone https://github.com/Siriling/5G-Modem-Support package/5G-Modem-Support
 
 # 移植kenzo 的包到官方 adguardhome openclash 
 rm -rf feeds/packages/net/adguardhome
