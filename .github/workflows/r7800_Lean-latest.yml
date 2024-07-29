@@ -69,6 +69,7 @@ jobs:
         #git clone https://github.com/coolsnowwolf/packages lede_packages
         #git clone https://github.com/coolsnowwolf/luci lede_luci
         cd lede
+        sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
         #rm -f ./feeds.conf.default
         #echo 'src-git packages https://github.com/coolsnowwolf/packages' >> ./feeds.conf.default
         #echo 'src-git luci https://github.com/coolsnowwolf/luci' >> ./feeds.conf.default
