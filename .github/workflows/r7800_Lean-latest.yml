@@ -9,7 +9,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   CONFIG_FILE: configs/r7800_Lean.config
-  DIY_SCRIPT: x86_64-Lean.sh
+  DIY_SCRIPT: Lean.sh
   CLASH_KERNEL: arm
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
