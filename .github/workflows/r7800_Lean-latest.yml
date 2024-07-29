@@ -1,4 +1,4 @@
-name: r7800 Lean Lede
+name: r7800 Lean latest
 
 on:
   workflow_dispatch:
