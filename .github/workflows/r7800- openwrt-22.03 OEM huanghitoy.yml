@@ -8,13 +8,13 @@ on:
 env:
   REPO_URL: https://github.com/huanghitoy/openwrt
   REPO_BRANCH: openwrt-22.03
-  CONFIG_FILE: configs/r7800_openwrt_22.03.config
-  DIY_SCRIPT: openwrt_22.03.sh
+  CONFIG_FILE: configs/r7800_openwrt-22.03.config
+  DIY_SCRIPT: openwrt-22.03.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: ipq806x_openwrt_22.03_Date_240729-5g
+  FIRMWARE_TAG: ipq806x_openwrt-22.03_Date-240729_5g
   TZ: Asia/Shanghai
 
 jobs:
