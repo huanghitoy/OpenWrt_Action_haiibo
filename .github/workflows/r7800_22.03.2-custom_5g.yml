@@ -76,6 +76,9 @@ jobs:
         git checkout v22.03.0
         git apply $GITHUB_WORKSPACE/scripts/0001-umbim-add-pdptype-and-route-table-support.patch
         cp $GITHUB_WORKSPACE/feeds-5g.conf ./feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+
         #sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
         #sed -i 's/^src-git-full/src-git/g' feeds.conf.default
         #rm -f ./feeds.conf.default
