@@ -14,7 +14,7 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: ipq806x_openwrt_23.05_Date_240729-telephony23.05-asterisk20-IchthysMaranatha
+  FIRMWARE_TAG: ipq806x_openwrt_23.05_Date_240802-telephony23.05-asterisk20-5g
   TZ: Asia/Shanghai
 
 jobs:
