@@ -2,8 +2,8 @@ name: r7800 openwrt-22.03 5g
 
 on:
   workflow_dispatch:
-  #schedule:
-  #  - cron: 0 19 * * *
+  schedule:
+    - cron: 0 19 * * 6
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
