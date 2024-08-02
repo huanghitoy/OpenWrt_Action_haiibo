@@ -73,7 +73,7 @@ jobs:
         #cd lede
         #./scripts/feeds update -a
         cd openwrt
-        git checkout v22.03.0
+        git checkout openwrt-22.03
         git apply $GITHUB_WORKSPACE/scripts/0001-umbim-add-pdptype-and-route-table-support.patch
         ./scripts/feeds update -a
         ./scripts/feeds install -a
