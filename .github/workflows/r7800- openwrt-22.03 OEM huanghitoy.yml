@@ -14,7 +14,7 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: ipq806x_openwrt-22.03_Date-240729_5g
+  FIRMWARE_TAG: ipq806x_openwrt-22.03_Date-240802_5g
   TZ: Asia/Shanghai
 
 jobs:
