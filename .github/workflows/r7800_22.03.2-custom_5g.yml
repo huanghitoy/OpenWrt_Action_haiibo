@@ -6,7 +6,7 @@ on:
     - cron: 0 19 * * 6
 
 env:
-  REPO_URL: https://github.com/openwrt/openwrt
+  REPO_URL: https://github.com/koreapyj/openwrt
   REPO_BRANCH: 22.03.2-custom
   CONFIG_FILE: configs/r7800_openwrt-22.03.2-custom.config
   DIY_SCRIPT: openwrt-22.03.2-custom.sh
@@ -64,8 +64,8 @@ jobs:
     - name: Clone Source Code
       run: |
         df -hT $GITHUB_WORKSPACE
-        #git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
-        git clone $REPO_URL openwrt
+        git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
+        #git clone $REPO_URL openwrt
         #git clone https://github.com/281677160/openwrt-package -b Lede openwrt-package
         #git clone https://github.com/coolsnowwolf/packages lede_packages
         #git clone https://github.com/coolsnowwolf/luci lede_luci
@@ -73,9 +73,9 @@ jobs:
         #cd lede
         #./scripts/feeds update -a
         cd openwrt
-        git checkout v22.03.0
-        git apply $GITHUB_WORKSPACE/scripts/0001-umbim-add-pdptype-and-route-table-support.patch
-        cp $GITHUB_WORKSPACE/feeds-5g.conf ./feeds.conf.default
+        #git checkout v22.03.0
+        #git apply $GITHUB_WORKSPACE/scripts/0001-umbim-add-pdptype-and-route-table-support.patch
+        #cp $GITHUB_WORKSPACE/feeds-5g.conf ./feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
