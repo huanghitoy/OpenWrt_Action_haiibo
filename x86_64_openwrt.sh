@@ -39,12 +39,11 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 # 移植lean 的包到官方
-git_sparse_clone master https://github.com/coolsnowwolf/lede  package/qca package/qat
+git_sparse_clone master https://github.com/coolsnowwolf/lede  package/qca package/qat package/wwan
 git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync applications/luci-app-rclone
 git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
 #移植5G-Modem-Support
-rm -rf package/5G-Modem-Support
-git clone https://github.com/Siriling/5G-Modem-Support package/5G-Modem-Support
+#git_sparse_clone main https://github.com/Siriling/5G-Modem-Support luci-app-usbmodem
 
 # 移植kenzo 的包到官方 adguardhome openclash 
 rm -rf feeds/packages/net/adguardhome
@@ -52,7 +51,7 @@ rm -rf feeds/packages/net/adguardhome
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash
 
 # 移植immortalwrt 的包到官方 
-git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/luci applications/luci-app-homeproxy applications/luci-app-accesscontrol applications/luci-app-softethervpn applications/luci-app-diskman
+git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/luci applications/luci-app-homeproxy applications/luci-app-accesscontrol applications/luci-app-diskman
 git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/packages net/softethervpn5
 git_sparse_clone master https://github.com/immortalwrt-collections/openwrt-cdnspeedtest cdnspeedtest
 
@@ -91,8 +90,8 @@ git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-a
 git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 
 # 3ginfo_lite
-rm -rf package/luci-app-3ginfo-lite
-git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-app-3ginfo-lite
+#rm -rf package/luci-app-3ginfo-lite
+#git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-app-3ginfo-lite
 
 # Mproxy
 rm -rf package/luci-app-mproxy
@@ -131,6 +130,7 @@ git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mo
 
 # 科学上网插件
 #git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
+rm -rf feeds/packages/net/{trojan-go,v2ray-core,v2ray-geodata,xray-core,microsocks,sing-box}
 rm -rf package/{luci-app-passwall,openwrt-passwall}
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
