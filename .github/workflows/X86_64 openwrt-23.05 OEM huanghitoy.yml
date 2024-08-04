@@ -9,7 +9,7 @@ env:
   REPO_URL: https://github.com/huanghitoy/openwrt
   REPO_BRANCH: openwrt-23.05
   CONFIG_FILE: configs/x86_64_openwrt.config
-  DIY_SCRIPT: x86_64_openwrt.sh
+  DIY_SCRIPT: openwrt-23.05.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
