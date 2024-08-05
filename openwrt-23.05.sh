@@ -107,16 +107,6 @@ git clone --depth=1 -b master https://github.com/jerrykuku/luci-app-argon-config
 #git_sparse_clone main https://github.com/haiibo/packages luci-theme-atmaterial luci-theme-opentomcat luci-theme-netgear
 
 # MosDNS
-#rm -rf feeds/packages/net/mosdns
-#rm -rf feeds/luci/luci-app-mosdns
-#rm -rf feeds/packages/utils/v2dat
-#rm -rf feeds/small/{luci-app-mosdns,mosdns,v2dat}
-#rm -rf feeds/packages/lang/golang
-#git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
-#rm -rf feeds/packages/net/v2ray-geodata
-#rm -rf package/v2ray-geodata
-#git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
-
 rm -rf package/luci-app-mosdns
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/luci-app-mosdns
 
