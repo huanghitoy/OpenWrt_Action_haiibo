@@ -24,8 +24,8 @@ sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.
 #rm -rf feeds/packages/net/{mosdns,adguardhome,pdnsd-alt,smartdns,v2ray-geodata,msd_lite}
 #rm -rf feeds/luci/applications/{luci-app-serverchan,luci-app-aliyundrive-webdav,luci-app-argon-config,luci-app-design-config,luci-app-dockerman,luci-app-easymesh,luci-app-eqos,luci-app-smartdns,luci-app-mosdns,luci-app-netdata}
 #rm -rf feeds/luci/themes/{luci-theme-argon,luci-theme-design}
-#rm -rf feeds/packages/lang/golang
-#git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
 # Git稀疏克隆，只克隆指定目录到本地
 rm -rf package/huang
@@ -111,11 +111,11 @@ git clone --depth=1 -b master https://github.com/jerrykuku/luci-app-argon-config
 #rm -rf feeds/luci/luci-app-mosdns
 #rm -rf feeds/packages/utils/v2dat
 #rm -rf feeds/small/{luci-app-mosdns,mosdns,v2dat}
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
-rm -rf feeds/packages/net/v2ray-geodata
-rm -rf package/v2ray-geodata
-git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+#rm -rf feeds/packages/lang/golang
+#git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
+#rm -rf feeds/packages/net/v2ray-geodata
+#rm -rf package/v2ray-geodata
+#git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 rm -rf package/luci-app-mosdns
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/luci-app-mosdns
