@@ -93,6 +93,11 @@ git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 #rm -rf package/luci-app-3ginfo-lite
 #git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-app-3ginfo-lite
 
+# sms-tool
+rm -rf package/{luci-app-sms-tool,luci-app-sms-tool-js}
+git clone https://github.com/4IceG/luci-app-sms-tool.git package/luci-app-sms-tool
+git clone https://github.com/4IceG/luci-app-sms-tool-js package/luci-app-sms-tool-js
+
 # Mproxy
 rm -rf package/luci-app-mproxy
 git clone --depth=1 https://github.com/huanghitoy/luci-app-mproxy package/luci-app-mproxy
