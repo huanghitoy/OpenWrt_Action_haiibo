@@ -89,20 +89,24 @@ rm -rf package/{luci-app-msd_lite,msd_lite}
 git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-app-msd_lite
 git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 
+#########################4IceG###########################
 # 3ginfo_lite
 #rm -rf package/luci-app-3ginfo-lite
 #git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-app-3ginfo-lite
 
-#4IceG
 # luci-app-modemband
 rm -rf package/luci-app-modemband
 git clone https://github.com/4IceG/luci-app-modemband.git package/luci-app-modemband
+
+# luci-app-lite-watchdog
+rm -rf package/luci-app-lite-watchdog
+git clone https://github.com/4IceG/luci-app-lite-watchdog.git package/luci-app-lite-watchdog
 
 # sms-tool
 rm -rf package/{luci-app-sms-tool,luci-app-sms-tool-js}
 git clone https://github.com/4IceG/luci-app-sms-tool.git package/luci-app-sms-tool
 git clone https://github.com/4IceG/luci-app-sms-tool-js package/luci-app-sms-tool-js
-
+#########################4IceG###########################
 # Mproxy
 rm -rf package/luci-app-mproxy
 git clone --depth=1 https://github.com/huanghitoy/luci-app-mproxy package/luci-app-mproxy
