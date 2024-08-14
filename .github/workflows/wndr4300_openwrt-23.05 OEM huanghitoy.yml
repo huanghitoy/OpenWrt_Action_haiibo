@@ -14,7 +14,7 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: ath79_wndr3700V4_openwrt_23.05_Date_240814
+  FIRMWARE_TAG: ath79_wndr3700V4_openwrt-23.05_Date_240814
   TZ: Asia/Shanghai
 
 jobs:
