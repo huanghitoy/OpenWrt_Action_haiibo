@@ -14,7 +14,7 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: ath79_openwrt-23.05_128M_Date_240815
+  FIRMWARE_TAG: ath79_openwrt-23.05_128M_Date_latest
   TZ: Asia/Shanghai
 
 jobs:
