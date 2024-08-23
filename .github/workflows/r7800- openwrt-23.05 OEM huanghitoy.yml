@@ -3,7 +3,7 @@ name: r7800 openwrt-23.05 OEM huanghitoy
 on:
   workflow_dispatch:
   schedule:
-    - cron: 0 19 * * 6
+    - cron: 0 19 */10 * *
 
 env:
   REPO_URL: https://github.com/huanghitoy/openwrt
