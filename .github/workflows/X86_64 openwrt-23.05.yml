@@ -6,7 +6,7 @@ on:
     - cron: 0 1 * * 0
 
 env:
-  REPO_URL: https://github.com/huanghitoy/openwrt
+  REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-23.05
   CONFIG_FILE: configs/x86_64_openwrt-23.05.config
   DIY_SCRIPT: openwrt-23.05.sh
@@ -72,7 +72,7 @@ jobs:
         #cd lede
         #./scripts/feeds update -a
         cd openwrt
-        #sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/huanghitoy\/telephony.git;master/' feeds.conf.default
+        sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
         #sed -i 's/^src-git-full/src-git/g' feeds.conf.default
         #rm -f ./feeds.conf.default
         #echo 'src-git packages https://github.com/openwrt/packages;openwrt-23.05' >> ./feeds.conf.default
