@@ -1,4 +1,4 @@
-name: X86_64 openwrt-23.05 OEM huanghitoy
+name: X86_64 openwrt-23.05
 
 on:
   workflow_dispatch:
