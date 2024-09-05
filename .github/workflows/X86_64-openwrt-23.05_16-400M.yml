@@ -1,4 +1,4 @@
-name: X86_64 openwrt-23.05
+name: X86_64 openwrt-23.05 16-400M
 
 on:
   workflow_dispatch:
