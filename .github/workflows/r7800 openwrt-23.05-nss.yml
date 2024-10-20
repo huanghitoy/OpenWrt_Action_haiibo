@@ -8,13 +8,13 @@ on:
 env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-23.05
-  CONFIG_FILE: configs/r7800_openwrt_23.05.config
+  CONFIG_FILE: configs/r7800_openwrt-23.05.config
   DIY_SCRIPT: openwrt-23.05.sh
   CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: ipq806x_openwrt_23.05_Date_241020-nss
+  FIRMWARE_TAG: ipq806x_openwrt-23.05_20241020_nss
   TZ: Asia/Shanghai
 
 jobs:
