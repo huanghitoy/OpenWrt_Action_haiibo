@@ -2,8 +2,8 @@ name: X86_64 openwrt-23.05 OEM huanghitoy
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: 0 1 * * 0
+  #schedule:
+    #- cron: 0 1 * * 0
 
 env:
   REPO_URL: https://github.com/huanghitoy/openwrt
