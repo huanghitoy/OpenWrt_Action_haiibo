@@ -10,11 +10,11 @@ env:
   REPO_BRANCH: v23.05.0-rc2
   CONFIG_FILE: configs/r7800_openwrt-23.05.config
   DIY_SCRIPT: openwrt-23.05.sh
-  CLASH_KERNEL: amd64
+  CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: r7800_openwrt-23.05.0-rc2_nss
+  FIRMWARE_TAG: ipq806x_openwrt-23.05.0-rc2_nss
   TZ: Asia/Shanghai
 
 jobs:
