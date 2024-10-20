@@ -64,13 +64,7 @@ jobs:
     - name: Clone Source Code
       run: |
         df -hT $GITHUB_WORKSPACE
-        git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
-        #git clone https://github.com/281677160/openwrt-package -b Lede openwrt-package
-        #git clone https://github.com/coolsnowwolf/packages lede_packages
-        #git clone https://github.com/coolsnowwolf/luci lede_luci
-        #git clone https://github.com/coolsnowwolf/lede lede
-        #cd lede
-        #./scripts/feeds update -a
+        git clone -b v23.05.0-rc2 --single-branch --depth=1 $REPO_URL openwrt
         cd openwrt
         sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
         #sed -i 's/^.*feed\/packages.git.*$/src-git packages https:\/\/git.openwrt.org\/feed\/packages.git;openwrt-23.05/' feeds.conf.default
