@@ -40,7 +40,7 @@ function git_sparse_clone() {
 }
 # 移植lean 的包到官方
 git_sparse_clone master https://github.com/coolsnowwolf/lede  package/qca package/qat package/wwan
-git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync applications/luci-app-rclone
+git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync applications/luci-app-rclone luci-app-turboacc
 git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
 #移植5G-Modem-Support
 #git_sparse_clone main https://github.com/Siriling/5G-Modem-Support luci-app-usbmodem
