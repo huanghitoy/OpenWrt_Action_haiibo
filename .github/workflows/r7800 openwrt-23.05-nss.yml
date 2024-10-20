@@ -73,10 +73,10 @@ jobs:
         #./scripts/feeds update -a
         cd openwrt
         sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
-        sed -i 's/^.*feed\/packages.git.*$/src-git packages https:\/\/git.openwrt.org\/feed\/packages.git;openwrt-23.05/' feeds.conf.default
+        #sed -i 's/^.*feed\/packages.git.*$/src-git packages https:\/\/git.openwrt.org\/feed\/packages.git;openwrt-23.05/' feeds.conf.default
 
-        sed -i 's/^.*luci.git.*$/src-git luci https:\/\/git.openwrt.org\/project\/luci.git;openwrt-23.05/' feeds.conf.default
-        sed -i 's/^.*routing.git.*$/src-git routing https:\/\/git.openwrt.org\/feed\/routing.git;openwrt-23.05/' feeds.conf.default
+        #sed -i 's/^.*luci.git.*$/src-git luci https:\/\/git.openwrt.org\/project\/luci.git;openwrt-23.05/' feeds.conf.default
+        #sed -i 's/^.*routing.git.*$/src-git routing https:\/\/git.openwrt.org\/feed\/routing.git;openwrt-23.05/' feeds.conf.default
         
         echo "src-git nss https://github.com/ACwifidude/nss-packages.git;NSS-11.2-K5.15" >> feeds.conf.default
         #sed -i 's/^src-git-full/src-git/g' feeds.conf.default
