@@ -39,7 +39,7 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 # 移植lean 的包到官方
-git_sparse_clone master https://github.com/coolsnowwolf/lede  package/qca package/qat package/wwan
+git_sparse_clone master https://github.com/coolsnowwolf/lede package/qat package/wwan
 git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync applications/luci-app-rclone 
 git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
 #移植5G-Modem-Support
@@ -48,10 +48,10 @@ git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/
 # 移植kenzo 的包到官方 adguardhome openclash 
 rm -rf feeds/packages/net/adguardhome
 #rm -rf feeds/luci/applications/luci-app-dockerman
-git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash
+git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome 
 
 # 移植immortalwrt 的包到官方 
-git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/luci applications/luci-app-homeproxy applications/luci-app-accesscontrol applications/luci-app-diskman applications/luci-app-timewol
+git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/luci applications/luci-app-homeproxy applications/luci-app-diskman applications/luci-app-timewol
 #git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/packages net/softethervpn5
 git_sparse_clone master https://github.com/immortalwrt-collections/openwrt-cdnspeedtest cdnspeedtest
 
