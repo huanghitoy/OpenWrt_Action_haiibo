@@ -211,3 +211,5 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 ./scripts/feeds install -a
+make clean
+rm -rf bin
