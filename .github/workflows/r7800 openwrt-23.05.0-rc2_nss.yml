@@ -72,6 +72,7 @@ jobs:
         #cd lede
         #./scripts/feeds update -a
         cd openwrt
+        rm -rf bin
         sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
         #sed -i 's/^src-git-full/src-git/g' feeds.conf.default
         #rm -f ./feeds.conf.default
