@@ -144,7 +144,7 @@ rm -rf feeds/packages/net/{trojan-go,v2ray-core,v2ray-geodata,xray-core,microsoc
 rm -rf package/{luci-app-passwall,openwrt-passwall}
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
-sed -i 's/ +kmod-nft-nat6 \\//g' package/openwrt-passwall/sing-box/Makefile
+#sed -i 's/ +kmod-nft-nat6 \\//g' package/openwrt-passwall/sing-box/Makefile
 #rm -rf package/openwrt-passwall/{trojan-go,v2ray-core,v2ray-geodata,xray-core,microsocks,sing-box}
 #git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 #git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
