@@ -65,23 +65,10 @@ jobs:
       run: |
         df -hT $GITHUB_WORKSPACE
         git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
-        #git clone https://github.com/281677160/openwrt-package -b Lede openwrt-package
-        #git clone https://github.com/coolsnowwolf/packages lede_packages
-        #git clone https://github.com/coolsnowwolf/luci lede_luci
-        #git clone https://github.com/coolsnowwolf/lede lede
-        #cd lede
-        #./scripts/feeds update -a
+        
         cd openwrt
         sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
-        #sed -i 's/^src-git-full/src-git/g' feeds.conf.default
-        #rm -f ./feeds.conf.default
-        #echo 'src-git packages https://github.com/openwrt/packages;openwrt-23.05' >> ./feeds.conf.default
-        #echo 'src-git luci https://github.com/openwrt/luci;openwrt-23.05' >> ./feeds.conf.default
-        #echo 'src-git routing https://github.com/openwrt/routing;openwrt-23.05' >> ./feeds.conf.default
-        #echo 'src-git telephony https://github.com/huanghitoy/telephony.git;master' >> ./feeds.conf.default
-        #echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages' >> ./feeds.conf.default
-        #echo 'src-git small https://github.com/kenzok8/small' >> ./feeds.conf.default
-        
+                
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         COMMIT_AUTHOR=$(git show -s --date=short --format="作者: %an")
         echo "COMMIT_AUTHOR=$COMMIT_AUTHOR" >> $GITHUB_ENV
@@ -170,7 +157,8 @@ jobs:
         cd $OPENWRT_PATH/bin/targets/*/*
         cat sha256sums
         cp $OPENWRT_PATH/.config build.config
-        mv -f $OPENWRT_PATH/bin/packages/*/*/*.ipk packages
+        #mv -f $OPENWRT_PATH/bin/packages/*/*/*.ipk packages
+        mv -f $OPENWRT_PATH/bin/packages/* packages/
         tar -zcf Packages.tar.gz packages
         rm -rf packages feeds.buildinfo version.buildinfo
         echo "KERNEL=$(cat *.manifest | grep ^kernel | cut -d- -f2 | tr -d ' ')" >> $GITHUB_ENV
