@@ -104,6 +104,7 @@ git clone https://github.com/4IceG/luci-app-lite-watchdog.git package/luci-app-l
 
 # sms-tool
 rm -rf package/{luci-app-sms-tool,luci-app-sms-tool-js}
+rm -rf feeds/packages/utils/sms-tool
 git clone https://github.com/4IceG/luci-app-sms-tool.git package/luci-app-sms-tool
 git clone https://github.com/4IceG/luci-app-sms-tool-js package/luci-app-sms-tool-js
 #########################4IceG###########################
