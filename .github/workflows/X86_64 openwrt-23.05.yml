@@ -69,7 +69,7 @@ jobs:
         sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        wget -qO - https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
+        wget -O -  https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
         ./scripts/feeds update
         ./scripts/feeds install bluez-alsa   
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
