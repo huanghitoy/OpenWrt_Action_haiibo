@@ -76,6 +76,8 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         wget -O -  https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
+        ./scripts/feeds update
+        ./scripts/feeds install bluez-alsa     
         #sed -i 's/^src-git-full/src-git/g' feeds.conf.default
         #rm -f ./feeds.conf.default
         #echo 'src-git packages https://github.com/openwrt/packages;openwrt-23.05' >> ./feeds.conf.default
