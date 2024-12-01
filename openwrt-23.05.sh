@@ -195,6 +195,9 @@ git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-a
 # 修复 hostapd 报错
 #cp -f $GITHUB_WORKSPACE/scripts/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
+# 修复 bluetooth csr
+cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/x86/patches-5.15/950-csr-clean.patch
+
 # 修复 armv8 设备 xfsprogs 报错
 #sed -i 's/TARGET_CFLAGS.*/TARGET_CFLAGS += -DHAVE_MAP_SYNC -D_LARGEFILE64_SOURCE/g' feeds/packages/utils/xfsprogs/Makefile
 
