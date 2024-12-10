@@ -1,0 +1,44 @@
+#6:55--7:20
+#############工作日
+55 6 * * 1,2,3,4,5 mpc clear && mpc load 4su5 && mpc load 4su6 && mpc toggle && mpc repeat on && mpc volume 80
+20 7 * * 1,2,3,4,5 mpc stop
+
+#8:00-9:00
+#############休息日	
+0 8 * * 6,0 mpc clear && mpc load gs75 && mpc toggle && mpc repeat on && mpc volume 80
+
+#9:00--9:30
+#每天报纸摘要		
+0 9 * * * mpc clear && mpc load radio && mpc play 1 && mpc volume 50
+
+#9:30--10:30
+#############工作日		
+30 9 * * 1 mpc clear && mpc load ht1 && mpc toggle && mpc volume 50
+30 9 * * 2 mpc clear && mpc load ht2 && mpc toggle && mpc volume 50
+30 9 * * 3 mpc clear && mpc load ht3 && mpc toggle && mpc volume 50
+30 9 * * 4 mpc clear && mpc load ht4 && mpc toggle && mpc volume 50
+30 9 * * 5 mpc clear && mpc load ht5 && mpc toggle && mpc volume 50
+30 10 * * 1,2,3,4,5  mpc stop
+#############休息日
+30 9 * * 0,6 mpc clear && mpc load 5000years-of-China && mpc toggle && mpc volume 90
+#11:30--12:30
+#############工作日			
+30 11 * * 1 mpc clear && mpc load ht1 && mpc toggle && mpc volume 50
+30 11 * * 2 mpc clear && mpc load ht2 && mpc toggle && mpc volume 50
+30 11 * * 3 mpc clear && mpc load ht3 && mpc toggle && mpc volume 50
+30 11 * * 4 mpc clear && mpc load ht4 && mpc toggle && mpc volume 50
+30 11 * * 5 mpc clear && mpc load ht5 && mpc toggle && mpc volume 50
+30 12 * * 1,2,3,4,5  mpc stop
+
+#听歌			17:00--18:30
+0 17 * * 1 mpc clear && mpc load ht1 && mpc toggle && mpc volume 50
+0 17 * * 2,6 mpc clear && mpc load ht2 && mpc toggle && mpc volume 50
+0 17 * * 3,0 mpc clear && mpc load ht3 && mpc toggle && mpc volume 50
+0 17 * * 4 mpc clear && mpc load ht4 && mpc toggle && mpc volume 50
+0 17 * * 5 mpc clear && mpc load ht5 && mpc toggle && mpc volume 50
+#全国新闻联播	18:30-19:00
+30 18 * * * mpc clear && mpc load radio && mpc play 1
+0 19 * * *  mpc stop
+#晚睡前播放		21:45--22:00
+45 21 * * * mpc clear && mpc load 4su6 && mpc toggle && mpc repeat on && mpc volume 80
+0 22 * * * mpc stop
