@@ -14,7 +14,7 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: X86_64_openwrt_23.05_16-1200M
+  FIRMWARE_TAG: X86_64_openwrt_23.05_16-1900M
   TZ: Asia/Shanghai
 
 jobs:
