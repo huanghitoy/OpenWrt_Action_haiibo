@@ -68,6 +68,7 @@ jobs:
         
         cd openwrt
         sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
+        echo "src-git sqm_scripts_nss https://github.com/rickkdotnet/sqm-scripts-nss.git" >> feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         wget -O -  https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
