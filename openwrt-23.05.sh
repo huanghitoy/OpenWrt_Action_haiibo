@@ -1,6 +1,9 @@
 #!/bin/bash
 #openwrt-23.05
 #sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
+# 取消默认主题luci-theme-bootstrap  
+sed -i 's/+luci-light/+luci-theme-argon/g' feeds/luci/collections/luci/Makefile
+
 
 #修复dockerman 连接不上docker  原因是cgroupfs-mount不能挂载，注释7，8，9行
 sed -i '7{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
