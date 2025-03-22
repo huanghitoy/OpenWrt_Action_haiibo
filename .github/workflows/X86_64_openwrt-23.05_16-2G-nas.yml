@@ -1,4 +1,4 @@
-name: X86_64 openwrt-23.05-16M-2G-nas
+name: X86_64 openwrt-23.05-nas-16M-2G
 
 on:
   workflow_dispatch:
@@ -8,13 +8,13 @@ on:
 env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-23.05
-  CONFIG_FILE: configs/x86_64_openwrt-23.05-nas.config
+  CONFIG_FILE: configs/x86_64_openwrt-23.05-nas-16M-2G
   DIY_SCRIPT: openwrt-23.05.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: X86_64_openwrt_23.05_16M-2G-nas
+  FIRMWARE_TAG: X86_64_openwrt-23.05-nas-16M-2G
   TZ: Asia/Shanghai
 
 jobs:
