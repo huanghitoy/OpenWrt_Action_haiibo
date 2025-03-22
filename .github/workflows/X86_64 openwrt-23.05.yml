@@ -2,7 +2,7 @@ name: X86_64 openwrt-23.05
 
 on:
   workflow_dispatch:
-  schedule:
+  #schedule:
    # - cron: 0 1 * * 0
 
 env:
