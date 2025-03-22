@@ -8,7 +8,7 @@ on:
 env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-23.05
-  CONFIG_FILE: configs/x86_64_openwrt-23.05-nas-16M-2G
+  CONFIG_FILE: configs/x86_64_openwrt-23.05-nas-16M-2G.config
   DIY_SCRIPT: openwrt-23.05.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
