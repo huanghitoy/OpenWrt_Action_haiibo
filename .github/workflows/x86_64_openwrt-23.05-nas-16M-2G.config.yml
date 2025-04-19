@@ -8,6 +8,7 @@ on:
 env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-23.05
+  REPO_COMMITS: 86dfa171015d1dd94dc735ae0c57e9e2962914fa
   CONFIG_FILE: configs/x86_64_openwrt-23.05-nas-16M-2G.config
   DIY_SCRIPT: openwrt-23.05.sh
   CLASH_KERNEL: amd64
@@ -66,6 +67,7 @@ jobs:
         df -hT $GITHUB_WORKSPACE
         git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
         cd openwrt
+        git reset --hard $REPO_COMMITS
         sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
