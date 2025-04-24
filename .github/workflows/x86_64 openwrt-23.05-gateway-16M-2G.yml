@@ -1,4 +1,4 @@
-name: X86_64 openwrt-23.05-gateway-16M-2G
+name: X86_64 openwrt-23.05-gw-16M-2G
 
 on:
   workflow_dispatch:
