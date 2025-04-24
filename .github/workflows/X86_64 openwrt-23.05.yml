@@ -6,7 +6,7 @@ on:
    # - cron: 0 1 * * 0
 
 env:
-  REPO_URL: https://github.com/huanghitoy/openwrt
+  REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-23.05
   REPO_COMMITS: 86dfa171015d1dd94dc735ae0c57e9e2962914fa
   CONFIG_FILE: configs/x86_64_openwrt-23.05.config
