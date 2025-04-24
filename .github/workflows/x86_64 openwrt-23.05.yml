@@ -65,10 +65,10 @@ jobs:
     - name: Clone Source Code
       run: |
         df -hT $GITHUB_WORKSPACE
-        #git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
-        git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
+        git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
+        #git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
         cd openwrt
-        git reset --hard $REPO_COMMITS
+        #git reset --hard $REPO_COMMITS
         sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
