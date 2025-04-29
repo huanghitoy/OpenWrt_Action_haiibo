@@ -199,6 +199,9 @@ git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-a
 # 修复 hostapd 报错
 #cp -f $GITHUB_WORKSPACE/scripts/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
+#调整 WNDR4300 固件大小至128M
+patch -p0 < $GITHUB_WORKSPACE/scripts/openwrt-23.05_ath79_nand_121m.patch
+
 # 修复 bluetooth csr
 cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/x86/patches-5.15/950-csr-clean.patch
 cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/ipq806x/patches-5.15/950-csr-clean.patch
