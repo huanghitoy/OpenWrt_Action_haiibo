@@ -8,6 +8,7 @@ on:
 env:
   REPO_URL: https://github.com/APCCV/OpenWRT-23.05.0-NSS
   REPO_BRANCH: 23.05.0-nss
+  FEEDS_COMMITS: 649bd22c22f8249140799c9ab2866844724532bc
   CONFIG_FILE: configs/r7800_openwrt-23.05-5g.config
   DIY_SCRIPT: openwrt-23.05.sh
   CLASH_KERNEL: arm64
@@ -72,7 +73,7 @@ jobs:
         #cd lede
         #./scripts/feeds update -a
         cd openwrt
-        sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
+        sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git^'$FEEDS_COMMITS'/' feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         wget -O -  https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
@@ -100,6 +101,7 @@ jobs:
     - name: Generate Variables
       run: |
         cp $CONFIG_FILE $OPENWRT_PATH/.config
+        cp -r scripts/telephony-openwrt-23.05/net/ $OPENWRT_PATH/feeds/telephony/
         #cat $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
         make defconfig > /dev/null 2>&1
