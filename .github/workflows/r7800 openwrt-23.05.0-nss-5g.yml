@@ -101,7 +101,7 @@ jobs:
     - name: Generate Variables
       run: |
         cp $CONFIG_FILE $OPENWRT_PATH/.config
-        cp -r scripts/telephony-openwrt-23.05/net/ $OPENWRT_PATH/feeds/telephony/
+        cp -r scripts/telephony-openwrt-23.05/net $OPENWRT_PATH/feeds/telephony/
         #cat $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
         make defconfig > /dev/null 2>&1
