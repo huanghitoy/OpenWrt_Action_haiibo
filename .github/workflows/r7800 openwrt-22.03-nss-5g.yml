@@ -76,7 +76,7 @@ jobs:
         cd openwrt
         mkdir -p package/telephony
         git clone https://github.com/hayzamjs/asterisk-chan-quectel.git package/telephony/asterisk-chan-quectel
-        #sed -i 's/^.*telephony.git.*$/src-git-full telephony https:\/\/github.com\/hitoyhuang\/telephony.git^'$FEEDS_COMMITS'/' feeds.conf.default
+        sed -i 's/^.*telephony.git.*$/src-git-full telephony https:\/\/github.com\/hitoyhuang\/telephony.git^'$FEEDS_COMMITS'/' feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         wget -O -  https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
