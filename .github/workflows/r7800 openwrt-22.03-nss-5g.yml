@@ -11,13 +11,13 @@ env:
   #FEEDS_COMMITS: 649bd22c22f8249140799c9ab2866844724532bc
   #FEEDS_COMMITS: 31ec72bc669877ff146491260c0deb099ab70df6
   FEEDS_COMMITS: 3eea28d8abde28608f77d3fc389ca34f5f369ae3
-  CONFIG_FILE: configs/r7800_openwrt-22.03-5g.config
-  DIY_SCRIPT: openwrt-22.03.sh
+  CONFIG_FILE: configs/r7800_openwrt-5g.config
+  DIY_SCRIPT: openwrt-21.02.sh
   CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: ipq806x_openwrt-22.03-nss-5g
+  FIRMWARE_TAG: ipq806x_openwrt-21.02-nss-5g
   TZ: Asia/Shanghai
 
 jobs:
