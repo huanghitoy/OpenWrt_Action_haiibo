@@ -75,8 +75,8 @@ jobs:
         #cd lede
         #./scripts/feeds update -a
         cd openwrt
-        mkdir -p package/telephony
-        git clone https://github.com/IchthysMaranatha/asterisk-chan-quectel package/telephony/asterisk-chan-quectel
+        #mkdir -p package/telephony
+        #git clone https://github.com/IchthysMaranatha/asterisk-chan-quectel package/telephony/asterisk-chan-quectel
         sed -i 's/^.*telephony.git.*$/src-git-full telephony https:\/\/github.com\/hitoyhuang\/telephony.git^'$FEEDS_COMMITS'/' feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
@@ -105,7 +105,7 @@ jobs:
     - name: Generate Variables
       run: |
         cp $CONFIG_FILE $OPENWRT_PATH/.config
-        #cp -r scripts/telephony-openwrt-23.05/net $OPENWRT_PATH/feeds/telephony/
+        cp -r scripts/telephony-openwrt-21.02/net $OPENWRT_PATH/feeds/telephony/
         #cat $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
         make defconfig > /dev/null 2>&1
