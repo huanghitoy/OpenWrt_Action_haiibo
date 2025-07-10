@@ -1,4 +1,4 @@
-name: r7800 openwrt-22.03-nss-5g
+name: r7800 openwrt-nss-5g
 
 on:
   workflow_dispatch:
@@ -68,12 +68,6 @@ jobs:
       run: |
         df -hT $GITHUB_WORKSPACE
         git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
-        #git clone https://github.com/281677160/openwrt-package -b Lede openwrt-package
-        #git clone https://github.com/coolsnowwolf/packages lede_packages
-        #git clone https://github.com/coolsnowwolf/luci lede_luci
-        #git clone https://github.com/coolsnowwolf/lede lede
-        #cd lede
-        #./scripts/feeds update -a
         cd openwrt
         #mkdir -p package/telephony
         #git clone https://github.com/IchthysMaranatha/asterisk-chan-quectel package/telephony/asterisk-chan-quectel
