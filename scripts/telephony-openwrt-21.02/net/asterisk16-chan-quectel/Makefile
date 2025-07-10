@@ -5,8 +5,6 @@
 # See /LICENSE for more information.
 #
 
-include $(TOPDIR)/rules.mk
-
 PKG_NAME:=asterisk-chan-quectel
 PKG_VERSION:=20240510
 PKG_RELEASE:=1
@@ -14,27 +12,15 @@ PKG_RELEASE:=1
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/hitoyhuang/asterisk-chan-quectel.git
 PKG_SOURCE_VERSION:=cc5c765164cb72d4c042db84e922ba3e6205e378
-PKG_SOURCE_DATE=2024-05-10
+PKG_MIRROR_HASH:=skip  # 若需要可添加实际hash值
 
-
-PKG_FIXUP:=autoreconf
-PKG_FIXUP:=autoreconf
+PKG_FIXUP:=autoreconf  # 仅保留一行
 
 PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=COPYRIGHT.txt LICENSE.txt
 PKG_MAINTAINER:=Jiri Slachta <jiri@slachta.eu>
 
-define Build/Prepare
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
-$(CP) ./src/* $(PKG_BUILD_DIR)/
-endef
-
-
-
-MODULES_DIR:=/usr/lib/asterisk/modules
-
 include $(INCLUDE_DIR)/package.mk
-# asterisk-chan-quectel needs iconv
 include $(INCLUDE_DIR)/nls.mk
 
 define Package/asterisk-chan-quectel/Default
@@ -48,7 +34,7 @@ endef
 
 define Package/asterisk16-chan-quectel
 $(call Package/asterisk-chan-quectel/Default)
-  DEPENDS+=asterisk16
+  DEPENDS+=+asterisk16
   VARIANT:=asterisk16
 endef
 
@@ -61,23 +47,20 @@ Package/asterisk16-chan-quectel/description = $(Package/description/Default)
 ifeq ($(BUILD_VARIANT),asterisk16)
   CHAN_quectel_AST_HEADERS:=$(STAGING_DIR)/usr/include/asterisk-16/include
   CONFIGURE_ARGS+= \
-	  --with-astversion=16
+      --with-astversion=16
 endif
 
-
 CONFIGURE_ARGS+= \
-	--with-asterisk=$(CHAN_quectel_AST_HEADERS)
+    --with-asterisk=$(CHAN_quectel_AST_HEADERS)
 
 TARGET_CFLAGS+= \
-	-I$(CHAN_quectel_AST_HEADERS)
+    -I$(CHAN_quectel_AST_HEADERS)
 
 MAKE_FLAGS+=LD="$(TARGET_CC)"
 
 CONFIGURE_VARS += \
-	DESTDIR="$(MODULES_DIR)" \
-	ac_cv_type_size_t=yes \
-	ac_cv_type_ssize_t=yes
-
+    ac_cv_type_size_t=yes \
+    ac_cv_type_ssize_t=yes
 
 define Package/conffiles/Default
 /etc/asterisk/quectel.conf
@@ -86,10 +69,10 @@ endef
 Package/asterisk16-chan-quectel/conffiles = $(Package/conffiles/Default)
 
 define Package/Install/Default
-	$(INSTALL_DIR) $(1)/etc/asterisk
-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/quectel.conf $(1)/etc/asterisk
-	$(INSTALL_DIR) $(1)$(MODULES_DIR)
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/chan_quectel.so $(1)$(MODULES_DIR)
+    $(INSTALL_DIR) $(1)/etc/asterisk
+    $(INSTALL_DATA) $(PKG_BUILD_DIR)/etc/quectel.conf $(1)/etc/asterisk
+    $(INSTALL_DIR) $(1)$(MODULES_DIR)
+    $(INSTALL_BIN) $(PKG_BUILD_DIR)/chan_quectel.so $(1)$(MODULES_DIR)
 endef
 
 Package/asterisk16-chan-quectel/install = $(Package/Install/Default)
