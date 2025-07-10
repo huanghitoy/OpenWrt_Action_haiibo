@@ -28,30 +28,38 @@ rm -rf feeds/packages/lang/golang
 git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
 # Git稀疏克隆，只克隆指定目录到本地
-rm -rf package/lean
-mkdir package/lean
+rm -rf package/huang
+mkdir package/huang
 function git_sparse_clone() {
   branch="$1" repourl="$2" && shift 2
   git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
   repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
   cd $repodir && git sparse-checkout set $@
-  mv -f $@ ../package/lean
+  mv -f $@ ../package/huang
   cd .. && rm -rf $repodir
 }
 # 移植lean 的包到官方
-git_sparse_clone master https://github.com/coolsnowwolf/lede package/wwan package/qca package/qat
-git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync
+git_sparse_clone master https://github.com/coolsnowwolf/lede  package/qca package/qat package/wwan
+git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync applications/luci-app-rclone
 git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
+#移植5G-Modem-Support
+git_sparse_clone main https://github.com/Siriling/5G-Modem-Support luci-app-usbmodem
 
-# 移植kenzo 的包到官方 adguardhome openclash
+# 移植kenzo 的包到官方 adguardhome openclash 
 rm -rf feeds/packages/net/adguardhome
 #rm -rf feeds/luci/applications/luci-app-dockerman
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome luci-app-openclash
 
+# 移植immortalwrt 的包到官方 
+git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/luci applications/luci-app-homeproxy applications/luci-app-accesscontrol  applications/luci-app-diskman
+#git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/packages net/softethervpn5
+git_sparse_clone master https://github.com/immortalwrt-collections/openwrt-cdnspeedtest cdnspeedtest
+
 # 移植Lienol 的包到官方 luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
 #rm -rf feeds/kenzo/luci-app-fileassistant
 #rm -rf package/luci-app-fileassistant
-git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
+git_sparse_clone main https://github.com/huanghitoy/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
+git_sparse_clone other https://github.com/Lienol/openwrt-package luci-app-tcpdump
 
 #qbittorrent
 rm -rf package/luci-app-qbittorrent
@@ -88,6 +96,7 @@ git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-a
 # Mproxy
 rm -rf package/luci-app-mproxy
 git clone --depth=1 https://github.com/huanghitoy/luci-app-mproxy package/luci-app-mproxy
+chmod 755 package/luci-app-mproxy/luci-app-mproxy/root/etc/init.d/mproxy
 
 # Themes
 #git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
@@ -105,6 +114,13 @@ git clone --depth=1 -b master https://github.com/jerrykuku/luci-app-argon-config
 rm -rf package/luci-app-mosdns
 git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
 
+# SmartDNS
+#rm -rf openwrt/feeds/luci/applications/luci-app-smartdns
+#rm -rf openwrt/feeds/packages/net/smartdns
+#rm -rf package/{luci-app-smartdns,smartdns}
+#git clone --depth=1 -b master https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
+#git clone --depth=1 https://github.com/pymumu/smartdns package/smartdns
+
 # 在线用户
 #rm -rf package/luci-app-onliner
 #git_sparse_clone main https://github.com/haiibo/packages luci-app-onliner
@@ -114,9 +130,9 @@ git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mo
 
 # 科学上网插件
 #git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
-rm -rf package/{openwrt-passwall,luci-app-passwall}
-#git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
-git clone --depth=1 https://github.com/huanghitoy/openwrt-passwall-packages package/openwrt-passwall
+rm -rf package/{luci-app-passwall,openwrt-passwall}
+rm -fr feeds/packages/net/{trojan-go,v2ray-core,v2ray-geodata,xray-core}
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
 #git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 #git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
@@ -130,9 +146,7 @@ git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-a
 # sed -i "s|kernel_path.*|kernel_path 'https://github.com/ophub/kernel'|g" package/luci-app-amlogic/root/etc/config/amlogic
 #sed -i "s|ARMv8|ARMv8_PLUS|g" package/luci-app-amlogic/root/etc/config/amlogic
 
-# SmartDNS
-#git clone --depth=1 -b lede https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
-#git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/smartdns
+
 
 # Alist
 #git clone --depth=1 https://github.com/sbwml/luci-app-alist package/luci-app-alist
@@ -184,3 +198,5 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
+make clean
+rm -rf bin
