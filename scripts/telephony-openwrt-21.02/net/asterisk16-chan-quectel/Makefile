@@ -34,7 +34,7 @@ endef
 
 define Package/asterisk16-chan-quectel
 $(call Package/asterisk-chan-quectel/Default)
-  DEPENDS+=+asterisk16
+  DEPENDS+=asterisk16
   VARIANT:=asterisk16
 endef
 
