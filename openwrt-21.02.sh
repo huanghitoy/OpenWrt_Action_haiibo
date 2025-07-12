@@ -6,9 +6,9 @@ sed -i 's/+luci-light/+luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
 
 #修复dockerman 连接不上docker  原因是cgroupfs-mount不能挂载，注释7，8，9行
-sed -i '7{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
-sed -i '8{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
-sed -i '9{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
+#sed -i '7{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
+#sed -i '8{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
+#sed -i '9{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
 
 # 修改ttdy 显示
 #sed -i 's/ luci-app-ttyd//g' target/linux/x86/Makefile
@@ -46,44 +46,44 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 # 移植lean 的包到官方
-git_sparse_clone master https://github.com/coolsnowwolf/lede package/qat package/wwan
-git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync applications/luci-app-rclone applications/luci-app-nfs
-git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
+#git_sparse_clone master https://github.com/coolsnowwolf/lede package/qat package/wwan
+#git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync applications/luci-app-rclone applications/luci-app-nfs
+#git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
 #移植5G-Modem-Support
 #git_sparse_clone main https://github.com/Siriling/5G-Modem-Support luci-app-usbmodem
 
 # 移植kenzo 的包到官方 adguardhome openclash 
-rm -rf feeds/packages/net/adguardhome
+#rm -rf feeds/packages/net/adguardhome
 #rm -rf feeds/luci/applications/luci-app-dockerman
-git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome 
+#git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome adguardhome 
 
 # 移植immortalwrt 的包到官方 
-git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/luci applications/luci-app-homeproxy applications/luci-app-diskman applications/luci-app-timewol applications/luci-app-arpbind
+#git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/luci applications/luci-app-homeproxy applications/luci-app-diskman applications/luci-app-timewol applications/luci-app-arpbind
 #git_sparse_clone openwrt-23.05 https://github.com/immortalwrt/packages net/softethervpn5
-git_sparse_clone master https://github.com/immortalwrt-collections/openwrt-cdnspeedtest cdnspeedtest
+#git_sparse_clone master https://github.com/immortalwrt-collections/openwrt-cdnspeedtest cdnspeedtest
 
 # 移植Lienol 的包到官方 luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
 #rm -rf feeds/kenzo/luci-app-fileassistant
 #rm -rf package/luci-app-fileassistant
-git_sparse_clone main https://github.com/huanghitoy/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
-git_sparse_clone other https://github.com/Lienol/openwrt-package luci-app-tcpdump
+#git_sparse_clone main https://github.com/huanghitoy/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
+#git_sparse_clone other https://github.com/Lienol/openwrt-package luci-app-tcpdump
 
 #qbittorrent
-rm -rf package/luci-app-qbittorrent
-git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent package/luci-app-qbittorrent
+#rm -rf package/luci-app-qbittorrent
+#git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent package/luci-app-qbittorrent
 
 # 添加额外插件 原来包和kenzo包没有的 4个
 #rm -rf package/{luci-app-poweroff,OpenAppFilter,luci-app-netdata,luci-app-wolplus}
 #git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 #git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 #git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
-rm -rf package/luci-app-wolplus
-git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-app-wolplus
+#rm -rf package/luci-app-wolplus
+#git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-app-wolplus
 
 # dockerman
-rm -rf feeds/luci/applications/luci-app-dockerman
-rm -rf package/luci-app-dockerman
-git_sparse_clone master https://github.com/lisaac/luci-app-dockerman applications/luci-app-dockerman
+#rm -rf feeds/luci/applications/luci-app-dockerman
+#rm -rf package/luci-app-dockerman
+#git_sparse_clone master https://github.com/lisaac/luci-app-dockerman applications/luci-app-dockerman
 
 # adguardhome
 #rm -rf feeds/packages/net/adguardhome
@@ -91,10 +91,10 @@ git_sparse_clone master https://github.com/lisaac/luci-app-dockerman application
 #git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
 
 # msd_lite
-rm -rf feeds/packages/net/msd_lite
-rm -rf package/{luci-app-msd_lite,msd_lite}
-git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-app-msd_lite
-git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
+#rm -rf feeds/packages/net/msd_lite
+#rm -rf package/{luci-app-msd_lite,msd_lite}
+#git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-app-msd_lite
+#git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 
 #########################4IceG###########################
 # 3ginfo_lite
@@ -102,23 +102,23 @@ git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 #git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-app-3ginfo-lite
 
 # luci-app-modemband
-rm -rf package/luci-app-modemband
-git clone https://github.com/4IceG/luci-app-modemband.git package/luci-app-modemband
+#rm -rf package/luci-app-modemband
+#git clone https://github.com/4IceG/luci-app-modemband.git package/luci-app-modemband
 
 # luci-app-lite-watchdog
-rm -rf package/luci-app-lite-watchdog
-git clone https://github.com/4IceG/luci-app-lite-watchdog.git package/luci-app-lite-watchdog
+#rm -rf package/luci-app-lite-watchdog
+#git clone https://github.com/4IceG/luci-app-lite-watchdog.git package/luci-app-lite-watchdog
 
 # sms-tool
-rm -rf package/{luci-app-sms-tool,luci-app-sms-tool-js}
-rm -rf feeds/packages/utils/sms-tool
-git clone https://github.com/4IceG/luci-app-sms-tool.git package/luci-app-sms-tool
-git clone https://github.com/4IceG/luci-app-sms-tool-js package/luci-app-sms-tool-js
+#rm -rf package/{luci-app-sms-tool,luci-app-sms-tool-js}
+#rm -rf feeds/packages/utils/sms-tool
+#git clone https://github.com/4IceG/luci-app-sms-tool.git package/luci-app-sms-tool
+#git clone https://github.com/4IceG/luci-app-sms-tool-js package/luci-app-sms-tool-js
 #########################4IceG###########################
 # Mproxy
-rm -rf package/luci-app-mproxy
-git clone --depth=1 https://github.com/huanghitoy/luci-app-mproxy package/luci-app-mproxy
-chmod 755 package/luci-app-mproxy/luci-app-mproxy/root/etc/init.d/mproxy
+#rm -rf package/luci-app-mproxy
+#git clone --depth=1 https://github.com/huanghitoy/luci-app-mproxy package/luci-app-mproxy
+#chmod 755 package/luci-app-mproxy/luci-app-mproxy/root/etc/init.d/mproxy
 
 # Themes
 #git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
@@ -148,10 +148,10 @@ git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/luci-app-mosdns
 
 # 科学上网插件
 #git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
-rm -rf feeds/packages/net/{trojan-go,v2ray-core,v2ray-geodata,xray-core,microsocks,sing-box}
-rm -rf package/{luci-app-passwall,openwrt-passwall}
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+#rm -rf feeds/packages/net/{trojan-go,v2ray-core,v2ray-geodata,xray-core,microsocks,sing-box}
+#rm -rf package/{luci-app-passwall,openwrt-passwall}
+#git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
+#git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
 #sed -i 's/ +kmod-nft-nat6 \\//g' package/openwrt-passwall/sing-box/Makefile
 #rm -rf package/openwrt-passwall/{trojan-go,v2ray-core,v2ray-geodata,xray-core,microsocks,sing-box}
 #git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
