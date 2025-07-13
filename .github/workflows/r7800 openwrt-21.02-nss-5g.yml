@@ -67,8 +67,11 @@ jobs:
     - name: Clone Source Code
       run: |
         df -hT $GITHUB_WORKSPACE
+        git clone -b 20211107 https://github.com/coolsnowwolf/lede
+        
         git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
         cd openwrt
+        cp -r ../lede/package/qca ./package/
         #mkdir -p package/telephony
         #git clone https://github.com/IchthysMaranatha/asterisk-chan-quectel package/telephony/asterisk-chan-quectel
         sed -i 's/^.*telephony.git.*$/src-git-full telephony https:\/\/github.com\/hitoyhuang\/telephony.git^'$FEEDS_COMMITS'/' feeds.conf.default
