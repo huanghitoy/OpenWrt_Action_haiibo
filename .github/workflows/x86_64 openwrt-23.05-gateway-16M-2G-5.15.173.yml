@@ -69,6 +69,7 @@ jobs:
         git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
         cd openwrt
         git reset --hard $REPO_COMMITS
+        sed -i '1i src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git;main\nsrc-git passwall_luci https://github.com/xiaorouji/openwrt-passwall.git;main' feeds.conf.default
         sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
