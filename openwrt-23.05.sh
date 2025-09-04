@@ -147,19 +147,15 @@ git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/luci-app-mosdns
 #chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
 
 # 科学上网插件
-#rm -rf package/{luci-app-passwall,openwrt-passwall}
-# 移除 openwrt feeds 自带的核心库
-rm -rf feeds/packages/net/{xray-core,v2ray-geodata,sing-box,chinadns-ng,dns2socks,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview,shadow-tls}
-#git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
-
-# 移除 openwrt feeds 过时的luci版本
-rm -rf feeds/luci/applications/luci-app-passwall
-#git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
-
-
-
-
-
+#git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
+rm -rf feeds/packages/net/{trojan-go,v2ray-core,v2ray-geodata,xray-core,microsocks,sing-box}
+rm -rf package/{luci-app-passwall,openwrt-passwall}
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+#sed -i 's/ +kmod-nft-nat6 \\//g' package/openwrt-passwall/sing-box/Makefile
+#rm -rf package/openwrt-passwall/{trojan-go,v2ray-core,v2ray-geodata,xray-core,microsocks,sing-box}
+#git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
+#git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
 
 # 更改 Argon 主题背景
 #cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
