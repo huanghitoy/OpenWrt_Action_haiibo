@@ -68,7 +68,7 @@ jobs:
         git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
         #git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
         cd openwrt
-        #git reset --hard $REPO_COMMITS
+        #revise feeds.conf.default 
         bash $GITHUB_WORKSPACE/scripts/feeds.sh
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         COMMIT_AUTHOR=$(git show -s --date=short --format="作者: %an")
