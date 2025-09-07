@@ -8,9 +8,6 @@ on:
 env:
   REPO_URL: https://github.com/APCCV/OpenWRT-23.05.0-NSS
   REPO_BRANCH: 23.05.0-nss
-  #xray 25.5.16
-  FEEDS_COMMITS1: 925712ba92575b4cd96947bd16a1f34167225628
-  FEEDS_COMMITS2: 019e8e5db77c3e1d7e8a13afb23791f21f12f5ea
   CONFIG_FILE: configs/r7800_openwrt-23.05.config
   DIY_SCRIPT: openwrt-23.05.sh
   CLASH_KERNEL: arm64
