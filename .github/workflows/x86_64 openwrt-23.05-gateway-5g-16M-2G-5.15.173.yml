@@ -70,13 +70,9 @@ jobs:
         git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
         cd openwrt
         git reset --hard $REPO_COMMITS
-        sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git^'$FEEDS_COMMITS'/' feeds.conf.default
-        ./scripts/feeds update -a
-        cp -r ../scripts/telephony-openwrt-23.05/net/ ./feeds/telephony/
-        ./scripts/feeds install -a
-        wget -O -  https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
-        ./scripts/feeds update
-        ./scripts/feeds install bluez-alsa   
+        
+        bash $GITHUB_WORKSPACE/scripts/feeds.sh
+        
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         COMMIT_AUTHOR=$(git show -s --date=short --format="作者: %an")
         echo "COMMIT_AUTHOR=$COMMIT_AUTHOR" >> $GITHUB_ENV
