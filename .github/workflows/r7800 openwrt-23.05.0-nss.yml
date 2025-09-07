@@ -75,23 +75,9 @@ jobs:
         #cd lede
         #./scripts/feeds update -a
         cd openwrt
-        #sed -i '1i src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git;main\nsrc-git passwall_luci https://github.com/xiaorouji/openwrt-passwall.git;main' feeds.conf.default
-        sed -i '1i src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git^'$FEEDS_COMMITS1'\nsrc-git passwall_luci https://github.com/xiaorouji/openwrt-passwall.git^'$FEEDS_COMMITS2'' feeds.conf.default
-        sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a
-        wget -O -  https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
-        ./scripts/feeds update
-        ./scripts/feeds install bluez-alsa     
-        #sed -i 's/^src-git-full/src-git/g' feeds.conf.default
-        #rm -f ./feeds.conf.default
-        #echo 'src-git packages https://github.com/openwrt/packages;openwrt-23.05' >> ./feeds.conf.default
-        #echo 'src-git luci https://github.com/openwrt/luci;openwrt-23.05' >> ./feeds.conf.default
-        #echo 'src-git routing https://github.com/openwrt/routing;openwrt-23.05' >> ./feeds.conf.default
-        #echo 'src-git telephony https://github.com/huanghitoy/telephony.git;master' >> ./feeds.conf.default
-        #echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages' >> ./feeds.conf.default
-        #echo 'src-git small https://github.com/kenzok8/small' >> ./feeds.conf.default
         
+        bash $GITHUB_WORKSPACE/scripts/feeds.sh
+                
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         COMMIT_AUTHOR=$(git show -s --date=short --format="作者: %an")
         echo "COMMIT_AUTHOR=$COMMIT_AUTHOR" >> $GITHUB_ENV
