@@ -123,7 +123,7 @@ jobs:
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         chmod +x $DIY_SCRIPT
         cd $OPENWRT_PATH
-        $GITHUB_WORKSPACE/$DIY_SCRIPT
+        #$GITHUB_WORKSPACE/$DIY_SCRIPT
         #$GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
         #$GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
         #$GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
