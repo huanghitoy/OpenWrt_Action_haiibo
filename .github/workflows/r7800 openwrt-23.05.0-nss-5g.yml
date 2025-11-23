@@ -9,7 +9,7 @@ env:
   REPO_URL: https://github.com/APCCV/OpenWRT-23.05.0-NSS
   REPO_BRANCH: 23.05.0-nss
   #FEEDS_COMMITS: 649bd22c22f8249140799c9ab2866844724532bc
-  FEEDS_COMMITS: 3eea28d8abde28608f77d3fc389ca34f5f369ae3
+  FEEDS_COMMITS: 8a0f6d84d7a4340098f5520e8d6fc5485b8fd995
   CONFIG_FILE: configs/r7800_openwrt-23.05-5g.config
   DIY_SCRIPT: openwrt-23.05.sh
   CLASH_KERNEL: arm64
@@ -76,7 +76,8 @@ jobs:
         cd openwrt
         mkdir -p package/telephony
         git clone https://github.com/hayzamjs/asterisk-chan-quectel.git package/telephony/asterisk-chan-quectel
-        sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git^'$FEEDS_COMMITS'/' feeds.conf.default
+        #sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git^'$FEEDS_COMMITS'/' feeds.conf.default
+        sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/koreapyj\/telephony.git^'$FEEDS_COMMITS'/' feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         wget -O -  https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
