@@ -1,4 +1,4 @@
-name: openwrt-23.05.0-nss-5ggg
+name: 23.05.0-nss-5g
 
 on:
   workflow_dispatch:
