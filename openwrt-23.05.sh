@@ -103,8 +103,7 @@ git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 
 #4IceG/packages
 #rm -rf package/4IceG-packages
-#git clone https://github.com/4IceG/packages.git package/4IceG-packages
-
+git_sparse_clone master https://github.com/4IceG/packages sms-tool
 #luci-app-modemband
 rm -rf package/luci-app-modemband
 git clone https://github.com/4IceG/luci-app-modemband.git package/luci-app-modemband
