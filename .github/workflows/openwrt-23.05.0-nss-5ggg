@@ -8,13 +8,14 @@ on:
 env:
   REPO_URL: https://github.com/APCCV/OpenWRT-23.05.0-NSS
   REPO_BRANCH: 23.05.0-nss
-  CONFIG_FILE: configs/r7800_openwrt-23.05.config
+  FEEDS_COMMITS: 8a0f6d84d7a4340098f5520e8d6fc5485b8fd995
+  CONFIG_FILE: configs/r7800_openwrt-23.05-5g.config
   DIY_SCRIPT: openwrt-23.05.sh
   CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: ipq806x_openwrt-23.05.0-nss
+  FIRMWARE_TAG: ipq806x_openwrt-23.05.0-nss-5g
   TZ: Asia/Shanghai
 
 jobs:
