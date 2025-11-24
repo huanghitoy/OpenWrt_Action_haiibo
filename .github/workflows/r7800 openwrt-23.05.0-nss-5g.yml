@@ -75,8 +75,8 @@ jobs:
         #cd lede
         #./scripts/feeds update -a
         cd openwrt
-        mkdir -p package/telephony
-        git clone https://github.com/hayzamjs/asterisk-chan-quectel.git package/telephony/asterisk-chan-quectel
+        #mkdir -p package/telephony
+        #git clone https://github.com/hayzamjs/asterisk-chan-quectel.git package/telephony/asterisk-chan-quectel
         #sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git^'$FEEDS_COMMITS'/' feeds.conf.default
         sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/koreapyj\/telephony.git^'$FEEDS_COMMITS'/' feeds.conf.default
         ./scripts/feeds update -a
