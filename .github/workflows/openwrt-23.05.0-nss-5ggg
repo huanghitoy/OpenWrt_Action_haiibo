@@ -1,4 +1,4 @@
-name: 23.05.0-nss-5g
+name: r7800 openwrt-23.05.0-nss-5g
 
 on:
   workflow_dispatch:
