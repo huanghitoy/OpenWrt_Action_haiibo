@@ -11,7 +11,7 @@ env:
   CONFIG_FILE: configs/r7800_openwrt-23.05-5g.config
   DIY_SCRIPT: openwrt-23.05.sh
   CLASH_KERNEL: arm64
-  CACHE_TOOLCHAIN: true
+  CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
   FIRMWARE_TAG: ipq806x_openwrt-23.05.0-nss-5g
@@ -66,12 +66,6 @@ jobs:
       run: |
         df -hT $GITHUB_WORKSPACE
         git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
-        #git clone https://github.com/281677160/openwrt-package -b Lede openwrt-package
-        #git clone https://github.com/coolsnowwolf/packages lede_packages
-        #git clone https://github.com/coolsnowwolf/luci lede_luci
-        #git clone https://github.com/coolsnowwolf/lede lede
-        #cd lede
-        #./scripts/feeds update -a
         cd openwrt
         
         bash $GITHUB_WORKSPACE/scripts/feeds.sh
