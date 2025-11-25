@@ -17,7 +17,7 @@ PASSWALL_LUCI_FEEDS_COMMITS="46e926363e900974994f6c0311768db599574b02"
 sed -i '1i src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git^'$PASSWALL_PACKAGES_FEEDS_COMMITS'\nsrc-git passwall_luci https://github.com/xiaorouji/openwrt-passwall.git^'$PASSWALL_LUCI_FEEDS_COMMITS'' feeds.conf.default
 #sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
 #sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/koreapyj\/telephony.git^8a0f6d84d7a4340098f5520e8d6fc5485b8fd995/' feeds.conf.default
-sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/huanghitoy\/telephony.git^1e830cd40d116b07471520dd013853871ae4d38c/' feeds.conf.default
+sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/huanghitoy\/telephony.git^848c9210fd5beb32e113449c0019d3db2b1ecb97/' feeds.conf.default
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
