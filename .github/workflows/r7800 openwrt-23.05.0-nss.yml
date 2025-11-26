@@ -11,7 +11,7 @@ env:
   CONFIG_FILE: configs/r7800_openwrt-23.05.config
   DIY_SCRIPT: openwrt-23.05.sh
   CLASH_KERNEL: arm64
-  CACHE_TOOLCHAIN: true
+  CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
   FIRMWARE_TAG: ipq806x_openwrt-23.05.0-nss
