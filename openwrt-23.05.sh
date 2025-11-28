@@ -121,7 +121,7 @@ git clone https://github.com/4IceG/luci-app-lite-watchdog.git package/luci-app-l
 rm -rf package/{luci-app-sms-tool,luci-app-sms-tool-js}
 rm -rf feeds/packages/utils/sms-tool
 git clone https://github.com/4IceG/luci-app-sms-tool.git package/luci-app-sms-tool
-git clone -b 2.0.18-20231008 https://github.com/4IceG/luci-app-sms-tool-js package/luci-app-sms-tool-js
+git clone https://github.com/4IceG/luci-app-sms-tool-js package/luci-app-sms-tool-js
 #########################4IceG###########################
 # Mproxy
 rm -rf package/luci-app-mproxy
