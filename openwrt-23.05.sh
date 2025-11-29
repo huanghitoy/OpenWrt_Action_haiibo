@@ -120,7 +120,7 @@ rm -rf package/{luci-app-sms-tool,luci-app-sms-tool-js}
 rm -rf feeds/packages/utils/sms-tool
 git clone https://github.com/4IceG/luci-app-sms-tool package/luci-app-sms-tool
 git clone https://github.com/4IceG/luci-app-sms-tool-js package/luci-app-sms-tool-js
-git_sparse_clone master https://github.com/huanghitoy/packages sms-tool
+git_sparse_clone main https://github.com/huanghitoy/packages sms-tool
 
 #########################4IceG###########################
 # Mproxy
