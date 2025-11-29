@@ -101,10 +101,6 @@ git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 #rm -rf package/luci-app-3ginfo-lite
 #git clone --depth=1 https://github.com/4IceG/luci-app-3ginfo-lite package/luci-app-3ginfo-lite
 
-#4IceG/packages
-#rm -rf package/sms-tool
-git_sparse_clone master https://github.com/huanghitoy/packages sms-tool
-
 #luci-app-modemband
 rm -rf package/luci-app-modemband
 git clone https://github.com/4IceG/luci-app-modemband.git package/luci-app-modemband
@@ -115,15 +111,17 @@ rm -rf package/luci-app-modemdata
 git clone https://github.com/4IceG/luci-app-modemdata.git package/luci-app-modemdata
 git clone https://github.com/obsy/modemdata package/modemdata
 
-# luci-app-lite-watchdog
+#luci-app-lite-watchdog
 rm -rf package/luci-app-lite-watchdog
 git clone https://github.com/4IceG/luci-app-lite-watchdog.git package/luci-app-lite-watchdog
 
-# sms-tool
+#luci-app-sms-tool-js  sms-tool
 rm -rf package/{luci-app-sms-tool,luci-app-sms-tool-js}
 rm -rf feeds/packages/utils/sms-tool
-git clone https://github.com/4IceG/luci-app-sms-tool.git package/luci-app-sms-tool
+git clone https://github.com/4IceG/luci-app-sms-tool package/luci-app-sms-tool
 git clone https://github.com/4IceG/luci-app-sms-tool-js package/luci-app-sms-tool-js
+git_sparse_clone master https://github.com/huanghitoy/packages sms-tool
+
 #########################4IceG###########################
 # Mproxy
 rm -rf package/luci-app-mproxy
