@@ -108,10 +108,12 @@ git_sparse_clone master https://github.com/huanghitoy/packages sms-tool
 #luci-app-modemband
 rm -rf package/luci-app-modemband
 git clone https://github.com/4IceG/luci-app-modemband.git package/luci-app-modemband
+#git clone https://github.com/obsy/modemband package/modemband
 
 #luci-app-modemdata
 rm -rf package/luci-app-modemdata
 git clone https://github.com/4IceG/luci-app-modemdata.git package/luci-app-modemdata
+git clone https://github.com/obsy/modemdata package/modemdata
 
 # luci-app-lite-watchdog
 rm -rf package/luci-app-lite-watchdog
