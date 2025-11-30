@@ -15,7 +15,7 @@ env:
   CONFIG_FILE: configs/x86_64_openwrt-23.05.config
   DIY_SCRIPT: openwrt-23.05.sh
   CLASH_KERNEL: amd64
-  CACHE_TOOLCHAIN: true
+  CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
   FIRMWARE_TAG: X86_64_openwrt_23.05-gateway-16M-2G
