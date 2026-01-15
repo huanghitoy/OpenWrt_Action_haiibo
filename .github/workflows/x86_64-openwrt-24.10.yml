@@ -8,7 +8,7 @@ on:
 env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-24.10
-  CONFIG_FILE: configs/openwrt-24.10.config
+  CONFIG_FILE: configs/x86_64_openwrt-24.10.config
   DIY_SCRIPT: openwrt-24.10.sh
   CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: false
