@@ -12,6 +12,9 @@ PASSWALL_LUCI_FEEDS_COMMITS="46e926363e900974994f6c0311768db599574b02"
 #PASSWALL_PACKAGES_FEEDS_COMMITS="f002d6d83f0e2f21b7db251410409eb472fd2d6e"
 #PASSWALL_LUCI_FEEDS_COMMITS="d13c49df62631f3fecd9d3146e370b419f5ed049"
 
+#passwall 25.12.31  
+#PASSWALL_PACKAGES_FEEDS_COMMITS="46495fc982f7861e8913b8667bfdcd523b7ec2fc"
+#PASSWALL_LUCI_FEEDS_COMMITS="d743aeeeeced58359cd066ed5679985c5c82c97c"
 
 sed -i '1i src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git^'$PASSWALL_PACKAGES_FEEDS_COMMITS'\nsrc-git passwall_luci https://github.com/xiaorouji/openwrt-passwall.git^'$PASSWALL_LUCI_FEEDS_COMMITS'' feeds.conf.default
 #sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main\nsrc-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main' feeds.conf.default
