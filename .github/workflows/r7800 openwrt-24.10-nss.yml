@@ -6,8 +6,8 @@ on:
     #- cron: 0 1 * * 0
 
 env:
-  REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: openwrt-24.10
+  REPO_URL: https://github.com/asvio/R7800-nss
+  REPO_BRANCH: r7800-24.10-nss
   CONFIG_FILE: configs/r7800_openwrt-24.10.config
   DIY_SCRIPT: openwrt-24.10.sh
   CLASH_KERNEL: arm64
