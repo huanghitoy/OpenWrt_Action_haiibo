@@ -206,8 +206,8 @@ rm -rf feeds/luci/applications/luci-app-passwall
 patch -p0 < $GITHUB_WORKSPACE/scripts/openwrt-23.05_ath79_nand_121m.patch
 
 # 修复 bluetooth csr
-cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/x86/patches-5.15/950-csr-clean.patch
-cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/ipq806x/patches-5.15/950-csr-clean.patch
+#cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/x86/patches-5.15/950-csr-clean.patch
+#cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/ipq806x/patches-5.15/950-csr-clean.patch
 
 # 修复 armv8 设备 xfsprogs 报错
 #sed -i 's/TARGET_CFLAGS.*/TARGET_CFLAGS += -DHAVE_MAP_SYNC -D_LARGEFILE64_SOURCE/g' feeds/packages/utils/xfsprogs/Makefile
