@@ -67,7 +67,7 @@ sed -i 's/+luci-light/+luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 #sed -i 's/ luci-app-wireguard//g' target/linux/x86/Makefile
 
 # 修改默认IP
-sed -i 's/192.168.1.1/192.168.12.199/g' package/base-files/files/bin/config_generate
+#sed -i 's/192.168.1.1/192.168.12.199/g' package/base-files/files/bin/config_generate
 
 # 修改默认时区
 sed -i 's/UTC/CST-8/g' package/base-files/files/bin/config_generate
