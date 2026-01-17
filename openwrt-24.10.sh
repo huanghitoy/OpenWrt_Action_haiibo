@@ -1,4 +1,56 @@
 #!/bin/bash
+
+# 检测代理是否可用
+PROXY_HOST="192.168.12.21"
+PROXY_PORT="8080"
+PROXY_URL="http://${PROXY_HOST}:${PROXY_PORT}"
+
+# 检测端口是否开放
+check_proxy() {
+    # 使用nc命令检测端口
+    if command -v nc &> /dev/null; then
+        if nc -z -w 2 $PROXY_HOST $PROXY_PORT; then
+            echo "检测到代理服务器可用: $PROXY_URL"
+            return 0
+        fi
+    # 使用telnet检测端口
+    elif command -v telnet &> /dev/null; then
+        if timeout 2 telnet $PROXY_HOST $PROXY_PORT &> /dev/null; then
+            echo "检测到代理服务器可用: $PROXY_URL"
+            return 0
+        fi
+    # 使用bash内置方法检测端口
+    else
+        timeout 2 bash -c "echo > /dev/tcp/$PROXY_HOST/$PROXY_PORT" &> /dev/null
+        if [ $? -eq 0 ]; then
+            echo "检测到代理服务器可用: $PROXY_URL"
+            return 0
+        fi
+    fi
+    
+    echo "代理服务器不可用，将不使用代理"
+    return 1
+}
+
+# 设置代理（如果可用）
+if check_proxy; then
+    export http_proxy=$PROXY_URL
+    export https_proxy=$PROXY_URL
+    export HTTP_PROXY=$PROXY_URL
+    export HTTPS_PROXY=$PROXY_URL
+    
+    # 设置git代理
+    git config --global http.proxy $PROXY_URL
+    git config --global https.proxy $PROXY_URL
+    git config --global http.sslVerify false
+else
+    # 清除代理设置
+    unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY
+    git config --global --unset http.proxy
+    git config --global --unset https.proxy
+fi
+
+
 #openwrt-24.10
 #sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
 # 取消默认主题luci-theme-bootstrap  
