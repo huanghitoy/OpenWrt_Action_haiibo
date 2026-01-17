@@ -20,7 +20,7 @@ sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt
 #sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main\nsrc-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main' feeds.conf.default
 
 
-sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
+#sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
 #sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/koreapyj\/telephony.git^8a0f6d84d7a4340098f5520e8d6fc5485b8fd995/' feeds.conf.default
 #sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/huanghitoy\/telephony.git;openwrt-22.03/' feeds.conf.default
 ./scripts/feeds update -a
