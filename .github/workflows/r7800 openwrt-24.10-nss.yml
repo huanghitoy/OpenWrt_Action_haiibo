@@ -11,7 +11,7 @@ env:
   CONFIG_FILE: configs/r7800_openwrt-24.10.config
   DIY_SCRIPT: openwrt-24.10.sh
   CLASH_KERNEL: arm64
-  CACHE_TOOLCHAIN: false
+  CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
   FIRMWARE_TAG: ipq806x_openwrt-24.10
