@@ -6,10 +6,10 @@ on:
     #- cron: 0 1 * * 0
 
 env:
-  REPO_URL: https://github.com/qosmio/openwrt-ipq
-  REPO_BRANCH: 24.10-nss
+  REPO_URL: https://github.com/LiBwrt/openwrt-6.x
+  REPO_BRANCH: main-nss
   CONFIG_FILE: configs/openwrt-24.10-nss.config
-  DIY_SCRIPT: openwrt-24.10.sh
+  DIY_SCRIPT: openwrt-24.10-test.sh
   CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
@@ -72,7 +72,7 @@ jobs:
         git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
         cd openwrt
         
-        bash $GITHUB_WORKSPACE/scripts/feeds-24.10.sh
+        #bash $GITHUB_WORKSPACE/scripts/feeds-24.10.sh
                 
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         COMMIT_AUTHOR=$(git show -s --date=short --format="作者: %an")
