@@ -52,6 +52,8 @@ fi
 
 
 #openwrt-24.10
+
+
 #sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
 # 取消默认主题luci-theme-bootstrap  
 sed -i 's/+luci-light/+luci-theme-argon/g' feeds/luci/collections/luci/Makefile
@@ -136,6 +138,9 @@ git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-
 rm -rf feeds/luci/applications/luci-app-dockerman
 rm -rf package/luci-app-dockerman
 git_sparse_clone master https://github.com/lisaac/luci-app-dockerman applications/luci-app-dockerman
+
+# Add Support for Asterisk Quectel dongle (IchthysMaranatha Version)
+git clone https://github.com/huanghitoy/openwrt-asterisk-chan-quectel.git package/asterisk-chan-quectel
 
 # adguardhome
 #rm -rf feeds/packages/net/adguardhome
