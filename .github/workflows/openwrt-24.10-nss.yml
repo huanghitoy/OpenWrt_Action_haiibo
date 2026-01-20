@@ -1,4 +1,4 @@
-name: ipq806x ipq807x openwrt-24.10-nss
+name: openwrt-24.10-nss
 
 on:
   workflow_dispatch:
@@ -8,13 +8,13 @@ on:
 env:
   REPO_URL: https://github.com/qosmio/openwrt-ipq
   REPO_BRANCH: 24.10-nss
-  CONFIG_FILE: configs/ipq806x_ipq807x_openwrt-24.10.config
+  CONFIG_FILE: configs/openwrt-24.10-nss.config
   DIY_SCRIPT: openwrt-24.10.sh
   CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: ipq806x ipq807x_openwrt-24.10-nss
+  FIRMWARE_TAG: openwrt-24.10-nss
   TZ: Asia/Shanghai
 
 jobs:
