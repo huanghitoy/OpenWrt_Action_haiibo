@@ -1,6 +1,6 @@
-name: r7800 openwrt-23.05.0-rc2_nss
+name: ipq806x openwrt-23.05.0-rc2_nss
 
-on:
+于:
   workflow_dispatch:
   #schedule:
     #- cron: 0 1 * * 0
@@ -8,13 +8,13 @@ on:
 env:
   REPO_URL: https://github.com/APCCV/OpenWRT-23.05.0-rc2-NSS
   REPO_BRANCH: v23.05.0-rc2
-  CONFIG_FILE: configs/r7800_openwrt-23.05.config
+  CONFIG_FILE: configs/ipq806x-openwrt-23.05.config
   DIY_SCRIPT: openwrt-23.05.sh
   CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: ipq806x_openwrt-23.05.0-rc2_nss
+  FIRMWARE_TAG: ipq806x-openwrt-23.05.0-rc2_nss
   TZ: Asia/Shanghai
 
 jobs:
