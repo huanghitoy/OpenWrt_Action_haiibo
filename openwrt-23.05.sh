@@ -1,6 +1,10 @@
 #!/bin/bash
 #openwrt-23.05
-
+#####################################
+#/workspace/         ← $GITHUB_WORKSPACE（根）
+#   ├── scripts/950-csr-clean.patch  ✅ 存在
+#   └── openwrt/      ← 你当前所在目录
+#####################################
 # ===================== 先克隆 Argon 主题（必须放最前面） =====================
 rm -rf package/{luci-theme-argon,luci-app-argon-config}
 git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
