@@ -1,6 +1,6 @@
 name: ipq806x openwrt-23.05.0-rc2_nss
 
-于:
+on:
   workflow_dispatch:
   #schedule:
     #- cron: 0 1 * * 0
