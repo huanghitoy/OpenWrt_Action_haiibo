@@ -1,9 +1,16 @@
 #!/bin/bash
 #openwrt-23.05
-#sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
-# 取消默认主题luci-theme-bootstrap  
+
+# ===================== 先克隆 Argon 主题（必须放最前面） =====================
+rm -rf package/{luci-theme-argon,luci-app-argon-config}
+git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
+git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+
+# ===================== 现在再修改默认主题（关键修复） =====================
 sed -i 's/+luci-light/+luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
+# ===================== 下面是你原来的所有代码，不动 =====================
+#sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
 
 #修复dockerman 连接不上docker  原因是cgroupfs-mount不能挂载，注释7，8，9行
 sed -i '7{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
@@ -128,16 +135,6 @@ rm -rf package/luci-app-mproxy
 git clone --depth=1 https://github.com/huanghitoy/luci-app-mproxy package/luci-app-mproxy
 chmod 755 package/luci-app-mproxy/luci-app-mproxy/root/etc/init.d/mproxy
 
-# Themes
-#git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
-rm -rf package/{luci-theme-argon,luci-app-argon-config}
-git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
-git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
-#git clone --depth=1 -b master https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
-#git clone --depth=1 -b master https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
-#git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
-#git_sparse_clone main https://github.com/haiibo/packages luci-theme-atmaterial luci-theme-opentomcat luci-theme-netgear
-
 # MosDNS
 rm -rf package/luci-app-mosdns
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/luci-app-mosdns
@@ -184,8 +181,6 @@ rm -rf feeds/luci/applications/luci-app-passwall
 #sed -i "s|firmware_repo.*|firmware_repo 'https://github.com/haiibo/OpenWrt'|g" package/luci-app-amlogic/root/etc/config/amlogic
 # sed -i "s|kernel_path.*|kernel_path 'https://github.com/ophub/kernel'|g" package/luci-app-amlogic/root/etc/config/amlogic
 #sed -i "s|ARMv8|ARMv8_PLUS|g" package/luci-app-amlogic/root/etc/config/amlogic
-
-
 
 # Alist
 #git clone --depth=1 https://github.com/sbwml/luci-app-alist package/luci-app-alist
@@ -244,6 +239,6 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
-./scripts/feeds install -a
+make defconfig  # 这一行强烈建议加上
 make clean
 rm -rf bin
