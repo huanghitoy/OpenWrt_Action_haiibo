@@ -1,20 +1,9 @@
 #!/bin/bash
 #openwrt-23.05
-#####################################
-#/workspace/         ← $GITHUB_WORKSPACE（根）
-#   ├── scripts/950-csr-clean.patch  ✅ 存在
-#   └── openwrt/      ← 你当前所在目录
-#####################################
-# ===================== 先克隆 Argon 主题（必须放最前面） =====================
-rm -rf package/{luci-theme-argon,luci-app-argon-config}
-git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
-git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
-
-# ===================== 现在再修改默认主题（关键修复） =====================
+#sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
+# 取消默认主题luci-theme-bootstrap  
 sed -i 's/+luci-light/+luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
-# ===================== 下面是你原来的所有代码，不动 =====================
-#sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
 
 #修复dockerman 连接不上docker  原因是cgroupfs-mount不能挂载，注释7，8，9行
 sed -i '7{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
@@ -139,6 +128,14 @@ rm -rf package/luci-app-mproxy
 git clone --depth=1 https://github.com/huanghitoy/luci-app-mproxy package/luci-app-mproxy
 chmod 755 package/luci-app-mproxy/luci-app-mproxy/root/etc/init.d/mproxy
 
+# Themes
+#git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
+rm -rf package/{luci-theme-argon,luci-app-argon-config}
+git clone --depth=1 -b master https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+git clone --depth=1 -b master https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
+#git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
+#git_sparse_clone main https://github.com/haiibo/packages luci-theme-atmaterial luci-theme-opentomcat luci-theme-netgear
+
 # MosDNS
 rm -rf package/luci-app-mosdns
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/luci-app-mosdns
@@ -186,6 +183,8 @@ rm -rf feeds/luci/applications/luci-app-passwall
 # sed -i "s|kernel_path.*|kernel_path 'https://github.com/ophub/kernel'|g" package/luci-app-amlogic/root/etc/config/amlogic
 #sed -i "s|ARMv8|ARMv8_PLUS|g" package/luci-app-amlogic/root/etc/config/amlogic
 
+
+
 # Alist
 #git clone --depth=1 https://github.com/sbwml/luci-app-alist package/luci-app-alist
 
@@ -218,11 +217,11 @@ rm -rf feeds/luci/applications/luci-app-passwall
 #cp -f $GITHUB_WORKSPACE/scripts/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
 #调整 WNDR4300 固件大小至128M
-patch -p0 < ../scripts/openwrt-23.05_ath79_nand_121m.patch
+patch -p0 < $GITHUB_WORKSPACE/scripts/openwrt-23.05_ath79_nand_121m.patch
 
 # 修复 bluetooth csr
-cp -f ../scripts/950-csr-clean.patch target/linux/x86/patches-5.15/950-csr-clean.patch
-cp -f ../scripts/950-csr-clean.patch target/linux/ipq806x/patches-5.15/950-csr-clean.patch
+cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/x86/patches-5.15/950-csr-clean.patch
+cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/ipq806x/patches-5.15/950-csr-clean.patch
 
 # 修复 armv8 设备 xfsprogs 报错
 #sed -i 's/TARGET_CFLAGS.*/TARGET_CFLAGS += -DHAVE_MAP_SYNC -D_LARGEFILE64_SOURCE/g' feeds/packages/utils/xfsprogs/Makefile
@@ -243,6 +242,6 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
-make defconfig  # 这一行强烈建议加上
+./scripts/feeds install -a
 make clean
 rm -rf bin
