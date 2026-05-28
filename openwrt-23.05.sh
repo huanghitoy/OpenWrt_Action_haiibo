@@ -1,6 +1,7 @@
 #!/bin/bash
 #openwrt-23.05
-
+# 必须第一行就进 openwrt 目录！！！
+cd openwrt || exit 1
 # ===================== 先克隆 Argon 主题（必须放最前面） =====================
 rm -rf package/{luci-theme-argon,luci-app-argon-config}
 git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
