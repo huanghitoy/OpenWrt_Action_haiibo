@@ -70,7 +70,7 @@ git_sparse_clone master https://github.com/immortalwrt-collections/openwrt-cdnsp
 #rm -rf feeds/kenzo/luci-app-fileassistant
 #rm -rf package/luci-app-fileassistant
 git_sparse_clone main https://github.com/huanghitoy/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
-git_sparse_clone lua https://github.com/Lienol/openwrt-package/other luci-app-tcpdump
+git_sparse_clone lua https://github.com/Lienol/openwrt-package other/luci-app-tcpdump
 
 #qbittorrent
 rm -rf package/luci-app-qbittorrent
