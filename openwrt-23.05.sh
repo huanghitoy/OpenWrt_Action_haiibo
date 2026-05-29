@@ -50,7 +50,7 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 # 移植lean 的包到官方
-git_sparse_clone master https://github.com/coolsnowwolf/lede package/qat package/wwan
+#git_sparse_clone master https://github.com/coolsnowwolf/lede package/qat package/wwan
 git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync applications/luci-app-rclone applications/luci-app-nfs
 git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
 #移植5G-Modem-Support
