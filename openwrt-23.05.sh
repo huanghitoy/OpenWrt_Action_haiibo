@@ -1,5 +1,9 @@
 #!/bin/bash
 #openwrt-23.05
+
+# 新增这一行，强制锁定到 openwrt 根目录，模拟以前正常的环境
+cd "$GITHUB_WORKSPACE/openwrt" || exit 1
+
 #sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
 # 取消默认主题luci-theme-bootstrap  
 sed -i 's/+luci-light/+luci-theme-argon/g' feeds/luci/collections/luci/Makefile
