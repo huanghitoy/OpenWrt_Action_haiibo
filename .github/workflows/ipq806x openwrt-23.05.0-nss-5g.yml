@@ -1,4 +1,4 @@
-name: r7800 openwrt-23.05.0-nss-5g
+name: ipq806x openwrt-23.05.0-nss-5g
 
 on:
   workflow_dispatch:
