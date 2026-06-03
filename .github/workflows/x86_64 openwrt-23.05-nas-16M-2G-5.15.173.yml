@@ -76,7 +76,7 @@ jobs:
         cd openwrt
         git reset --hard $REPO_COMMITS
         
-        bash $GITHUB_WORKSPACE/scripts/feeds-1.sh
+        bash $GITHUB_WORKSPACE/scripts/feeds.sh
         
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         COMMIT_AUTHOR=$(git show -s --date=short --format="作者: %an")
