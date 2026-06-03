@@ -56,13 +56,6 @@ jobs:
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get -y clean
         sudo timedatectl set-timezone "$TZ"
-
-    - name: Combine Disks
-      uses: easimon/maximize-build-space@master
-      with:
-        swap-size-mb: 1024
-        temp-reserve-mb: 100
-        root-reserve-mb: 1024
         
 # 🔻 安装 Rust 1.88.0 解决 shadowsocks-rust 编译失败
     - name: Install Rust 1.88.0
@@ -72,6 +65,14 @@ jobs:
         rustc --version
         cargo --version
 #
+
+    - name: Combine Disks
+      uses: easimon/maximize-build-space@master
+      with:
+        swap-size-mb: 1024
+        temp-reserve-mb: 100
+        root-reserve-mb: 1024        
+
     - name: Checkout
       uses: actions/checkout@main
 
