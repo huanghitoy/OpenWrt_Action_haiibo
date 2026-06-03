@@ -59,7 +59,16 @@ jobs:
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get -y clean
         sudo timedatectl set-timezone "$TZ"
-
+        
+# 🔻 安装 Rust 1.88.0 解决 shadowsocks-rust 编译失败
+    - name: Install Rust 1.88.0
+      run: |
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain=1.88.0 -y
+        source "$HOME/.cargo/env"
+        rustc --version
+        cargo --version
+#
+        
     - name: Combine Disks
       uses: easimon/maximize-build-space@master
       with:
