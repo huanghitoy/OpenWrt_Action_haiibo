@@ -25,6 +25,11 @@ sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
+# 降级 ss-rust 到 1.22.0，支持 Rust 1.85，编译必过
+sed -i 's/1.24.0/1.22.0/g' feeds/passwall_packages/shadowsocks-rust/Makefile
+
+
+
 wget -O -  https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
 
 ./scripts/feeds update
