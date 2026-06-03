@@ -45,10 +45,15 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        # 清理所有 Docker 镜像（安全方式，避免空列表错误）
         docker images -q | xargs --no-run-if-empty docker rmi
+        # 或者使用以下更彻底的清理命令（可选）
+        # docker system prune -a -f
+        
         sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d /usr/local/lib/android $AGENT_TOOLSDIRECTORY
         sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
         sudo -E apt-get -y update
+        #sudo -E apt-get -y install $(curl -fsSL is.gd/depends_ubuntu_2204)
         sudo -E apt-get -y install build-essential ccache ecj fastjar file g++ gawk gettext git java-propose-classpath libelf-dev libncurses5-dev libncursesw5-dev libssl-dev python3 python3-pip python3-setuptools python3-venv rsync subversion unzip wget xsltproc zlib1g-dev
         sudo -E systemctl daemon-reload
         sudo -E apt-get -y autoremove --purge
@@ -65,7 +70,7 @@ jobs:
         cargo --version
         echo "RUST installed successfully"
 #
-
+        
     - name: Combine Disks
       uses: easimon/maximize-build-space@master
       with:
@@ -79,9 +84,20 @@ jobs:
     - name: Clone Source Code
       run: |
         df -hT $GITHUB_WORKSPACE
+        #git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
         git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
         cd openwrt
+        #git reset --hard $REPO_COMMITS
+        
         bash $GITHUB_WORKSPACE/scripts/feeds-1.sh
+        ##sed -i '1i src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git;main\nsrc-git passwall_luci https://github.com/xiaorouji/openwrt-passwall.git;main' feeds.conf.default
+        #sed -i '1i src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git^'$FEEDS_COMMITS1'\nsrc-git passwall_luci https://github.com/xiaorouji/openwrt-passwall.git^'$FEEDS_COMMITS2'' feeds.conf.default
+        #sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
+        #./scripts/feeds update -a
+        #./scripts/feeds install -a
+        #wget -O -  https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
+        #./scripts/feeds update
+        #./scripts/feeds install bluez-alsa   
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         COMMIT_AUTHOR=$(git show -s --date=short --format="作者: %an")
         echo "COMMIT_AUTHOR=$COMMIT_AUTHOR" >> $GITHUB_ENV
@@ -103,9 +119,12 @@ jobs:
         rustc --version
 # ====================================================================================
 
+
+
     - name: Generate Variables
       run: |
         cp $CONFIG_FILE $OPENWRT_PATH/.config
+        #cat $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
         make defconfig > /dev/null 2>&1
         SOURCE_REPO="$(echo $REPO_URL | awk -F '/' '{print $(NF)}')"
@@ -137,6 +156,9 @@ jobs:
         chmod +x $DIY_SCRIPT
         cd $OPENWRT_PATH
         $GITHUB_WORKSPACE/$DIY_SCRIPT
+        #$GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
+        #$GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
+        #$GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
 
     - name: Download DL Package
       run: |
@@ -152,6 +174,8 @@ jobs:
       id: compile
       run: |
         cd $OPENWRT_PATH
+        #mkdir -p files/etc/uci-defaults
+        #cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
@@ -175,7 +199,13 @@ jobs:
         cd $OPENWRT_PATH/bin/targets/*/*
         cat sha256sums
         cp $OPENWRT_PATH/.config build.config        
+        #mv -f $OPENWRT_PATH/bin/packages/*/*/*.ipk packages
         mv -f $OPENWRT_PATH/bin/packages/* packages/      
+        #export PATH="$PATH:$OPENWRT_PATH/staging_dir/host/bin"
+        #sed -i 's/\$MKHASH/mkhash/g' $OPENWRT_PATH/scripts/ipkg-make-index.sh
+        #$OPENWRT_PATH/scripts/ipkg-make-index.sh . > Packages.manifest
+        #grep -vE '^(Maintainer|LicenseFiles|Source|Require)' Packages.manifest > Packages
+        #gzip -9nc Packages > Packages.gz
         tar -zcf Packages.tar.gz packages
         rm -rf packages feeds.buildinfo version.buildinfo
         echo "KERNEL=$(cat *.manifest | grep ^kernel | cut -d- -f2 | tr -d ' ')" >> $GITHUB_ENV
