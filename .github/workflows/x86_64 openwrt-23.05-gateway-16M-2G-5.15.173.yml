@@ -60,17 +60,7 @@ jobs:
         sudo -E apt-get -y clean
         sudo timedatectl set-timezone "$TZ"
         
-# 🔻 修复完成：安装 Rust 1.88.0 并加入 PATH
-    - name: Install Rust 1.88.0
-      run: |
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain=1.88.0 -y
-        echo "$HOME/.cargo/bin" >> $GITHUB_PATH
-        source "$HOME/.cargo/env"
-        rustc --version
-        cargo --version
-        echo "RUST installed successfully"
-#
-        
+       
     - name: Combine Disks
       uses: easimon/maximize-build-space@master
       with:
@@ -107,19 +97,6 @@ jobs:
         echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
         COMMIT_HASH=$(git show -s --date=short --format="hash: %H")
         echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
-
-# ====================== ✅ 【关键：强制覆盖 Rust，100%解决报错】 ======================
-    - name: Force override OpenWrt built-in Rust 1.85 to host 1.88
-      run: |
-        cd $OPENWRT_PATH
-        rm -rf feeds/packages/lang/rust
-        mkdir -p staging_dir/host/bin
-        ln -sf $HOME/.cargo/bin/rustc staging_dir/host/bin/rustc
-        ln -sf $HOME/.cargo/bin/cargo staging_dir/host/bin/cargo
-        rustc --version
-# ====================================================================================
-
-
 
     - name: Generate Variables
       run: |
