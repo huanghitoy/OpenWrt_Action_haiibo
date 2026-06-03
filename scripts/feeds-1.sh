@@ -17,19 +17,14 @@ PASSWALL_LUCI_FEEDS_COMMITS="46e926363e900974994f6c0311768db599574b02"
 #PASSWALL_LUCI_FEEDS_COMMITS="d743aeeeeced58359cd066ed5679985c5c82c97c"
 
 
-sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main\nsrc-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main' feeds.conf.default
-#sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git^'$PASSWALL_PACKAGES_FEEDS_COMMITS'\nsrc-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git^'$PASSWALL_LUCI_FEEDS_COMMITS'' feeds.conf.default
+#sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main\nsrc-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main' feeds.conf.default
+sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git^'$PASSWALL_PACKAGES_FEEDS_COMMITS'\nsrc-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git^'$PASSWALL_LUCI_FEEDS_COMMITS'' feeds.conf.default
 sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
 #sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/koreapyj\/telephony.git^8a0f6d84d7a4340098f5520e8d6fc5485b8fd995/' feeds.conf.default
 #sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/huanghitoy\/telephony.git;openwrt-22.03/' feeds.conf.default
-# ====================== 【必须先 update，不能 install】 ======================
+
 ./scripts/feeds update -a
 
-# ====================== 【这里降级 ss-rust】 ======================
-sed -i 's/1.24.0/1.22.0/g' feeds/passwall_packages/shadowsocks-rust/Makefile
-sed -i 's/1.24.0/1.22.0/g' feeds/passwall_packages/shadowsocks-rust/Makefile
-
-# ====================== 【降级完再 install】 ======================
 ./scripts/feeds install -a
 
 
