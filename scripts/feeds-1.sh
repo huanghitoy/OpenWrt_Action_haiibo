@@ -22,11 +22,15 @@ sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt
 sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
 #sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/koreapyj\/telephony.git^8a0f6d84d7a4340098f5520e8d6fc5485b8fd995/' feeds.conf.default
 #sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/huanghitoy\/telephony.git;openwrt-22.03/' feeds.conf.default
+# ====================== 【必须先 update，不能 install】 ======================
 ./scripts/feeds update -a
-./scripts/feeds install -a
 
-# 降级 ss-rust 到 1.22.0，支持 Rust 1.85，编译必过
+# ====================== 【这里降级 ss-rust】 ======================
 sed -i 's/1.24.0/1.22.0/g' feeds/passwall_packages/shadowsocks-rust/Makefile
+sed -i 's/1.24.0/1.22.0/g' feeds/passwall_packages/shadowsocks-rust/Makefile
+
+# ====================== 【降级完再 install】 ======================
+./scripts/feeds install -a
 
 
 
