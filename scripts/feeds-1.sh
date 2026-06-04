@@ -1,36 +1,60 @@
 #!/bin/bash
-
-##passwall 25.5.16  可以
-#PASSWALL_PACKAGES_FEEDS_COMMITS="1013e7cb1dca5c0835ca277a1f80c2f81549be42"
-#PASSWALL_LUCI_FEEDS_COMMITS="74f7fa3e3279b4cef9471cd7bccec310a10dcb74"
-
-#passwall 25.7.26   23.05,24.10 编译通过可以
+# passwall稳定提交 25.7.26 适配23.05/24.10
 PASSWALL_PACKAGES_FEEDS_COMMITS="950c9a23581ed4cfdcc71a03395213f92ea85f8a"
 PASSWALL_LUCI_FEEDS_COMMITS="46e926363e900974994f6c0311768db599574b02"
 
-#passwall 25.8.31  编译通不过
-#PASSWALL_PACKAGES_FEEDS_COMMITS="f002d6d83f0e2f21b7db251410409eb472fd2d6e"
-#PASSWALL_LUCI_FEEDS_COMMITS="d13c49df62631f3fecd9d3146e370b419f5ed049"
-
-#passwall 25.12.31
-#PASSWALL_PACKAGES_FEEDS_COMMITS="46495fc982f7861e8913b8667bfdcd523b7ec2fc"
-#PASSWALL_LUCI_FEEDS_COMMITS="d743aeeeeced58359cd066ed5679985c5c82c97c"
-
-
+# 写入feeds源
 sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git^'$PASSWALL_PACKAGES_FEEDS_COMMITS'\nsrc-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git^'$PASSWALL_LUCI_FEEDS_COMMITS'' feeds.conf.default
 sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
 
 ./scripts/feeds update -a
 
-# ====================== 【关键修复：位置放对了】======================
-# 修复 xray-plugin 下载失败 + 哈希错误
-sed -i 's|PKG_SOURCE_URL:=.*codeload.github.com.*|PKG_SOURCE_URL:=https://github.com/teddysun/xray-plugin/archive/refs/tags/|' feeds/passwall_packages/xray-plugin/Makefile
-sed -i 's|PKG_HASH:=.*|PKG_HASH:=1150968f8791df884ce0ab5b2dbc870496088c90b5ffcc7f21497075aab7b1b5|' feeds/passwall_packages/xray-plugin/Makefile
-# ====================================================================
+# ==========核心：完整重写xray-plugin Makefile【固定v1.8.24，地址=你能用的链接】==========
+# 最终拼接地址：https://github.com/teddysun/xray-plugin/archive/refs/tags/v1.8.24.tar.gz
+cat > feeds/passwall_packages/xray-plugin/Makefile <<'MAKEEND'
+include $(TOPDIR)/rules.mk
+
+PKG_NAME:=xray-plugin
+PKG_VERSION:=1.8.24
+PKG_RELEASE:=1
+# 关键：带v，拼接URL就是实测有效下载链接
+PKG_SOURCE:=v$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://github.com/teddysun/xray-plugin/archive/refs/tags/
+# 本地实测tar包sha256，精准校验，杜绝哈希错误
+PKG_HASH:=12940fcb2718733fbf28aeac9314f3c716d61e4d13e6d12921a095c8e182b70c
+
+PKG_MAINTAINER:=OpenWrt-Passwall
+PKG_LICENSE:=MIT
+PKG_LICENSE_FILES:=LICENSE
+
+PKG_BUILD_DEPENDS:=golang/host
+PKG_BUILD_PARALLEL:=1
+PKG_USE_MIPS16:=0
+
+include $(INCLUDE_DIR)/package.mk
+include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
+
+define Package/xray-plugin
+  SECTION:=net
+  CATEGORY:=Network
+  SUBMENU:=Web Servers/Proxies
+  TITLE:=SIP003 xray-plugin for shadowsocks
+  URL:=https://github.com/teddysun/xray-plugin
+  DEPENDS:=$(GO_ARCH_DEPENDS)
+endef
+
+define Package/xray-plugin/description
+  Shadowsocks SIP003 plugin based on Xray-core
+endef
+
+$(eval $(call GoBinPackage,xray-plugin))
+$(eval $(call BuildPackage,xray-plugin))
+MAKEEND
+# =====================================================================================
 
 ./scripts/feeds install -a
 
-wget -O -  https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
-
+# bluez-alsa蓝牙插件
+wget -O - https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
 ./scripts/feeds update
 ./scripts/feeds install bluez-alsa
