@@ -9,10 +9,10 @@ sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang
 
 ./scripts/feeds update -a
 
-# ====================== 【sed 修复 xray-plugin 100% 成功】 ======================
-sed -i 's|PKG_SOURCE_URL:=.*|PKG_SOURCE_URL:=https://github.com/teddysun/xray-plugin/archive/refs/tags/|' feeds/passwall_packages/xray-plugin/Makefile
-sed -i 's|PKG_SOURCE:=.*|PKG_SOURCE:=v$(PKG_VERSION).tar.gz|' feeds/passwall_packages/xray-plugin/Makefile
-sed -i 's|PKG_HASH:=.*|PKG_HASH:=12940fcb2718733fbf28aeac9314f3c716d61e4d13e6d12921a095c8e182b70c|' feeds/passwall_packages/xray-plugin/Makefile
+# ====================== 【仅Go编译修复，删除之前改下载源的3行sed】 ======================
+# 删掉：修改PKG_SOURCE_URL/PKG_SOURCE/PKG_HASH三行（这三行是下载出错元凶）
+# 只保留Go编译适配sbwml golang26.x，解决golang-build编译失败
+sed -i 's|golang-build|golang-host-build|g' feeds/passwall_packages/xray-plugin/Makefile
 # ==============================================================================
 
 ./scripts/feeds install -a
