@@ -9,15 +9,14 @@ sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang
 
 ./scripts/feeds update -a
 
-# ====================== 【仅Go编译修复，删除之前改下载源的3行sed】 ======================
-# 删掉：修改PKG_SOURCE_URL/PKG_SOURCE/PKG_HASH三行（这三行是下载出错元凶）
-# 只保留Go编译适配sbwml golang26.x，解决golang-build编译失败
-sed -i 's|golang-build|golang-host-build|g' feeds/passwall_packages/xray-plugin/Makefile
-# ==============================================================================
+# ===================== 【唯一正确修复：23.05专用】 =====================
+# 把错误的编译指令 改回 23.05 能识别的正确指令
+sed -i 's|golang-build|golang-package|g' feeds/passwall_packages/xray-plugin/Makefile
+# ======================================================================
 
 ./scripts/feeds install -a
 
-wget -O -  https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
+wget -O -  https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluealsa-alsa/packages/full.tar.gz | tar -zxvf - -C ./
 
 ./scripts/feeds update
 ./scripts/feeds install bluez-alsa
