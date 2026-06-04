@@ -8,7 +8,7 @@ on:
 env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-23.05
-  REPO_COMMITS: 86dfa171015d1dd94dc735ae0c57e9e2962914fa
+  REPO_COMMITS: 7f61f9625550a6214e5cc53424e105bcbcff8c7a
   #xray 25.5.16
   FEEDS_COMMITS1: 925712ba92575b4cd96947bd16a1f34167225628
   FEEDS_COMMITS2: 019e8e5db77c3e1d7e8a13afb23791f21f12f5ea
@@ -77,7 +77,7 @@ jobs:
         #git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
         git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
         cd openwrt
-        #git reset --hard $REPO_COMMITS
+        git reset --hard $REPO_COMMITS
         
         bash $GITHUB_WORKSPACE/scripts/feeds-1.sh
         
