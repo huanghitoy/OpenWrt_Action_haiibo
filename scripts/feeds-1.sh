@@ -9,14 +9,15 @@ sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang
 
 ./scripts/feeds update -a
 
-# ===================== 【唯一正确修复：23.05专用】 =====================
-# 把错误的编译指令 改回 23.05 能识别的正确指令
+# 修复 golang 编译格式
 sed -i 's|golang-build|golang-package|g' feeds/passwall_packages/xray-plugin/Makefile
-# ======================================================================
+
+# ✅ 修复 哈希值不匹配（你日志里的真实错误）
+sed -i 's|PKG_HASH:=.*|PKG_HASH:=1150968f8791df884ce0ab5b2dbc870496088c90b5ffcc7f21497075aab7b1b5|g' feeds/passwall_packages/xray-plugin/Makefile
 
 ./scripts/feeds install -a
 
-wget -O -  https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluealsa-alsa/packages/full.tar.gz | tar -zxvf - -C ./
+wget -O -  https://github.com/raphikwasHere/bluealsa4openwrt/raw/refs/heads/main/bluealsa4openwrt/packages/full.tar.gz | tar -zxvf - -C ./
 
 ./scripts/feeds update
 ./scripts/feeds install bluez-alsa
