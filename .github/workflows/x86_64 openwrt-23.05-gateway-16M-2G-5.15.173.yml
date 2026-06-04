@@ -128,9 +128,7 @@ jobs:
     - name: Download DL Package
       run: |
         cd $OPENWRT_PATH
-        make defconfig
-        ./scripts/diffconfig.sh > diff.config
-        cat diff.config        
+        make defconfig     
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
