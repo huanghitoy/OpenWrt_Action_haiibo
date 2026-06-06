@@ -228,6 +228,8 @@ rm -rf feeds/luci/applications/luci-app-passwall
 #调整 WNDR4300 固件大小至128M
 patch -p0 < $GITHUB_WORKSPACE/scripts/openwrt-23.05_ath79_nand_121m.patch
 
+cp -f $GITHUB_WORKSPACE/scripts/900-ffmpeg-enable-rtsp-v4l2.patch feeds/packages/multimedia/ffmpeg/patches/900-ffmpeg-enable-rtsp-v4l2.patch
+
 # 修复 bluetooth csr
 cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/x86/patches-5.15/950-csr-clean.patch
 cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/ipq806x/patches-5.15/950-csr-clean.patch
