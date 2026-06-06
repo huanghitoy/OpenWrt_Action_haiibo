@@ -1,16 +1,20 @@
---- a/Config.in
-+++ b/Config.in
-@@ -437 +437 @@
--       default "file http icecast pipe rtp tcp udp"
-+       default "file http icecast pipe rtp rtsp tcp udp"
-
 --- a/Makefile
 +++ b/Makefile
-@@ -118 +118 @@ FFMPEG_CUSTOM_MUXERS:= \
-+       rtsp \
+@@ -114,6 +114,7 @@ FFMPEG_CUSTOM_MUXERS:= \
+ 	mpeg2video \
+ 	mpegts \
+ 	ogg \
+ 	rtp \
++	rtsp \
 
-@@ -268,2 +268,4 @@ FFMPEG_CONFIGURE:= \
--\
-+       --enable-network \
-+       --enable-indev=v4l2 \
-+\
+@@ -142,7 +143,7 @@ FFMPEG_CUSTOM_PROTOCOLS:= \
+ 	file http icecast pipe rtp tcp udp
++file http icecast pipe rtp rtsp tcp udp
+
+@@ -266,9 +268,12 @@ FFMPEG_CONFIGURE:= \
+ 	--disable-vaapi \
+ 	--disable-vdpau \
+ 	--disable-outdevs
++	--enable-network \
++	--enable-avdevice \
++	--enable-indev=v4l2
