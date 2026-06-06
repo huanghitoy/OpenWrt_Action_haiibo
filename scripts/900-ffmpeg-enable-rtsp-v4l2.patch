@@ -1,15 +1,13 @@
 --- a/Makefile
 +++ b/Makefile
 @@ -114,6 +114,7 @@ FFMPEG_CUSTOM_MUXERS:= \
- 	mpeg2video \
  	mpegts \
  	ogg \
  	rtp \
 +	rtsp \
 
 @@ -142,7 +143,7 @@ FFMPEG_CUSTOM_PROTOCOLS:= \
--	file http icecast pipe rtp tcp udp
-+	file http icecast pipe rtp rtsp tcp udp
+ 	file http icecast pipe rtp tcp udp
 
 @@ -266,9 +268,12 @@ FFMPEG_CONFIGURE:= \
  	--disable-vaapi \
