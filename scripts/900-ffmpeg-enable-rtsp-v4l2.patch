@@ -7,14 +7,19 @@
  	rtp \
 +	rtsp \
 
+#【关键：空一行！】
+
 @@ -142,7 +143,7 @@ FFMPEG_CUSTOM_PROTOCOLS:= \
 -	file http icecast pipe rtp tcp udp
 +	file http icecast pipe rtp rtsp tcp udp
 
+#【关键：再空一行！】
+
 @@ -266,9 +268,12 @@ FFMPEG_CONFIGURE:= \
  	--disable-vaapi \
  	--disable-vdpau \
- 	--disable-outdevs
+-	--disable-outdevs
++	--disable-outdevs \
 +	--enable-network \
 +	--enable-avdevice \
 +	--enable-indev=v4l2
