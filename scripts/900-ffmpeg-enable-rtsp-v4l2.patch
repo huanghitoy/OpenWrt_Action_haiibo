@@ -8,8 +8,8 @@
 +	rtsp \
 
 @@ -142,7 +143,7 @@ FFMPEG_CUSTOM_PROTOCOLS:= \
- 	file http icecast pipe rtp tcp udp
-+file http icecast pipe rtp rtsp tcp udp
+-	file http icecast pipe rtp tcp udp
++	file http icecast pipe rtp rtsp tcp udp
 
 @@ -266,9 +268,12 @@ FFMPEG_CONFIGURE:= \
  	--disable-vaapi \
