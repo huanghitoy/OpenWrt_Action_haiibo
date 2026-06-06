@@ -1,21 +1,16 @@
 --- a/Makefile
 +++ b/Makefile
-@@ -114,6 +114,7 @@ FFMPEG_CUSTOM_MUXERS:= \
- 	mpeg2video \
+@@ -107,6 +107,7 @@ FFMPEG_CUSTOM_MUXERS:= \
  	mpegts \
  	ogg \
  	rtp \
 +	rtsp \
 
-#【关键：空一行！】
+@@ -135,7 +136,7 @@ FFMPEG_CUSTOM_PROTOCOLS:= \
+-file http icecast pipe rtp tcp udp
++file http icecast pipe rtp rtsp tcp udp
 
-@@ -142,7 +143,7 @@ FFMPEG_CUSTOM_PROTOCOLS:= \
--	file http icecast pipe rtp tcp udp
-+	file http icecast pipe rtp rtsp tcp udp
-
-#【关键：再空一行！】
-
-@@ -266,9 +268,12 @@ FFMPEG_CONFIGURE:= \
+@@ -259,9 +261,12 @@ FFMPEG_CONFIGURE:= \
  	--disable-vaapi \
  	--disable-vdpau \
 -	--disable-outdevs
