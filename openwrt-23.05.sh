@@ -243,6 +243,15 @@ sed -i '/--disable-outdevs/a\  --enable-network' feeds/packages/multimedia/ffmpe
 # 4. 开启 RTSP（格式安全，不破坏 Makefile 结构）
 sed -i '/--enable-gnutls/a\  --enable-demuxer=rtsp \\\n  --enable-muxer=rtsp \\\n  --enable-protocol=rtsp' feeds/packages/multimedia/ffmpeg/Makefile
 
+# ==============================================================================
+# 【关键修复】强制注册 libffmpeg-full，解决依赖不存在警告 + mpd 报错
+# ==============================================================================
+sed -i 's/Package/libffmpeg-full/' feeds/packages/multimedia/ffmpeg/Makefile
+echo "PKG_PROVIDES:=libffmpeg libffmpeg-full" >> feeds/packages/multimedia/ffmpeg/Makefile
+sed -i '/Package\/libffmpeg-full/a PROVIDES:=libffmpeg libffmpeg-full' feeds/packages/multimedia/ffmpeg/Makefile
+sed -i 's/DEPENDS:=/DEPENDS:=+libffmpeg-full /' feeds/packages/sound/mpd/Makefile
+
+
 # 修复 bluetooth csr
 cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/x86/patches-5.15/950-csr-clean.patch
 cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/ipq806x/patches-5.15/950-csr-clean.patch
