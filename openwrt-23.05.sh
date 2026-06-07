@@ -1,11 +1,9 @@
 #!/bin/bash
 #openwrt-23.05
 
-
 #sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
 # 取消默认主题luci-theme-bootstrap  
 sed -i 's/+luci-light/+luci-theme-argon/g' feeds/luci/collections/luci/Makefile
-
 
 #修复dockerman 连接不上docker  原因是cgroupfs-mount不能挂载，注释7，8，9行
 sed -i '7{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
@@ -148,7 +146,6 @@ rm -rf feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
-
 # SmartDNS
 #rm -rf openwrt/feeds/luci/applications/luci-app-smartdns
 #rm -rf openwrt/feeds/packages/net/smartdns
@@ -192,8 +189,6 @@ rm -rf feeds/luci/applications/luci-app-passwall
 # sed -i "s|kernel_path.*|kernel_path 'https://github.com/ophub/kernel'|g" package/luci-app-amlogic/root/etc/config/amlogic
 #sed -i "s|ARMv8|ARMv8_PLUS|g" package/luci-app-amlogic/root/etc/config/amlogic
 
-
-
 # Alist
 #git clone --depth=1 https://github.com/sbwml/luci-app-alist package/luci-app-alist
 
@@ -228,8 +223,10 @@ rm -rf feeds/luci/applications/luci-app-passwall
 #调整 WNDR4300 固件大小至128M
 patch -p0 < $GITHUB_WORKSPACE/scripts/openwrt-23.05_ath79_nand_121m.patch
 
-
-# 1. 冗余清理（恢复h264/hevc编解码）
+# ==============================================================================
+# 【修复版 FFmpeg 配置 —— 无依赖警告 + 支持 H264/HEVC/RTSP】
+# ==============================================================================
+# 1. 恢复 h264/hevc 编解码
 sed -i 's/--disable-decoder=h264//g' feeds/packages/multimedia/ffmpeg/Makefile
 sed -i 's/--disable-decoder=hevc//g' feeds/packages/multimedia/ffmpeg/Makefile
 sed -i 's/--disable-demuxer=h264//g' feeds/packages/multimedia/ffmpeg/Makefile
@@ -237,24 +234,14 @@ sed -i 's/--disable-demuxer=hevc//g' feeds/packages/multimedia/ffmpeg/Makefile
 sed -i 's/--disable-parser=h264//g' feeds/packages/multimedia/ffmpeg/Makefile
 sed -i 's/--disable-parser=hevc//g' feeds/packages/multimedia/ffmpeg/Makefile
 
-# 2. 协议加入 rtsp
+# 2. 加入 RTSP 协议
 sed -i 's/file http icecast pipe rtp tcp udp/file http icecast pipe rtp rtsp tcp udp/' feeds/packages/multimedia/ffmpeg/Makefile
 
 # 3. 开启 network
 sed -i '/--disable-outdevs/a\  --enable-network' feeds/packages/multimedia/ffmpeg/Makefile
 
-# 4. 开启 RTSP 解封装/封装/协议（格式正确，无语法错误）
+# 4. 开启 RTSP（格式安全，不破坏 Makefile 结构）
 sed -i '/--enable-gnutls/a\  --enable-demuxer=rtsp \\\n  --enable-muxer=rtsp \\\n  --enable-protocol=rtsp' feeds/packages/multimedia/ffmpeg/Makefile
-
-# 5. 【完整正确版】取消专利音视频禁用（不注释系统宏，不破坏依赖）
-sed -i 's/--disable-decoder=av1//g' feeds/packages/multimedia/ffmpeg/Makefile
-sed -i 's/--disable-encoder=av1//g' feeds/packages/multimedia/ffmpeg/Makefile
-sed -i 's/--disable-decoder=mpeg2video//g' feeds/packages/multimedia/ffmpeg/Makefile
-sed -i 's/--disable-decoder=mpeg4//g' feeds/packages/multimedia/ffmpeg/Makefile
-sed -i 's/--disable-decoder=vc1//g' feeds/packages/multimedia/ffmpeg/Makefile
-sed -i 's/--disable-encoder=mpeg2video//g' feeds/packages/multimedia/ffmpeg/Makefile
-sed -i 's/--disable-encoder=mpeg4//g' feeds/packages/multimedia/ffmpeg/Makefile
-sed -i 's/--disable-encoder=vc1//g' feeds/packages/multimedia/ffmpeg/Makefile
 
 # 修复 bluetooth csr
 cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/x86/patches-5.15/950-csr-clean.patch
@@ -279,6 +266,3 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
-./scripts/feeds install -a
-make clean
-rm -rf bin
