@@ -228,7 +228,30 @@ rm -rf feeds/luci/applications/luci-app-passwall
 #调整 WNDR4300 固件大小至128M
 patch -p0 < $GITHUB_WORKSPACE/scripts/openwrt-23.05_ath79_nand_121m.patch
 
-cp -f $GITHUB_WORKSPACE/scripts/900-ffmpeg-enable-rtsp-v4l2.patch feeds/packages/multimedia/ffmpeg/patches/900-ffmpeg-enable-rtsp-v4l2.patch
+
+# 1. 冗余清理（无害，保留）
+sed -i 's/--disable-decoder=h264//g' feeds/packages/multimedia/ffmpeg/Makefile
+sed -i 's/--disable-decoder=hevc//g' feeds/packages/multimedia/ffmpeg/Makefile
+sed -i 's/--disable-demuxer=h264//g' feeds/packages/multimedia/ffmpeg/Makefile
+sed -i 's/--disable-demuxer=hevc//g' feeds/packages/multimedia/ffmpeg/Makefile
+sed -i 's/--disable-parser=h264//g' feeds/packages/multimedia/ffmpeg/Makefile
+sed -i 's/--disable-parser=hevc//g' feeds/packages/multimedia/ffmpeg/Makefile
+
+# 2. 协议加入 rtsp（正确）
+sed -i 's/file http icecast pipe rtp tcp udp/file http icecast pipe rtp rtsp tcp udp/' feeds/packages/multimedia/ffmpeg/Makefile
+
+# 3. 开启 network（正确）
+sed -i '/--disable-outdevs/a\  --enable-network' feeds/packages/multimedia/ffmpeg/Makefile
+
+# 4. 【修复版】开启 RTSP 解封装/封装（最后一行无反斜杠！）
+sed -i '/--enable-gnutls/a\  --enable-demuxer=rtsp \\\n  --enable-muxer=rtsp \\\n  --enable-protocol=rtsp' feeds/packages/multimedia/ffmpeg/Makefile
+
+# 5. 注释专利禁用（正确，必加，否则H264不能用）
+sed -i 's/$(call FFMPEG_DISABLE,decoder,$(FFMPEG_PATENTED_DECODERS))/# $(call FFMPEG_DISABLE,decoder,$(FFMPEG_PATENTED_DECODERS))/' feeds/packages/multimedia/ffmpeg/Makefile
+sed -i 's/$(call FFMPEG_DISABLE,muxer,$(FFMPEG_PATENTED_MUXERS))/# $(call FFMPEG_DISABLE,muxer,$(FFMPEG_PATENTED_MUXERS))/' feeds/packages/multimedia/ffmpeg/Makefile
+sed -i 's/$(call FFMPEG_DISABLE,demuxer,$(FFMPEG_PATENTED_DEMUXERS))/# $(call FFMPEG_DISABLE,demuxer,$(FFMPEG_PATENTED_DEMUXERS))/' feeds/packages/multimedia/ffmpeg/Makefile
+sed -i 's/$(call FFMPEG_DISABLE,parser,$(FFMPEG_PATENTED_PARSERS))/# $(call FFMPEG_DISABLE,parser,$(FFMPEG_PATENTED_PARSERS))/' feeds/packages/multimedia/ffmpeg/Makefile
+
 
 # 修复 bluetooth csr
 cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/x86/patches-5.15/950-csr-clean.patch
