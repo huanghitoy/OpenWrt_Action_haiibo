@@ -223,35 +223,6 @@ rm -rf feeds/luci/applications/luci-app-passwall
 #调整 WNDR4300 固件大小至128M
 patch -p0 < $GITHUB_WORKSPACE/scripts/openwrt-23.05_ath79_nand_121m.patch
 
-# ==============================================================================
-# 【修复版 FFmpeg 配置 —— 无依赖警告 + 支持 H264/HEVC/RTSP】
-# ==============================================================================
-# 1. 恢复 h264/hevc 编解码
-sed -i 's/--disable-decoder=h264//g' feeds/packages/multimedia/ffmpeg/Makefile
-sed -i 's/--disable-decoder=hevc//g' feeds/packages/multimedia/ffmpeg/Makefile
-sed -i 's/--disable-demuxer=h264//g' feeds/packages/multimedia/ffmpeg/Makefile
-sed -i 's/--disable-demuxer=hevc//g' feeds/packages/multimedia/ffmpeg/Makefile
-sed -i 's/--disable-parser=h264//g' feeds/packages/multimedia/ffmpeg/Makefile
-sed -i 's/--disable-parser=hevc//g' feeds/packages/multimedia/ffmpeg/Makefile
-
-# 2. 加入 RTSP 协议
-sed -i 's/file http icecast pipe rtp tcp udp/file http icecast pipe rtp rtsp tcp udp/' feeds/packages/multimedia/ffmpeg/Makefile
-
-# 3. 开启 network
-sed -i '/--disable-outdevs/a\  --enable-network' feeds/packages/multimedia/ffmpeg/Makefile
-
-# 4. 开启 RTSP（格式安全，不破坏 Makefile 结构）
-sed -i '/--enable-gnutls/a\  --enable-demuxer=rtsp \\\n  --enable-muxer=rtsp \\\n  --enable-protocol=rtsp' feeds/packages/multimedia/ffmpeg/Makefile
-
-# ==============================================================================
-# 【关键修复】强制注册 libffmpeg-full，解决依赖不存在警告 + mpd 报错
-# ==============================================================================
-sed -i 's/Package/libffmpeg-full/' feeds/packages/multimedia/ffmpeg/Makefile
-echo "PKG_PROVIDES:=libffmpeg libffmpeg-full" >> feeds/packages/multimedia/ffmpeg/Makefile
-sed -i '/Package\/libffmpeg-full/a PROVIDES:=libffmpeg libffmpeg-full' feeds/packages/multimedia/ffmpeg/Makefile
-sed -i 's/DEPENDS:=/DEPENDS:=+libffmpeg-full /' feeds/packages/sound/mpd/Makefile
-
-
 # 修复 bluetooth csr
 cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/x86/patches-5.15/950-csr-clean.patch
 cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/ipq806x/patches-5.15/950-csr-clean.patch
