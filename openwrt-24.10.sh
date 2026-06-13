@@ -58,7 +58,6 @@ fi
 # 取消默认主题luci-theme-bootstrap  
 sed -i 's/+luci-light/+luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
-
 #修复dockerman 连接不上docker  原因是cgroupfs-mount不能挂载，注释7，8，9行
 #sed -i '7{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
 #sed -i '8{s/^/#/}' feeds/packages/utils/cgroupfs-mount/files/cgroupfs-mount.init
@@ -69,7 +68,7 @@ sed -i 's/+luci-light/+luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 #sed -i 's/ luci-app-wireguard//g' target/linux/x86/Makefile
 
 # 修改默认IP
-#sed -i 's/192.168.1.1/192.168.12.199/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.12.199/g' package/base-files/files/bin/config_generate
 
 # 修改默认时区
 sed -i 's/UTC/CST-8/g' package/base-files/files/bin/config_generate
@@ -85,8 +84,8 @@ sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.
 #rm -rf feeds/packages/net/{mosdns,adguardhome,pdnsd-alt,smartdns,v2ray-geodata,msd_lite}
 #rm -rf feeds/luci/applications/{luci-app-serverchan,luci-app-aliyundrive-webdav,luci-app-argon-config,luci-app-design-config,luci-app-dockerman,luci-app-easymesh,luci-app-eqos,luci-app-smartdns,luci-app-mosdns,luci-app-netdata}
 #rm -rf feeds/luci/themes/{luci-theme-argon,luci-theme-design}
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
+#rm -rf feeds/packages/lang/golang
+#git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
 # Git稀疏克隆，只克隆指定目录到本地
 rm -rf package/huang
@@ -100,7 +99,7 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 # 移植lean 的包到官方
-git_sparse_clone master https://github.com/coolsnowwolf/lede package/qat package/wwan
+#git_sparse_clone master https://github.com/coolsnowwolf/lede package/qat package/wwan
 git_sparse_clone master https://github.com/coolsnowwolf/luci applications/luci-app-vlmcsd applications/luci-app-verysync applications/luci-app-rclone applications/luci-app-nfs
 git_sparse_clone master https://github.com/coolsnowwolf/packages net/vlmcsd net/verysync
 #移植5G-Modem-Support
@@ -120,7 +119,7 @@ git_sparse_clone master https://github.com/immortalwrt-collections/openwrt-cdnsp
 #rm -rf feeds/kenzo/luci-app-fileassistant
 #rm -rf package/luci-app-fileassistant
 git_sparse_clone main https://github.com/huanghitoy/openwrt-package luci-app-fileassistant luci-app-ssr-mudb-server luci-app-timecontrol luci-app-openvpn-server luci-app-openvpn-client
-git_sparse_clone other https://github.com/Lienol/openwrt-package luci-app-tcpdump
+git_sparse_clone lua https://github.com/Lienol/openwrt-package other/luci-app-tcpdump
 
 #qbittorrent
 rm -rf package/luci-app-qbittorrent
@@ -138,9 +137,6 @@ git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-
 rm -rf feeds/luci/applications/luci-app-dockerman
 rm -rf package/luci-app-dockerman
 git_sparse_clone master https://github.com/lisaac/luci-app-dockerman applications/luci-app-dockerman
-
-# Add Support for Asterisk Quectel dongle (IchthysMaranatha Version)
-git clone https://github.com/huanghitoy/openwrt-asterisk-chan-quectel.git package/asterisk-chan-quectel
 
 # adguardhome
 #rm -rf feeds/packages/net/adguardhome
@@ -194,8 +190,14 @@ git clone --depth=1 -b master https://github.com/jerrykuku/luci-app-argon-config
 #git_sparse_clone main https://github.com/haiibo/packages luci-theme-atmaterial luci-theme-opentomcat luci-theme-netgear
 
 # MosDNS
-rm -rf package/luci-app-mosdns
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/luci-app-mosdns
+#requires golang 1.25.x or latest version
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
+# remove v2ray-geodata package from feeds
+rm -rf feeds/packages/net/v2ray-geodata
+
+git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 # SmartDNS
 #rm -rf openwrt/feeds/luci/applications/luci-app-smartdns
@@ -212,10 +214,24 @@ git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/luci-app-mosdns
 #chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
 
 # 科学上网插件
+#git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
+#rm -rf feeds/packages/net/{trojan-go,v2ray-core,v2ray-geodata,xray-core,microsocks,sing-box}
+#rm -rf package/{luci-app-passwall,openwrt-passwall}
+#git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
+#git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+rm -rf package/{passwall-packages,passwall-luci}
 # 移除 openwrt feeds 自带的核心库
 rm -rf feeds/packages/net/{xray-core,v2ray-geodata,sing-box,chinadns-ng,dns2socks,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview,shadow-tls}
+#git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwall-packages
+
 # 移除 openwrt feeds 过时的luci版本
 rm -rf feeds/luci/applications/luci-app-passwall
+#git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
+
+#sed -i 's/ +kmod-nft-nat6 \\//g' package/openwrt-passwall/sing-box/Makefile
+#rm -rf package/openwrt-passwall/{trojan-go,v2ray-core,v2ray-geodata,xray-core,microsocks,sing-box}
+#git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
+#git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
 
 # 更改 Argon 主题背景
 #cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
@@ -225,8 +241,6 @@ rm -rf feeds/luci/applications/luci-app-passwall
 #sed -i "s|firmware_repo.*|firmware_repo 'https://github.com/haiibo/OpenWrt'|g" package/luci-app-amlogic/root/etc/config/amlogic
 # sed -i "s|kernel_path.*|kernel_path 'https://github.com/ophub/kernel'|g" package/luci-app-amlogic/root/etc/config/amlogic
 #sed -i "s|ARMv8|ARMv8_PLUS|g" package/luci-app-amlogic/root/etc/config/amlogic
-
-
 
 # Alist
 #git clone --depth=1 https://github.com/sbwml/luci-app-alist package/luci-app-alist
@@ -260,11 +274,11 @@ rm -rf feeds/luci/applications/luci-app-passwall
 #cp -f $GITHUB_WORKSPACE/scripts/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
 #调整 WNDR4300 固件大小至128M
-#patch -p0 < $GITHUB_WORKSPACE/scripts/openwrt-23.05_ath79_nand_121m.patch
+patch -p0 < $GITHUB_WORKSPACE/scripts/openwrt-23.05_ath79_nand_121m.patch
 
 # 修复 bluetooth csr
-#cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/x86/patches-5.15/950-csr-clean.patch
-#cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/ipq806x/patches-5.15/950-csr-clean.patch
+cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/x86/patches-5.15/950-csr-clean.patch
+cp -f $GITHUB_WORKSPACE/scripts/950-csr-clean.patch target/linux/ipq806x/patches-5.15/950-csr-clean.patch
 
 # 修复 armv8 设备 xfsprogs 报错
 #sed -i 's/TARGET_CFLAGS.*/TARGET_CFLAGS += -DHAVE_MAP_SYNC -D_LARGEFILE64_SOURCE/g' feeds/packages/utils/xfsprogs/Makefile
@@ -282,9 +296,6 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-v2ray-server/luasrc/controller/*.lua
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-v2ray-server/luasrc/model/cbi/v2ray_server/*.lua
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-v2ray-server/luasrc/view/v2ray_server/*.htm
-
+rm -rf bin
 ./scripts/feeds update -a
 ./scripts/feeds install -a
-./scripts/feeds install -a
-make clean
-rm -rf bin
