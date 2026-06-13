@@ -37,8 +37,8 @@ jobs:
         echo "--------------------------硬盘信息--------------------------"
         echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT   
 
- # 保留扩容，但缩小镜像、关闭temp pv，预留2G根盘空间
-    - name: Combine Disks
+    # 保留扩容，但缩小镜像、关闭temp pv，预留2G根盘空间
+     - name: Combine Disks
       uses: easimon/maximize-build-space@master
       with:
         swap-size-mb: 512
