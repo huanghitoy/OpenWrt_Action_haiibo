@@ -49,7 +49,7 @@ jobs:
         remove-haskell: true
         remove-codeql: false
         remove-docker-images: false
-        temp-pv-loop-path: ""
+       
 
     - name: Check Disk After Expand
       run: df -hT
