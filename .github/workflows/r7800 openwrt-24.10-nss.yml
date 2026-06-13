@@ -19,43 +19,42 @@ env:
 
 jobs:
   Build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
 
     steps:
-    - name: Setup variables
+    - name: Check Server Performance
       run: |
-        sudo timedatectl set-timezone '${{ env.TZ }}'
-        git config --global user.name 'actions'
-        git config --global user.email 'action@github.com'
-
-    - name: Show system
-      run: |
-        echo -e "\n\e[1;32mCPU:\e[0m"
-        echo "$(grep 'model name' /proc/cpuinfo | head -1 | awk -F ': ' '{print $2}') ($(grep 'cpu MHz' /proc/cpuinfo | head -1 | awk -F ': ' '{print $2}')MHz) x $(grep processor /proc/cpuinfo  | wc -l)"
-        echo -e "\n\e[1;32mMemory:\e[0m"
-        free -h
-        echo -e "\n\e[1;32mStorage:\e[0m"
-        df -Th / /mnt
-        echo -e "\n\e[1;32mSystem:\e[0m"
-        lsb_release -a
-        echo -e "\n\e[1;32mKernel:\e[0m"
-        uname -a
-        echo
+        echo "警告⚠"
+        echo "分配的服务器性能有限，若选择的插件过多，务必注意CPU性能！"
+        echo -e "已知CPU型号(降序): 7763，8370C，8272CL，8171M，E5-2673\n"
+        echo "--------------------------CPU信息--------------------------"
+        echo "CPU物理数量: $(cat /proc/cpuinfo | grep "physical id" | sort | uniq | wc -l)"
+        echo "CPU核心数量: $(nproc)"
+        echo -e "CPU型号信息:$(cat /proc/cpuinfo | grep -m1 name | awk -F: '{print $2}')\n"
+        echo "--------------------------内存信息--------------------------"
+        echo "已安装内存详细信息:"
+        echo -e "$(sudo lshw -short -C memory | grep GiB)\n"
+        echo "--------------------------硬盘信息--------------------------"
+        echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
 
     - name: Initialization Environment
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        # 清理 Docker
+        # 清理所有 Docker 镜像（安全方式，避免空列表错误）
         docker images -q | xargs --no-run-if-empty docker rmi
-
+        # 或者使用以下更彻底的清理命令（可选）
+        # docker system prune -a -f
+        
         sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d /usr/local/lib/android $AGENT_TOOLSDIRECTORY
+        sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
         sudo -E apt-get -y update
-        # Ubuntu 24.04 OpenWrt 编译依赖
-        sudo -E apt-get -y install build-essential ccache ecj fastjar file g++ gawk gettext git java-propose-classpath libelf-dev libncurses-dev libssl-dev python3 python3-pip python3-setuptools python3-venv rsync subversion unzip wget xsltproc zlib1g-dev
+        #sudo -E apt-get -y install $(curl -fsSL is.gd/depends_ubuntu_2204)
+        sudo -E apt-get -y install build-essential ccache ecj fastjar file g++ gawk gettext git java-propose-classpath libelf-dev libncurses5-dev libncursesw5-dev libssl-dev python3 python3-pip python3-setuptools python3-venv rsync subversion unzip wget xsltproc zlib1g-dev
         sudo -E systemctl daemon-reload
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get -y clean
+        sudo timedatectl set-timezone "$TZ"
 
     - name: Combine Disks
       uses: easimon/maximize-build-space@master
@@ -63,14 +62,6 @@ jobs:
         swap-size-mb: 1024
         temp-reserve-mb: 100
         root-reserve-mb: 1024
-        remove-dotnet: true
-        remove-android: true
-        remove-haskell: true
-        remove-codeql: false
-        remove-docker-images: false
-
-    - name: Check Disk After Expand
-      run: df -hT
 
     - name: Checkout
       uses: actions/checkout@main
@@ -100,7 +91,6 @@ jobs:
       run: |
         cp $CONFIG_FILE $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
-        make defconfig > /dev/null 2>&1
         
         SOURCE_REPO="$(echo $REPO_URL | awk -F '/' '{print $(NF)}')"
         echo "SOURCE_REPO=$SOURCE_REPO" >> $GITHUB_ENV
@@ -117,6 +107,7 @@ jobs:
         mixkey: ${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
         prefix: ${{ env.OPENWRT_PATH }}
 
+   
     - name: Load Custom Configuration
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
@@ -125,11 +116,15 @@ jobs:
         chmod +x $DIY_SCRIPT
         cd $OPENWRT_PATH
         $GITHUB_WORKSPACE/$DIY_SCRIPT
-
+        #$GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
+        #$GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
+        #$GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
+        make defconfig
+        
     - name: Download DL Package
       run: |
         cd $OPENWRT_PATH
-        make defconfig
+              
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
@@ -139,6 +134,8 @@ jobs:
       run: |
         cd $OPENWRT_PATH
         cp -r ./luci-patches/* ./feeds/luci/modules        
+        #mkdir -p files/etc/uci-defaults
+        #cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
@@ -162,6 +159,7 @@ jobs:
         cd $OPENWRT_PATH/bin/targets/*/*
         cat sha256sums
         cp $OPENWRT_PATH/.config build.config
+        #mv -f $OPENWRT_PATH/bin/packages/*/*/*.ipk packages
         mv -f $OPENWRT_PATH/bin/packages/* packages/
         tar -zcf Packages.tar.gz packages
         rm -rf packages feeds.buildinfo version.buildinfo
@@ -177,7 +175,7 @@ jobs:
 
     - name: Upload Firmware To Release
       if: steps.compile.outputs.status == 'success' && env.FIRMWARE_RELEASE == 'true'
-      uses: ncipollo/release-action@v1.14.0
+      uses: ncipollo/release-action@v1
       with:
         name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
         allowUpdates: true
