@@ -37,18 +37,8 @@ jobs:
         echo "--------------------------硬盘信息--------------------------"
         echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
 
-    # 移到初始化前面，开启内置大文件迁移释放根盘
-    - name: Combine Disks
-      uses: easimon/maximize-build-space@master
-      with:
-        swap-size-mb: 1024
-        temp-reserve-mb: 100
-        root-reserve-mb: 1024
-        remove-dotnet: true
-        remove-android: true
-        remove-haskell: true
-        remove-codeql: false
-        remove-docker-images: false
+
+    
 
     - name: Check Disk After Expand
       run: df -hT
@@ -58,6 +48,10 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+
+        # 手动清理预装大型文件，释放根盘
+        sudo rm -rf /usr/share/dotnet /opt/ghc /opt/hostedtoolcache/Java /usr/local/lib/android
+        
         # 清理所有 Docker 镜像（安全方式，避免空列表错误）
         docker images -q | xargs --no-run-if-empty docker rmi
         # 或者使用以下更彻底的清理命令（可选）
