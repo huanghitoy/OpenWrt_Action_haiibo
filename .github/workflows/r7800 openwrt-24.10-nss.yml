@@ -35,13 +35,9 @@ jobs:
         echo "已安装内存详细信息:"
         echo -e "$(sudo lshw -short -C memory | grep GiB)\n"
         echo "--------------------------硬盘信息--------------------------"
-        echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
+        echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT   
 
 
-    
-
-    - name: Check Disk After Expand
-      run: df -hT
     
     
     - name: Initialization Environment
@@ -66,6 +62,9 @@ jobs:
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get -y clean
         sudo timedatectl set-timezone "$TZ"
+        
+    - name: Check Disk After Expand
+      run: df -hT
 
    
     - name: Checkout
