@@ -89,7 +89,7 @@ jobs:
         cp $CONFIG_FILE $OPENWRT_PATH/.config
         #cat $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
-        make defconfig > /dev/null 2>&1
+        #make defconfig > /dev/null 2>&1
         SOURCE_REPO="$(echo $REPO_URL | awk -F '/' '{print $(NF)}')"
         echo "SOURCE_REPO=$SOURCE_REPO" >> $GITHUB_ENV
         DEVICE_TARGET=$(cat .config | grep CONFIG_TARGET_BOARD | awk -F '"' '{print $2}')
@@ -105,12 +105,7 @@ jobs:
         mixkey: ${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
         prefix: ${{ env.OPENWRT_PATH }}
 
-    - name: Install Feeds
-      run: |
-        cd $OPENWRT_PATH
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a
-
+    
     - name: Load Custom Configuration
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
@@ -122,13 +117,11 @@ jobs:
         #$GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
         #$GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
         #$GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
-
+        make defconfig
+        
     - name: Download DL Package
       run: |
-        cd $OPENWRT_PATH
-        make defconfig
-        ./scripts/diffconfig.sh > diff.config
-        cat diff.config        
+        cd $OPENWRT_PATH    
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
