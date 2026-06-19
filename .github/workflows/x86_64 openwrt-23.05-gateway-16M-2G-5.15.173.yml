@@ -24,6 +24,7 @@ env:
 jobs:
   Build:
     runs-on: ubuntu-22.04
+    timeout-minutes: 360 # 拉满6小时超时上限
 
     steps:
     - name: Check Server Performance
@@ -104,6 +105,16 @@ jobs:
         DEVICE_SUBTARGET=$(cat .config | grep CONFIG_TARGET_SUBTARGET | awk -F '"' '{print $2}')
         echo "DEVICE_SUBTARGET=$DEVICE_SUBTARGET" >> $GITHUB_ENV
 
+    # ========== 新增 DL 缓存步骤 ==========
+    - name: Cache DL Directory
+      uses: actions/cache@v4
+      with:
+        path: ${{ env.OPENWRT_PATH }}/dl
+        key: dl-${{ env.REPO_BRANCH }}-${{ env.REPO_COMMITS }}-${{ hashFiles(env.CONFIG_FILE, 'feeds.conf.default') }}
+        restore-keys: |
+          dl-${{ env.REPO_BRANCH }}-${{ env.REPO_COMMITS }}
+          dl-${{ env.REPO_BRANCH }}
+
     - name: Cache Toolchain
       if: env.CACHE_TOOLCHAIN == 'true'
       uses: HiGarfield/cachewrtbuild@main
@@ -129,7 +140,7 @@ jobs:
       run: |
         cd $OPENWRT_PATH
         make defconfig     
-        make download -j8
+        make download -j2 # 从j8改为j2，降低磁盘IO压力
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
@@ -137,8 +148,8 @@ jobs:
       id: compile
       run: |
         cd $OPENWRT_PATH
-        # 不要用nproc高并发，多线程加重IO拥堵
-        make  -j4 
+        # 关键修改：-j4 改为 -j1 避免内存溢出runner失联
+        make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
         echo "FILE_DATE=$(date +"%Y.%m.%d")" >> $GITHUB_ENV
