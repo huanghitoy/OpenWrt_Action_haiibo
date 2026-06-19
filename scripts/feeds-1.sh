@@ -19,7 +19,7 @@ sed -i 's|PKG_HASH:=.*|PKG_HASH:=1150968f8791df884ce0ab5b2dbc870496088c90b5ffcc7
 
 ./scripts/feeds install -a
 
-wget -O -  https://github.com/raphikwasHere/bluealsa4openwrt/raw/refs/heads/main/bluealsa4openwrt/packages/full.tar.gz | tar -zxvf - -C ./
+wget -O -  https://github.com/huanghitoy/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
 
 ./scripts/feeds update
 ./scripts/feeds install bluez-alsa
