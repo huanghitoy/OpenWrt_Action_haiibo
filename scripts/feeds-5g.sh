@@ -21,7 +21,7 @@ sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/huanghitoy
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
-wget -O -  https://github.com/raphikWasHere/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
+wget -O -  https://github.com/huanghitoy/bluealsa4openwrt/raw/refs/heads/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
 
 ./scripts/feeds update
 ./scripts/feeds install bluez-alsa   
