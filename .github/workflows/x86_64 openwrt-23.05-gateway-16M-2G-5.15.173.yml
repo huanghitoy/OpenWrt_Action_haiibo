@@ -138,7 +138,7 @@ jobs:
       run: |
         cd $OPENWRT_PATH
         # 不要用nproc高并发，多线程加重IO拥堵
-        make package/install -j4 
+        make  -j4 
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
         echo "FILE_DATE=$(date +"%Y.%m.%d")" >> $GITHUB_ENV
