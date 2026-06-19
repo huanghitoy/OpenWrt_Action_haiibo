@@ -137,8 +137,6 @@ jobs:
       id: compile
       run: |
         cd $OPENWRT_PATH
-        make clean
-        make dirclean
         # 不要用nproc高并发，多线程加重IO拥堵
         make package/install -j4 
         echo "status=success" >> $GITHUB_OUTPUT
