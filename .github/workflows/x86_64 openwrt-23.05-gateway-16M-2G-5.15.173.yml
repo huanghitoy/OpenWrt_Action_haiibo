@@ -105,16 +105,7 @@ jobs:
         DEVICE_SUBTARGET=$(cat .config | grep CONFIG_TARGET_SUBTARGET | awk -F '"' '{print $2}')
         echo "DEVICE_SUBTARGET=$DEVICE_SUBTARGET" >> $GITHUB_ENV
 
-    # ========== 新增 DL 缓存步骤 ==========
-    - name: Cache DL Directory
-      uses: actions/cache@v4
-      with:
-        path: ${{ env.OPENWRT_PATH }}/dl
-        key: dl-${{ env.REPO_BRANCH }}-${{ env.REPO_COMMITS }}-${{ hashFiles(env.CONFIG_FILE, 'feeds.conf.default') }}
-        restore-keys: |
-          dl-${{ env.REPO_BRANCH }}-${{ env.REPO_COMMITS }}
-          dl-${{ env.REPO_BRANCH }}
-
+   
     - name: Cache Toolchain
       if: env.CACHE_TOOLCHAIN == 'true'
       uses: HiGarfield/cachewrtbuild@main
