@@ -131,7 +131,7 @@ jobs:
       run: |
         cd $OPENWRT_PATH
         make defconfig     
-        make download -j2 # 从j8改为j2，降低磁盘IO压力
+        make download -j8 # 从j8改为j2，降低磁盘IO压力
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
