@@ -8,11 +8,18 @@
 PASSWALL_PACKAGES_FEEDS_COMMITS="b37a3f1ce3512b61143c4fa49335a074d197bcf5"
 PASSWALL_LUCI_FEEDS_COMMITS="d73f09db0462a65cbfe989b2b8d41fc0bac2b008"
 PASSWALL2_LUCI_FEEDS_COMMITS="4584a89c749c5a4f56c04f720937df27357a81be"
+
+
 sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git^'$PASSWALL_PACKAGES_FEEDS_COMMITS'\nsrc-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git^'$PASSWALL_LUCI_FEEDS_COMMITS'' feeds.conf.default
 #sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git^'$PASSWALL_PACKAGES_FEEDS_COMMITS'\nsrc-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git^'$PASSWALL_LUCI_FEEDS_COMMITS'\nsrc-git passwall2_luci https://github.com/Openwrt-Passwall/openwrt-passwall2.git^'$PASSWALL2_LUCI_FEEDS_COMMITS'' feeds.conf.default
+
+
 #sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
 echo "src-git asterisk_chan_quectel https://github.com/huanghitoy/openwrt-asterisk-chan-quectel.git;master" >> feeds.conf.default
+
 echo "src-git kms https://github.com/gaoderby/luci-app-kms.git" >> feeds.conf.default
+
+
 ./scripts/feeds update -a
 
 # ✅ 修复 xray-plugin-1.8.24 在passwall-25.7.15版本中哈希值不匹配，在最新版中已修复
