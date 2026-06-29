@@ -13,7 +13,7 @@ env:
   #5.15.173
   #REPO_COMMITS: 86dfa171015d1dd94dc735ae0c57e9e2962914fa
   CONFIG_FILE: configs/x86_64_openwrt-23.05.config
-  DIY_SCRIPT: openwrt-23.05.sh
+  DIY_SCRIPT: openwrt-23.05-1.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
