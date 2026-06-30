@@ -8,6 +8,10 @@ on:
 env:
   REPO_URL: https://github.com/4meters/openwrt-r7800-nss
   REPO_BRANCH: r7800-24.10.6
+  
+  #Apr 1, 2026  
+  REPO_COMMITS: 043f948169557f6c420180af4e826dd6b1331722
+  
   CONFIG_FILE: configs/r7800_openwrt-24.10.config
   DIY_SCRIPT: openwrt-24.10.sh
   CLASH_KERNEL: arm64
@@ -69,8 +73,12 @@ jobs:
     - name: Clone Source Code
       run: |
         df -hT $GITHUB_WORKSPACE
-        git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
+        
+        #git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
+        git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
+        
         cd openwrt
+        git reset --hard $REPO_COMMITS
         
         mkdir luci-patches
         cp -r ./feeds/luci/modules/* ./luci-patches
