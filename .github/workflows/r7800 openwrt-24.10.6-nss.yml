@@ -1,4 +1,4 @@
-name: r7800 openwrt-24.10
+name: r7800 openwrt-24.10.6-nss
 
 on:
   workflow_dispatch:
