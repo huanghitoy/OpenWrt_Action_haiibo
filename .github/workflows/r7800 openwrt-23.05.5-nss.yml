@@ -41,11 +41,16 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        docker rmi $(docker images -q)
+        # 清理所有 Docker 镜像（安全方式，避免空列表错误）
+        docker images -q | xargs --no-run-if-empty docker rmi
+        # 或者使用以下更彻底的清理命令（可选）
+        # docker system prune -a -f
+        
         sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d /usr/local/lib/android $AGENT_TOOLSDIRECTORY
         sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
         sudo -E apt-get -y update
-        sudo -E apt-get -y install $(curl -fsSL is.gd/depends_ubuntu_2204)
+        #sudo -E apt-get -y install $(curl -fsSL is.gd/depends_ubuntu_2204)
+        sudo -E apt-get -y install build-essential ccache ecj fastjar file g++ gawk gettext git java-propose-classpath libelf-dev libncurses5-dev libncursesw5-dev libssl-dev python3 python3-pip python3-setuptools python3-venv rsync subversion unzip wget xsltproc zlib1g-dev
         sudo -E systemctl daemon-reload
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get -y clean
@@ -57,7 +62,12 @@ jobs:
         swap-size-mb: 1024
         temp-reserve-mb: 100
         root-reserve-mb: 1024
+        
+# ========== 新增磁盘校验步骤 ==========
+    - name: Check disk after maximize
+      run: df -hT
 
+      
     - name: Checkout
       uses: actions/checkout@main
 
@@ -65,11 +75,10 @@ jobs:
       run: |
         df -hT $GITHUB_WORKSPACE
         git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
-       
         cd openwrt
         
         bash $GITHUB_WORKSPACE/scripts/feeds.sh
-        
+                
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         COMMIT_AUTHOR=$(git show -s --date=short --format="作者: %an")
         echo "COMMIT_AUTHOR=$COMMIT_AUTHOR" >> $GITHUB_ENV
@@ -85,7 +94,7 @@ jobs:
         cp $CONFIG_FILE $OPENWRT_PATH/.config
         #cat $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
-        make defconfig > /dev/null 2>&1
+        #make defconfig > /dev/null 2>&1
         SOURCE_REPO="$(echo $REPO_URL | awk -F '/' '{print $(NF)}')"
         echo "SOURCE_REPO=$SOURCE_REPO" >> $GITHUB_ENV
         DEVICE_TARGET=$(cat .config | grep CONFIG_TARGET_BOARD | awk -F '"' '{print $2}')
@@ -101,12 +110,7 @@ jobs:
         mixkey: ${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
         prefix: ${{ env.OPENWRT_PATH }}
 
-    - name: Install Feeds
-      run: |
-        cd $OPENWRT_PATH
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a
-
+    
     - name: Load Custom Configuration
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
@@ -118,13 +122,11 @@ jobs:
         #$GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
         #$GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
         #$GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
-
+        make defconfig
+        
     - name: Download DL Package
       run: |
-        cd $OPENWRT_PATH
-        make defconfig
-        ./scripts/diffconfig.sh > diff.config
-        cat diff.config        
+        cd $OPENWRT_PATH    
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
@@ -136,7 +138,7 @@ jobs:
         #mkdir -p files/etc/uci-defaults
         #cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
         echo -e "$(nproc) thread compile"
-        make -j$(nproc) || make -j1 V=s
+        make V=s -j$(nproc)
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
         echo "FILE_DATE=$(date +"%Y.%m.%d")" >> $GITHUB_ENV
