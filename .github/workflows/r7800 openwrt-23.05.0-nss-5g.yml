@@ -9,7 +9,7 @@ env:
   REPO_URL: https://github.com/APCCV/OpenWRT-23.05.0-NSS
   REPO_BRANCH: 23.05.0-nss
   CONFIG_FILE: configs/r7800_openwrt-23.05-5g.config
-  DIY_SCRIPT: openwrt-23.05.sh
+  DIY_SCRIPT: openwrt-23.05-1.sh
   CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
