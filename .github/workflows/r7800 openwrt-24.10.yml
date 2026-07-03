@@ -1,4 +1,4 @@
-name: x86_64 openwrt-24.10
+name: r7800 openwrt-24.10
 
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ env:
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: x86_64-openwrt-24.10
+  FIRMWARE_TAG: r7800-openwrt-24.10
   TZ: Asia/Shanghai
 
 jobs:
