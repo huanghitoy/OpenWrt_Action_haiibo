@@ -8,7 +8,11 @@ on:
 env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-24.10
-  CONFIG_FILE: configs/x86_64_openwrt-24.10.config
+  
+  #2026.6.24 ---6.6.143
+  REPO_COMMITS: 95d0ca014c4ce5e225579f859c066dc74a20763b
+  
+  CONFIG_FILE: configs/r7800_openwrt-24.10.config
   DIY_SCRIPT: openwrt-24.10.sh
   CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: false
@@ -69,8 +73,9 @@ jobs:
     - name: Clone Source Code
       run: |
         df -hT $GITHUB_WORKSPACE
-        git clone -b $REPO_BRANCH --single-branch --depth=1 $REPO_URL openwrt
+        git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
         cd openwrt
+        git reset --hard $REPO_COMMITS
         
         bash $GITHUB_WORKSPACE/scripts/feeds-24.10.sh
                 
