@@ -12,7 +12,7 @@ env:
   #Apr 1, 2026  
   REPO_COMMITS: 043f948169557f6c420180af4e826dd6b1331722
   
-  CONFIG_FILE: configs/r7800_openwrt-24.10.config
+  CONFIG_FILE: configs/r7800_openwrt-24.10-nss.config
   DIY_SCRIPT: openwrt-24.10.sh
   CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: true
