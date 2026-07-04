@@ -9,7 +9,7 @@ env:
   REPO_URL: https://github.com/APCCV/OpenWRT-23.05.0-rc2-NSS
   REPO_BRANCH: v23.05.0-rc2
   CONFIG_FILE: configs/ipq806x-openwrt-23.05.config
-  DIY_SCRIPT: openwrt-23.05.sh
+  DIY_SCRIPT: openwrt-23.05-nss.sh
   CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: false
   UPLOAD_BIN_DIR: false
