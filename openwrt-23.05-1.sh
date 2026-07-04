@@ -1,5 +1,5 @@
 #!/bin/bash
-#openwrt-23.05
+#openwrt-23.05  针对r7800 nss smartdns 用自带的
 
 #sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
 # 取消默认主题luci-theme-bootstrap  
@@ -159,20 +159,7 @@ git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 #sed -i '$i uci commit nlbwmon' package/lean/default-settings/files/zzz-default-settings
 #chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
 
-# 科学上网插件
-#git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
-#rm -rf feeds/packages/net/{trojan-go,v2ray-core,v2ray-geodata,xray-core,microsocks,sing-box}
-#rm -rf package/{luci-app-passwall,openwrt-passwall}
-#git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
-#git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
-rm -rf package/{passwall-packages,passwall-luci}
-# 移除 openwrt feeds 自带的核心库
-rm -rf feeds/packages/net/{xray-core,v2ray-geodata,sing-box,chinadns-ng,dns2socks,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview,shadow-tls}
-#git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwall-packages
-
-# 移除 openwrt feeds 过时的luci版本
-rm -rf feeds/luci/applications/luci-app-passwall
-#git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
+# 科学上网插件 passwall 移到feed.sh
 
 #sed -i 's/ +kmod-nft-nat6 \\//g' package/openwrt-passwall/sing-box/Makefile
 #rm -rf package/openwrt-passwall/{trojan-go,v2ray-core,v2ray-geodata,xray-core,microsocks,sing-box}
@@ -242,6 +229,7 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-v2ray-server/luasrc/controller/*.lua
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-v2ray-server/luasrc/model/cbi/v2ray_server/*.lua
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-v2ray-server/luasrc/view/v2ray_server/*.htm
+
 rm -rf bin
 ./scripts/feeds update -a
 ./scripts/feeds install -a
