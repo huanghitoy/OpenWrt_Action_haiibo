@@ -24,6 +24,7 @@ sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt
 echo "src-git asterisk_chan_quectel https://github.com/huanghitoy/openwrt-asterisk-chan-quectel.git;master" >> feeds.conf.default
 
 echo "src-git kms https://github.com/gaoderby/luci-app-kms.git" >> feeds.conf.default
+
 echo "src-git opencv https://github.com/marcusfolkesson/mediamtx-openwrt-feed.git" >> feeds.conf.default
 echo "src-git opencv https://github.com/marcusfolkesson/libcamera-openwrt-feed.git" >> feeds.conf.default
 
