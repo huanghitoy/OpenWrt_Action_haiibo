@@ -26,9 +26,9 @@ echo "src-git asterisk_chan_quectel https://github.com/huanghitoy/openwrt-asteri
 echo "src-git kms https://github.com/gaoderby/luci-app-kms.git" >> feeds.conf.default
 
 # MediaMTX (原rtsp-simple-server) 流媒体网关
-echo "src-git mediamtx https://github.com/marcusfolkesson/mediamtx-openwrt-feed.git" >> feeds.conf.default
+echo "src-git mediamtx https://github.com/huanghitoy/mediamtx-openwrt-feed.git" >> feeds.conf.default
 # libcamera 摄像头驱动库
-echo "src-git libcamera https://github.com/marcusfolkesson/libcamera-openwrt-feed.git" >> feeds.conf.default
+echo "src-git libcamera https://github.com/huanghitoy/libcamera-openwrt-feed.git" >> feeds.conf.default
 
 
 ./scripts/feeds update -a
