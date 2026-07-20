@@ -24,8 +24,8 @@ sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt
 echo "src-git asterisk_chan_quectel https://github.com/huanghitoy/openwrt-asterisk-chan-quectel.git;master" >> feeds.conf.default
 
 echo "src-git kms https://github.com/gaoderby/luci-app-kms.git" >> feeds.conf.default
-
-./scripts/feeds update -a
+echo "src-git opencv https://github.com/marcusfolkesson/mediamtx-openwrt-feed.git" >> ./feeds.conf
+echo "src-git opencv https://github.com/marcusfolkesson/libcamera-openwrt-feed.git" >> ./feeds.conf
 
 # ✅ 修复 xray-plugin-1.8.24 在passwall-25.12.5之前版本中哈希值不匹配，在最新版中已修复
 sed -i 's|PKG_HASH:=.*|PKG_HASH:=1150968f8791df884ce0ab5b2dbc870496088c90b5ffcc7f21497075aab7b1b5|g' feeds/passwall_packages/xray-plugin/Makefile
