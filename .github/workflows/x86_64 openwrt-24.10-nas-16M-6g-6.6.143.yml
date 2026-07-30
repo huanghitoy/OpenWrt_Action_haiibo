@@ -1,4 +1,4 @@
-name: x86_64 openwrt-24.10-nas
+name: x86_64 openwrt-24.10-nas-16M-6g-6.6.143
 
 on:
   workflow_dispatch:
