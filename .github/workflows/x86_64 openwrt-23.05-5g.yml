@@ -1,4 +1,4 @@
-name: X86_64 openwrt-23.05-1
+name: X86_64 openwrt-23.05-5g
 
 on:
   workflow_dispatch:
@@ -77,7 +77,7 @@ jobs:
         #git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
         cd openwrt
         #revise feeds.conf.default 
-        bash $GITHUB_WORKSPACE/scripts/feeds-1.sh
+        bash $GITHUB_WORKSPACE/scripts/feeds-5g.sh
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         COMMIT_AUTHOR=$(git show -s --date=short --format="作者: %an")
         echo "COMMIT_AUTHOR=$COMMIT_AUTHOR" >> $GITHUB_ENV
