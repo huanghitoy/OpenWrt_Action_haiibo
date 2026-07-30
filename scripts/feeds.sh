@@ -22,7 +22,7 @@ sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt
 
 #sed -i 's/^.*telephony.git.*$/src-git telephony https:\/\/github.com\/hitoyhuang\/telephony.git;openwrt-23.05/' feeds.conf.default
 echo "src-git asterisk_chan_quectel https://github.com/huanghitoy/openwrt-asterisk-chan-quectel.git;master" >> feeds.conf.default
-
+echo "src-git asterisk_chan_quectel_5g https://github.com/hitoyhuang/openwrt-asterisk-chan-quectel5g.git;master" >> feeds.conf.default
 echo "src-git kms https://github.com/gaoderby/luci-app-kms.git" >> feeds.conf.default
 
 # MediaMTX (原rtsp-simple-server) 流媒体网关
