@@ -1,4 +1,4 @@
-name: x86_64 openwrt-24.10
+name: x86_64 openwrt-24.10-nas
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ env:
   #2026.6.24 ---6.6.143
   REPO_COMMITS: 95d0ca014c4ce5e225579f859c066dc74a20763b
   
-  CONFIG_FILE: configs/x86_64_openwrt-24.10.config
+  CONFIG_FILE: configs/x86_64_openwrt-24.10-nas.config
   DIY_SCRIPT: openwrt-24.10.sh
   CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: true
