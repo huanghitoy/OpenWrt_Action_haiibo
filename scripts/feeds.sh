@@ -21,7 +21,7 @@ PASSWALL_LUCI_FEEDS_COMMITS="d73f09db0462a65cbfe989b2b8d41fc0bac2b008"
 sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git^'$PASSWALL_PACKAGES_FEEDS_COMMITS'\nsrc-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git^'$PASSWALL_LUCI_FEEDS_COMMITS'' feeds.conf.default
 
 echo "src-git asterisk_chan_quectel https://github.com/huanghitoy/openwrt-asterisk-chan-quectel.git;master" >> feeds.conf.default
-echo "src-git asterisk_chan_quectel_5g https://github.com/huanghitoy/openwrt-asterisk-chan-quectel-5g.git;master" >> feeds.conf.default
+#echo "src-git asterisk_chan_quectel_5g https://github.com/huanghitoy/openwrt-asterisk-chan-quectel-5g.git;master" >> feeds.conf.default
 
 echo "src-git kms https://github.com/gaoderby/luci-app-kms.git" >> feeds.conf.default
 
